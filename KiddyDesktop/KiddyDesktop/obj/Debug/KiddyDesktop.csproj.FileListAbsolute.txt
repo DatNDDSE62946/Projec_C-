@@ -1,0 +1,11 @@
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\bin\Debug\KiddyDesktop.exe.config
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\bin\Debug\KiddyDesktop.exe
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\bin\Debug\KiddyDesktop.pdb
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csprojAssemblyReference.cache
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.frmLogin.resources
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.frmMain.resources
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.Properties.Resources.resources
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.GenerateResource.cache
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.CoreCompileInputs.cache
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.exe
+C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.pdb
