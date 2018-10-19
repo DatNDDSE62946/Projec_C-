@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 /******************************
@@ -441,6 +441,13 @@ section
 {
 
 }
+.shopping_cart a {
+    color: black;
+}
+    .shopping_cart a:hover {
+        fill: #e95a5a;
+        color: #e95a5a;
+    }
 .shopping_cart
 {
 	display: inline-block;
