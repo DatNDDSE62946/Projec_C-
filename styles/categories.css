@@ -446,6 +446,10 @@ section
 {
 	display: inline-block;
 }
+.login_link
+{
+    display: inline-block;
+}
 .shopping_cart a svg
 {
 	display: inline-block;
@@ -1323,4 +1327,8 @@ section
 .footer_social ul li a i:hover
 {
 	color: #FFFFFF;
+}
+.shopping_cart a:hover
+{
+    color:white;
 }
