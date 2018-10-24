@@ -203,38 +203,44 @@
                     <!-- Get in touch -->
                     <div class="col-lg-8 contact_col">
                         <div class="get_in_touch">
-                            <div class="section_title">Get in Touch</div>
+                            <div class="section_title">Welcome to Kiddy!</div>
                             <div class="contact_form_container">
-                                <form action="register" id="register_form" class="contact_form">
+                                <form action="#" id="contact_form" class="contact_form">
                                     <div>
                                         <label for="username">Username:</label>
-                                        <input type="text" id="username" class="form-control" required="required" />
+                                        <input type="text" id="username" class="contact_input" />
+                                        <p id="usernameValidate" class="validateP"></p>
                                     </div>
                                     <div class="row">
                                         <div class="col-xl-6">
                                             <!-- Name -->
                                             <label for="register_name">First Name*</label>
-                                            <input type="text" id="register_name" class="form-control" required="required">
+                                            <input type="text" id="first_name" class="contact_input">
+                                            <p id="fNameValidate" class="validateP"></p>
                                         </div>
                                         <div class="col-xl-6 last_name_col">
                                             <!-- Last Name -->
                                             <label for="register_last_name">Last Name*</label>
-                                            <input type="text" id="register_last_name" class="form-control" required="required">
+                                            <input type="text" id="last_name" class="contact_input">
+                                            <p id="lastNameValidate" class="validateP"></p>
                                         </div>
                                     </div>
                                     <div>
                                         <label for="password">Password:</label>
-                                        <input type="text" id="password" class="form-control" required="required" />
+                                        <input type="password" id="password" class="contact_input"/>
+                                        <p id="passwordValidate" class="validateP"></p>
                                     </div>
                                     <div>
                                         <label for="confirm">Confirm password:</label>
-                                        <input type="text" id="confirm" class="form-control" required="required" />
+                                        <input type="password" id="confirm" class="contact_input" />
+                                        <p id="confirmValidate" class="validateP"></p>
                                     </div>
                                     <div>
                                         <label for="confirm">Email:</label>
-                                        <input type="text" id="email" class="form-control" required="required" placeholder="Email@gmail.com"/>
+                                        <input type="text" id="email" class="contact_input" placeholder="Example@gmail.com"/>
+                                        <p id="emailValidate" class="validateP"></p>
                                     </div>
-                                    <button type="submit" class="button contact_button"><span>Create account</span></button>
+                                    <button type="submit" class="button contact_button" onclick="return myValidate()"><span>Create account</span></button>
                                 </form>
                             </div>
                         </div>
@@ -326,5 +332,7 @@
     <script src="plugins/easing/easing.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
     <script src="js/contact.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/register.js"></script>
 </body>
 </html>
