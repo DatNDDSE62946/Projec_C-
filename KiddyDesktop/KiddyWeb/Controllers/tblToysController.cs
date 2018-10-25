@@ -50,6 +50,7 @@ namespace KiddyWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Page = "Category";
             return View(db.tblToys.Where(toy => toy.category == category).ToList());
         }
 
