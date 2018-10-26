@@ -31,3 +31,8 @@ C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PR
 C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.CoreCompileInputs.cache
 C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.exe
 C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.pdb
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.CopyComplete
