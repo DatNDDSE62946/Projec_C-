@@ -21,6 +21,11 @@ namespace KiddyWeb.Controllers
             return View(db.tblToys.ToList());
         }
 
+        public ActionResult Login()
+        {
+            return RedirectToAction("Login", "tblCustomers");
+        }
+
         // GET: tblToys/Details/5
         public ActionResult Details(int? id)
         {
@@ -39,11 +44,6 @@ namespace KiddyWeb.Controllers
                 .Take(4).ToList();
             ViewBag.RelatedProduct = relatedProduct;
             return View(tblToy);
-        }
-
-        public ViewResult Login()
-        {
-            return View();
         }
 
         public ActionResult Category(string category)

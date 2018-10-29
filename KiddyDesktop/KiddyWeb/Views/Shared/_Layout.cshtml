@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Kiddy</title>
@@ -46,7 +47,25 @@
                                 </nav>
                                 <div class="header_extra ml-auto">
                                     <div class="shopping_cart" style="margin-right:40px;">
-                                        @Html.ActionLink("Login", "Login")
+                                        @if (Session["USER"] == null)
+                                        {
+                                            @Html.ActionLink("Login", "Login")
+                                        }
+                                        else
+                                        {
+                                            <ul>
+                                                <li class="hassubs">
+                                                    <p class="text-success">
+                                                        @Session["LASTNAME"]
+                                                    </p>
+                                                    <ul>
+                                                        <li><a href="#">Logout</a></li>
+                                                        <li><a href="#">Transaction History</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        }
+
                                     </div>
                                     <div class="shopping_cart">
                                         <a href="cart.html">
