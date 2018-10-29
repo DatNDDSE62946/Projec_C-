@@ -31,16 +31,27 @@ namespace KiddyDesktop
 
         private void button1_Click(object sender, EventArgs e)
         {
-            tblEmployee employee = data.tblEmployees.Single(em => em.username.Equals(txtUsername.Text));
-            if(employee.password == txtPassword.Text)
+            try
             {
-                Form f = new frmMain(employee.username);
-                f.Show();
-            }
-            else
+                tblEmployee employee = data.tblEmployees.Single(em => em.username.Equals(txtUsername.Text));
+                if (employee.password == txtPassword.Text)
+                {
+                    Form f = new frmMain(employee.username);
+                    f.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("Invalid username password!");
+                    
+                }
+             }
+            catch (Exception)
             {
+               
                 MessageBox.Show("Invalid username password!");
             }
-        }
+
+}
     }
 }

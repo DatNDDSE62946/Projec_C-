@@ -80,6 +80,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(153, 13);
             this.txtPassword.TabIndex = 3;
+            this.txtPassword.Text = "123456";
             // 
             // btnLogin
             // 
@@ -149,6 +150,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(155, 13);
             this.txtUsername.TabIndex = 9;
+            this.txtUsername.Text = "datlp";
             // 
             // label6
             // 

@@ -200,7 +200,10 @@ $(document).ready(function()
 	            		var priceEle = $(itemElement).find('.product_price').text().replace( '$', '' );
 	            		return parseFloat(priceEle);
 	            	},
-	            	name: '.product_name',
+                    name: function (itemElement) {
+                        var nameEle = $(itemElement).find('.product_title').text();
+                        return nameEle;
+                    },
 	            	stars: function(itemElement)
 	            	{
 	            		var starsEle = $(itemElement).find('.rating');

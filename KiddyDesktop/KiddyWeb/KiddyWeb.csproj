@@ -343,6 +343,7 @@
     <Content Include="Views\tblToys\Index.cshtml" />
     <Content Include="Views\tblToys\Login.cshtml" />
     <Content Include="Views\tblToys\Category.cshtml" />
+    <Content Include="Views\tblToys\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

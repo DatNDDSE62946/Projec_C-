@@ -17,6 +17,7 @@ namespace KiddyWeb.Controllers
         // GET: tblToys
         public ActionResult Index()
         {
+            ViewBag.Page = "Index";
             return View(db.tblToys.ToList());
         }
 
@@ -32,6 +33,11 @@ namespace KiddyWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Page = "Details";
+            var relatedProduct = db.tblToys.OrderByDescending(toy => toy.id)
+                .Where(toy => toy.category == tblToy.category && toy.id != id && toy.isActived == true)
+                .Take(4).ToList();
+            ViewBag.RelatedProduct = relatedProduct;
             return View(tblToy);
         }
 
@@ -50,6 +56,7 @@ namespace KiddyWeb.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Page = "Category";
             return View(db.tblToys.Where(toy => toy.category == category).ToList());
         }
 

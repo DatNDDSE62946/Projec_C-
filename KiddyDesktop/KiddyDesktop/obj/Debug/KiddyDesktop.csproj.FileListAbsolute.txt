@@ -36,3 +36,4 @@ C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFrame
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.xml
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.CopyComplete
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.ChangePasswordForm.resources
