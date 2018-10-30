@@ -23,6 +23,7 @@ C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PR
 C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.csproj.CopyComplete
 C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.dll
 C:\Users\DAT\Documents\My document\Chuyên ngành 5 HK Fall 2018\.Net and C# (PRN292)_KiemHH\Project\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.pdb
+<<<<<<< HEAD
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.csprojAssemblyReference.cache
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.csproj.CoreCompileInputs.cache
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.dll
@@ -54,3 +55,30 @@ C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Helpers
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Mvc.xml
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.csproj.CopyComplete
+=======
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\KiddyWeb.dll.config
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\KiddyWeb.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\KiddyWeb.pdb
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\EntityFramework.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\EntityFramework.SqlServer.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Helpers.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Mvc.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Razor.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Webpages.Deployment.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Webpages.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Webpages.Razor.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\EntityFramework.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\EntityFramework.SqlServer.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Razor.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Webpages.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Webpages.Deployment.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Webpages.Razor.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Helpers.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Web.Mvc.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.csprojAssemblyReference.cache
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.csproj.CoreCompileInputs.cache
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.csproj.CopyComplete
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.pdb
+>>>>>>> 8b6074cf319de3c8ee97bc5d817673d7e16b981b
