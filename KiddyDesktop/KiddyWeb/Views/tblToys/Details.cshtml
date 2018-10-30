@@ -1,5 +1,7 @@
-﻿@model KiddyWeb.Models.tblToy
-
+﻿@model KiddyWeb.Models.ToyDTO
+@{ 
+    ViewBag.Page = "Details";
+}
 <link rel="stylesheet" type="text/css" href="~/Content/styles/product.css">
 <link rel="stylesheet" type="text/css" href="~/Content/styles/product_responsive.css">
 
@@ -31,7 +33,7 @@
                             <span>In Stock</span>
                         </div>
                         <div class="details_text">
-                            <p>@Model.desciption</p>
+                            <p>@Model.description</p>
                         </div>
 
                         <!-- Product Quantity -->
@@ -88,7 +90,7 @@
 
                     <div class="product_grid">
 
-                        @foreach (var relatedToy in ViewBag.RelatedProduct as IEnumerable<KiddyWeb.Models.tblToy>)
+                        @foreach (var relatedToy in ViewBag.RelatedProduct as IEnumerable<KiddyWeb.Models.ToyDTO>)
                         {
                             <!-- Product -->
                             <div class="product">
