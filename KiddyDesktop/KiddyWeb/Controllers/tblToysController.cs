@@ -31,10 +31,10 @@ namespace KiddyWeb.Controllers
             return View(list);
         }
 
-        //public ActionResult Login()
-        //{
-        //    return RedirectToAction("Login", "tblCustomers");
-        //}
+        public ActionResult Login()
+        {
+            return RedirectToAction("Login", "tblCustomers");
+        }
 
         // GET: tblToys/Details/5
         public async Task<ActionResult> Details(int? id)
@@ -51,7 +51,7 @@ namespace KiddyWeb.Controllers
                 return HttpNotFound();
             }
             
-            response = await client.GetAsync(baseURL + "?related=" + dto.category);
+            response = await client.GetAsync(baseURL + "?id=" + id + "&related=" + dto.category);
             string strRelated = response.Content.ReadAsStringAsync().Result;
             IEnumerable<ToyDTO> relatedProduct = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strRelated);
             ViewBag.RelatedProduct = relatedProduct;

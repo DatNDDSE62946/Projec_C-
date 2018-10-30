@@ -100,3 +100,4 @@ C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyAPI\obj\Debug\KiddyAPI.dll
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyAPI\obj\Debug\KiddyAPI.pdb
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyAPI\bin\AutoMapper.dll
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyAPI\bin\AutoMapper.xml
+C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyAPI\obj\Debug\KiddyAPI.csprojAssemblyReference.cache

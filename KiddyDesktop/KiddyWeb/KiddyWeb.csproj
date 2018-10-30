@@ -339,9 +339,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\tblCustomer.cs" />
-    <Compile Include="Models\tblToy.cs" />
-    <Compile Include="Models\ToyDBModel.cs" />
+    <Compile Include="Models\CustomerDTO.cs" />
     <Compile Include="Models\ToyDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -57,11 +57,11 @@ namespace KiddyAPI.Controllers
             return list;
         }
 
-        //GET: api/Toys?related=BoardGame
-        public IEnumerable<ToyDTO> getHotToysByCategory(string related)
+        //GET: api/Toys?id=1&related=BoardGame
+        public IEnumerable<ToyDTO> getHotToysByCategory(int id, string related)
         {
             var list = db.tblToys.OrderByDescending(toy => toy.id)
-                .Where(toy => toy.category == related && toy.isActived == true)
+                .Where(toy => toy.category == related && toy.isActived == true && toy.id != id)
                 .Select(toy => new ToyDTO { id = toy.id, name = toy.name, image = toy.image, price = toy.price, category = toy.category })
                 .Take(4).ToList();
             return list;
