@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KiddyDesktop", "KiddyDeskto
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KiddyWeb", "KiddyWeb\KiddyWeb.csproj", "{B7C91AF8-1E1D-4595-A982-C3B316D0096E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KiddyAPI", "KiddyAPI\KiddyAPI.csproj", "{F996F0CB-B16A-4D3F-8A12-33B196D71F59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{B7C91AF8-1E1D-4595-A982-C3B316D0096E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7C91AF8-1E1D-4595-A982-C3B316D0096E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7C91AF8-1E1D-4595-A982-C3B316D0096E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F996F0CB-B16A-4D3F-8A12-33B196D71F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F996F0CB-B16A-4D3F-8A12-33B196D71F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F996F0CB-B16A-4D3F-8A12-33B196D71F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F996F0CB-B16A-4D3F-8A12-33B196D71F59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
