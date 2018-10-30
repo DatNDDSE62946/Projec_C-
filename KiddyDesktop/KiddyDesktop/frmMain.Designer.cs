@@ -168,7 +168,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(979, 463);
+            this.tabPage1.Size = new System.Drawing.Size(1034, 463);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Product Management";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -607,7 +607,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(979, 463);
+            this.tabPage3.Size = new System.Drawing.Size(1034, 463);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Order & Feedback";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -774,6 +774,7 @@
             // 
             // gvOrderDetail2
             // 
+            this.gvOrderDetail2.AllowUserToAddRows = false;
             this.gvOrderDetail2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrderDetail2.Location = new System.Drawing.Point(7, 213);
             this.gvOrderDetail2.Name = "gvOrderDetail2";
@@ -782,6 +783,7 @@
             // 
             // gvConfirmOrder
             // 
+            this.gvConfirmOrder.AllowUserToAddRows = false;
             this.gvConfirmOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvConfirmOrder.Location = new System.Drawing.Point(7, 20);
             this.gvConfirmOrder.Name = "gvConfirmOrder";
@@ -796,7 +798,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(979, 463);
+            this.tabPage4.Size = new System.Drawing.Size(1034, 463);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Customer";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -826,6 +828,7 @@
             // 
             // gvOrderDetail
             // 
+            this.gvOrderDetail.AllowUserToAddRows = false;
             this.gvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrderDetail.Location = new System.Drawing.Point(269, 45);
             this.gvOrderDetail.Name = "gvOrderDetail";
