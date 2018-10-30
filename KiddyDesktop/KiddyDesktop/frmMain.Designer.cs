@@ -69,6 +69,7 @@
             this.dtDOB = new System.Windows.Forms.DateTimePicker();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.PBEmployee = new System.Windows.Forms.PictureBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -110,6 +111,7 @@
             this.usernameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.firstnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.lastnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
+            this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.TabControl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -119,6 +121,8 @@
             this.TPEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployee)).BeginInit();
             this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PBEmployee)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
@@ -135,6 +139,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.usernameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -147,7 +152,7 @@
             this.TabControl.Location = new System.Drawing.Point(0, 56);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(987, 489);
+            this.TabControl.Size = new System.Drawing.Size(1042, 489);
             this.TabControl.TabIndex = 0;
             // 
             // tabPage1
@@ -370,7 +375,7 @@
             this.TPEmployee.Location = new System.Drawing.Point(4, 22);
             this.TPEmployee.Name = "TPEmployee";
             this.TPEmployee.Padding = new System.Windows.Forms.Padding(3);
-            this.TPEmployee.Size = new System.Drawing.Size(979, 463);
+            this.TPEmployee.Size = new System.Drawing.Size(1034, 463);
             this.TPEmployee.TabIndex = 1;
             this.TPEmployee.Text = "Employee Management";
             this.TPEmployee.UseVisualStyleBackColor = true;
@@ -378,7 +383,7 @@
             // 
             // btnEmployeeEdit
             // 
-            this.btnEmployeeEdit.Location = new System.Drawing.Point(764, 285);
+            this.btnEmployeeEdit.Location = new System.Drawing.Point(802, 285);
             this.btnEmployeeEdit.Name = "btnEmployeeEdit";
             this.btnEmployeeEdit.Size = new System.Drawing.Size(75, 56);
             this.btnEmployeeEdit.TabIndex = 7;
@@ -388,7 +393,7 @@
             // 
             // btnEmployeeDelete
             // 
-            this.btnEmployeeDelete.Location = new System.Drawing.Point(893, 285);
+            this.btnEmployeeDelete.Location = new System.Drawing.Point(933, 285);
             this.btnEmployeeDelete.Name = "btnEmployeeDelete";
             this.btnEmployeeDelete.Size = new System.Drawing.Size(75, 56);
             this.btnEmployeeDelete.TabIndex = 6;
@@ -398,7 +403,7 @@
             // 
             // btnEmployeeSave
             // 
-            this.btnEmployeeSave.Location = new System.Drawing.Point(637, 284);
+            this.btnEmployeeSave.Location = new System.Drawing.Point(659, 285);
             this.btnEmployeeSave.Name = "btnEmployeeSave";
             this.btnEmployeeSave.Size = new System.Drawing.Size(75, 56);
             this.btnEmployeeSave.TabIndex = 5;
@@ -462,7 +467,7 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Location = new System.Drawing.Point(514, 57);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(454, 221);
+            this.groupBox3.Size = new System.Drawing.Size(494, 221);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Employee Detail";
@@ -492,6 +497,8 @@
             this.btnUploadImage.TabIndex = 11;
             this.btnUploadImage.Text = "Upload Image";
             this.btnUploadImage.UseVisualStyleBackColor = true;
+            this.btnUploadImage.Click += new System.EventHandler(this.btnUploadImage_Click);
+            this.btnUploadImage.Validating += new System.ComponentModel.CancelEventHandler(this.btnUploadImage_Validating);
             // 
             // rdFemail
             // 
@@ -533,12 +540,21 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.PBEmployee);
             this.groupBox4.Location = new System.Drawing.Point(310, 19);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(138, 151);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Image";
+            // 
+            // PBEmployee
+            // 
+            this.PBEmployee.Location = new System.Drawing.Point(0, 19);
+            this.PBEmployee.Name = "PBEmployee";
+            this.PBEmployee.Size = new System.Drawing.Size(138, 132);
+            this.PBEmployee.TabIndex = 0;
+            this.PBEmployee.TabStop = false;
             // 
             // txtUsername
             // 
@@ -922,13 +938,19 @@
             // 
             // lastnameValidate
             // 
+            this.lastnameValidate.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.lastnameValidate.ContainerControl = this;
+            // 
+            // imageValidate
+            // 
+            this.imageValidate.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.imageValidate.ContainerControl = this;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 543);
+            this.ClientSize = new System.Drawing.Size(1042, 575);
             this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.TabControl);
@@ -949,6 +971,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployee)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PBEmployee)).EndInit();
             this.tabPage3.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -969,6 +993,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.usernameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1056,5 +1081,7 @@
         private System.Windows.Forms.ErrorProvider usernameValidate;
         private System.Windows.Forms.ErrorProvider firstnameValidate;
         private System.Windows.Forms.ErrorProvider lastnameValidate;
+        private System.Windows.Forms.PictureBox PBEmployee;
+        private System.Windows.Forms.ErrorProvider imageValidate;
     }
 }

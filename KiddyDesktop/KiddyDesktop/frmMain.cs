@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,16 +16,17 @@ namespace KiddyDesktop
     public partial class frmMain : Form
     {
         tblEmployee emp;
-        int ordIDConfirm;
         private KiddyStore data = new KiddyStore();
         private List<tblEmployee> dtEmployee;
         private List<tblToy> dtToy;
-
+        string empImgString;
+        int ordIDConfirm;
 
         public frmMain()
         {
             InitializeComponent();
         }
+
         public frmMain(string username)
         {
             InitializeComponent();
@@ -38,6 +40,10 @@ namespace KiddyDesktop
             SetEmployeeTabBlank();
             btnEmployeeSave.Enabled = true;
             gvEmployee.ClearSelection();
+            empImgString = null;
+            ordIDConfirm = -1;
+            txtUsername.Enabled = true;
+
         }
 
         #region Employee_functions
@@ -48,6 +54,7 @@ namespace KiddyDesktop
             txtUsername.Text = "";
             txtFirstName.Text = "";
             txtLastName.Text = "";
+            PBEmployee.Image = null;
         }
 
         private bool CheckEmployeeTabBlank()
@@ -67,6 +74,11 @@ namespace KiddyDesktop
             {
                 txtUsername.Focus();
                 result = true;
+            }
+            if(empImgString == null)
+            {
+                result = true;
+                btnUploadImage.Focus();
             }
             return result;
         }
@@ -118,38 +130,72 @@ namespace KiddyDesktop
 
         private void LoadEmployeeData(List<tblEmployee> listOfEmp)
         {
-
-            gvEmployee.DataSource = listOfEmp;
-            gvEmployee.Columns["username"].HeaderText = "Username";
-            gvEmployee.Columns["firstname"].HeaderText = "First name";
-            gvEmployee.Columns["lastname"].HeaderText = "Last name";
-            gvEmployee.Columns["Role"].Visible = false;
-            gvEmployee.Columns["password"].Visible = false;
-            gvEmployee.Columns["dob"].Visible = false;
-            gvEmployee.Columns["gender"].Visible = false;
-            gvEmployee.Columns["isActived"].Visible = false;
-            gvEmployee.Columns["image"].Visible = false;
-            gvEmployee.Columns["tblFeedbacks"].Visible = false;
-            gvEmployee.Columns["tblOrders"].Visible = false;
-            gvEmployee.Columns["tblToys"].Visible = false;
+            try
+            {
+                gvEmployee.DataSource = listOfEmp;
+                gvEmployee.Columns["username"].HeaderText = "Username";
+                gvEmployee.Columns["firstname"].HeaderText = "First name";
+                gvEmployee.Columns["lastname"].HeaderText = "Last name";
+                gvEmployee.Columns["Role"].Visible = false;
+                gvEmployee.Columns["password"].Visible = false;
+                gvEmployee.Columns["dob"].Visible = false;
+                gvEmployee.Columns["gender"].Visible = false;
+                gvEmployee.Columns["isActived"].Visible = false;
+                gvEmployee.Columns["image"].Visible = false;
+                gvEmployee.Columns["tblFeedbacks"].Visible = false;
+                gvEmployee.Columns["tblOrders"].Visible = false;
+                gvEmployee.Columns["tblToys"].Visible = false;
+            }catch(Exception e)
+            {
+            }
 
 
         }
 
-        //private void DataBinding()
-        //{
-        //    txtUsername.DataBindings.Clear();
-        //    txtLastName.DataBindings.Clear();
-        //    txtFirstName.DataBindings.Clear();
-        //    dtDOB.DataBindings.Clear();
-        //    rdFemail.DataBindings.Clear();
-        //    rdMale.DataBindings.Clear();
-        //    txtUsername.DataBindings.Add("Text", dtEmployee, "Username");
-        //    txtLastName.DataBindings.Add("Text", dtEmployee, "lastname");
-        //    txtFirstName.DataBindings.Add("Text", dtEmployee, "firstname");
-            
+        private void ViewEmployeeDetail(DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                btnEmployeeSave.Enabled = false;
+                string gender = gvEmployee.Rows[e.RowIndex].Cells["gender"].Value.ToString();
+                txtUsername.Text = gvEmployee.Rows[e.RowIndex].Cells["username"].Value.ToString();
+                txtFirstName.Text = gvEmployee.Rows[e.RowIndex].Cells["firstname"].Value.ToString();
+                txtLastName.Text = gvEmployee.Rows[e.RowIndex].Cells["lastname"].Value.ToString();
+                byte[] imageByte = (byte[])gvEmployee.Rows[e.RowIndex].Cells["image"].Value;
+                dtDOB.Text = gvEmployee.Rows[e.RowIndex].Cells["dob"].Value.ToString();
+                if (gender.Equals("female"))
+                {
+                    rdFemail.Checked = true;
+                }
+                else
+                {
+                    rdMale.Checked = true;
+                }
+                Image img = byteArrayToImage(imageByte);
+                PBEmployee.Image = img;
+                PBEmployee.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+            catch(Exception ex)
+            {
 
-        //}
+            }
+            
+        }
+
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+        }
+
+
+        public byte[] imageToByteArray(System.Drawing.Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Gif);
+            return ms.ToArray();
+        }
 
         private void SaveEmployee()
         {
@@ -168,8 +214,9 @@ namespace KiddyDesktop
                             {
                                 myGender = "male";
                             }
+                            Image img = Image.FromFile(empImgString);
+                            byte[] imgByte = imageToByteArray(img);
                             tblEmployee addEmp = new tblEmployee();
-
                             addEmp.username = txtUsername.Text;
                             addEmp.password = "1";
                             addEmp.dob = mydob;
@@ -178,11 +225,12 @@ namespace KiddyDesktop
                             addEmp.isActived = true;
                             addEmp.firstname = txtFirstName.Text;
                             addEmp.lastname = txtLastName.Text;
+                            addEmp.image = imgByte;
                             data.tblEmployees.Add(addEmp);
                             data.SaveChanges();
                             dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
                             LoadEmployeeData(dtEmployee);
-
+           
                             MessageBox.Show("Save employee complete!");
                         }
                         else
@@ -199,7 +247,6 @@ namespace KiddyDesktop
             catch (Exception e)
             {
 
-                MessageBox.Show(e.ToString());
             }
 
         }
@@ -222,11 +269,14 @@ namespace KiddyDesktop
                             {
                                 myGender = "male";
                             }
+                            Image image = Image.FromFile(empImgString);
+                            byte[] imagebyte = imageToByteArray(image);
                             tblEmployee editEmp = data.tblEmployees.Single(emp => emp.username.Equals(txtUsername.Text));
                             editEmp.firstname = txtFirstName.Text;
                             editEmp.lastname = txtLastName.Text;
                             editEmp.dob = mydob;
                             editEmp.gender = myGender;
+                            editEmp.image = imagebyte;
                             data.SaveChanges();
                             dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
                             LoadEmployeeData(dtEmployee);
@@ -243,7 +293,6 @@ namespace KiddyDesktop
             catch (Exception e)
             {
 
-                MessageBox.Show(e.ToString());
             }
 
         }
@@ -262,6 +311,7 @@ namespace KiddyDesktop
                     dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
                     LoadEmployeeData(dtEmployee);
                     MessageBox.Show("Delete employee complete");
+                    SetEmployeeTabBlank();
                 }
                 else
                 {
@@ -270,7 +320,6 @@ namespace KiddyDesktop
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
             }
         }
 
@@ -283,38 +332,67 @@ namespace KiddyDesktop
 
         private void LoadCustomerData()
         {
-            gvCustomer.DataSource = data.tblCustomers.Where(cus => cus.isActived == true).Select(cus => new
+            try
             {
-                username = cus.username,
-                name = cus.firstname + " " + cus.lastname
+                gvCustomer.DataSource = data.tblCustomers.Where(cus => cus.isActived == true).Select(cus => new
+                {
+                    username = cus.username,
+                    name = cus.firstname + " " + cus.lastname
 
-            }).ToList();
+                }).ToList();
+            }catch(Exception e)
+            {
+            }
         }
 
         private void ViewCustomerOrders(string cusID)
         {
-            gvOrders.DataSource = data.tblOrders.Where(ord => ord.cusID.Equals(cusID)).Select(ord => new
+            try
             {
-                id = ord.id,
-                Date = ord.datetime,
-                Payment = ord.payment
-            }).ToList();
-            gvOrders.Columns["id"].Visible = false;
+                gvOrders.DataSource = data.tblOrders.Where(ord => ord.cusID.Equals(cusID)).Select(ord => new
+                {
+                    id = ord.id,
+                    Date = ord.datetime,
+                    Payment = ord.payment
+                }).ToList();
+                gvOrders.Columns["id"].Visible = false;
+            }
+            catch (Exception e)
+            {
+            }
+            
         }
+
         private void ViewOrderDetail(int orderIDRef)
         {
-            gvOrderDetail.ColumnCount = 2;
-            gvOrderDetail.Columns[0].Name = "Toy";
-            gvOrderDetail.Columns[1].Name = "Quantity";
-            List<tblOrderDetail> listOfOrderDetails= data.tblOrderDetails.Where(ord => ord.orderID == orderIDRef).ToList();
-            foreach(tblOrderDetail orderDetail in listOfOrderDetails)
+            try
             {
-                ArrayList row = new ArrayList();
-                string toyName = data.tblToys.Single(toy => toy.id == orderDetail.toyID).name;
-                row.Add(toyName);
-                row.Add(orderDetail.quantity);
-                gvOrderDetail.Rows.Add(row.ToArray());
+                gvOrderDetail.ColumnCount = 2;
+                gvOrderDetail.Columns[0].Name = "Toy";
+                gvOrderDetail.Columns[1].Name = "Quantity";
+                List<tblOrderDetail> listOfOrderDetails = data.tblOrderDetails.Where(ord => ord.orderID == orderIDRef).ToList();
+                //foreach (tblOrderDetail orderDetail in listOfOrderDetails)
+                //{
+                //    ArrayList row = new ArrayList();
+                //    string toyName = data.tblToys.Single(toy => toy.id == orderDetail.toyID).name;
+                //    row.Add(toyName);
+                //    row.Add(orderDetail.quantity);
+                //    gvOrderDetail.Rows.Add(row.ToArray());
+                //}
+                for(int i = 0; i< listOfOrderDetails.Count; i++)
+                {
+                    ArrayList row = new ArrayList();
+                    tblOrderDetail orderDetail = listOfOrderDetails[i];
+                    string toyName = data.tblToys.Single(toy => toy.id == orderDetail.toyID).name;
+                    row.Add(toyName);
+                    row.Add(orderDetail.quantity);
+                    gvOrderDetail.Rows.Add(row.ToArray());
+                }
             }
+            catch (Exception e)
+            {
+            }
+            
         }
 
 
@@ -387,20 +465,8 @@ namespace KiddyDesktop
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            btnEmployeeSave.Enabled = false;
-            string gender = gvEmployee.Rows[e.RowIndex].Cells["gender"].Value.ToString();
-            txtUsername.Text  = gvEmployee.Rows[e.RowIndex].Cells["username"].Value.ToString();
-            txtFirstName.Text  = gvEmployee.Rows[e.RowIndex].Cells["firstname"].Value.ToString();
-            txtLastName.Text  = gvEmployee.Rows[e.RowIndex].Cells["lastname"].Value.ToString();
-            if (gender.Equals("female"))
-            {
-                rdFemail.Checked = true;
-            }
-            else
-            {
-                rdMale.Checked = true;
-            }
-
+            ViewEmployeeDetail(e);
+            txtUsername.Enabled = false;
         }
 
         private void tabPage2_Click(object sender, EventArgs e)
@@ -458,12 +524,14 @@ namespace KiddyDesktop
             string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
             ViewCustomerOrders(cusID);
             gvOrderDetail.DataSource = null;
+            
         }
 
         private void gvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             int orderID = int.Parse(gvOrders.CurrentRow.Cells[0].Value.ToString());
             ViewOrderDetail(orderID);
+            gvOrderDetail2.DataSource = null;
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
@@ -477,6 +545,7 @@ namespace KiddyDesktop
             if (txtUsername.Text.Equals(""))
             {
                 usernameValidate.SetError(txtUsername, "Username can not be blank!");
+                txtUsername.Focus();
             }
             else
             {
@@ -489,6 +558,8 @@ namespace KiddyDesktop
             if (txtFirstName.Text.Equals(""))
             {
                 firstnameValidate.SetError(txtFirstName, "Firstname can not be blank!");
+                txtFirstName.Focus();
+
             }
             else
             {
@@ -501,6 +572,7 @@ namespace KiddyDesktop
             if (txtLastName.Text.Equals(""))
             {
                 lastnameValidate.SetError(txtLastName, "Firstname can not be blank!");
+                txtLastName.Focus();
             }
             else
             {
@@ -537,12 +609,44 @@ namespace KiddyDesktop
 
         private void button9_Click(object sender, EventArgs e)
         {
-            ConfirmOrder();
+            if (ordIDConfirm != -1)
+            {
+                ConfirmOrder();
+            }
         }
 
         private void btnRejectOrder_Click(object sender, EventArgs e)
         {
             RejectOrder();
+        }
+
+        private void btnUploadImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileChooser = new OpenFileDialog();
+            fileChooser.Title = "Please select a photo";
+            fileChooser.Filter = "JPG|*.jpg|PNG|*.png|GIF|*gif";
+            fileChooser.Multiselect = false;
+            if(fileChooser.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.PBEmployee.ImageLocation = fileChooser.FileName;
+                empImgString = fileChooser.FileName;
+                PBEmployee.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+
+
+        }
+
+        private void btnUploadImage_Validating(object sender, CancelEventArgs e)
+        {
+            if(empImgString == null && PBEmployee.Image == null)
+            {
+                imageValidate.SetError(btnUploadImage, "Please choose employee image");
+                btnUploadImage.Focus();
+            }
+            else
+            {
+                imageValidate.SetError(btnUploadImage, "");
+            }
         }
     }
     

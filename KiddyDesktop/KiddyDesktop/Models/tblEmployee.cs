@@ -41,8 +41,8 @@ namespace KiddyDesktop.Models
         [StringLength(50)]
         public string lastname { get; set; }
 
-        [StringLength(50)]
-        public string image { get; set; }
+        [Column(TypeName = "image")]
+        public byte[] image { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblFeedback> tblFeedbacks { get; set; }

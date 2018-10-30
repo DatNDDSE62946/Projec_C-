@@ -86,10 +86,6 @@ namespace KiddyDesktop.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<tblEmployee>()
-                .Property(e => e.image)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tblEmployee>()
                 .HasMany(e => e.tblFeedbacks)
                 .WithOptional(e => e.tblEmployee)
                 .HasForeignKey(e => e.confirmedBy);
