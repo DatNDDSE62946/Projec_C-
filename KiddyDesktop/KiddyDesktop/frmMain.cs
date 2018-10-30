@@ -370,19 +370,11 @@ namespace KiddyDesktop
                 gvOrderDetail.ColumnCount = 2;
                 gvOrderDetail.Columns[0].Name = "Toy";
                 gvOrderDetail.Columns[1].Name = "Quantity";
+                gvOrderDetail.Rows.Clear();
                 List<tblOrderDetail> listOfOrderDetails = data.tblOrderDetails.Where(ord => ord.orderID == orderIDRef).ToList();
-                //foreach (tblOrderDetail orderDetail in listOfOrderDetails)
-                //{
-                //    ArrayList row = new ArrayList();
-                //    string toyName = data.tblToys.Single(toy => toy.id == orderDetail.toyID).name;
-                //    row.Add(toyName);
-                //    row.Add(orderDetail.quantity);
-                //    gvOrderDetail.Rows.Add(row.ToArray());
-                //}
-                for(int i = 0; i< listOfOrderDetails.Count; i++)
+                foreach (tblOrderDetail orderDetail in listOfOrderDetails)
                 {
                     ArrayList row = new ArrayList();
-                    tblOrderDetail orderDetail = listOfOrderDetails[i];
                     string toyName = data.tblToys.Single(toy => toy.id == orderDetail.toyID).name;
                     row.Add(toyName);
                     row.Add(orderDetail.quantity);
@@ -428,6 +420,7 @@ namespace KiddyDesktop
             gvOrderDetail2.ColumnCount = 2;
             gvOrderDetail2.Columns[0].Name = "Toy";
             gvOrderDetail2.Columns[1].Name = "Quantity";
+            gvOrderDetail2.Rows.Clear();
             List<tblOrderDetail> listOfOrderDetails = data.tblOrderDetails.Where(ord => ord.orderID == orderIDRef).ToList();
             int i = 0;
             foreach (tblOrderDetail orderDetail in listOfOrderDetails)
@@ -476,7 +469,6 @@ namespace KiddyDesktop
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
             SetUpEmployeeData();
             LoadCustomerData();
             SetUpConfirmOrder();
@@ -531,7 +523,7 @@ namespace KiddyDesktop
         {
             int orderID = int.Parse(gvOrders.CurrentRow.Cells[0].Value.ToString());
             ViewOrderDetail(orderID);
-            gvOrderDetail2.DataSource = null;
+           
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
@@ -603,8 +595,10 @@ namespace KiddyDesktop
         private void gvConfirmOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells[3].Value.ToString());
+          
             ViewOrderDetail2(ordIDConfirm);
             
+
         }
 
         private void button9_Click(object sender, EventArgs e)
