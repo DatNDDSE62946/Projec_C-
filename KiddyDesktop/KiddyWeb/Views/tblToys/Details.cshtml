@@ -4,6 +4,7 @@
 }
 <link rel="stylesheet" type="text/css" href="~/Content/styles/product.css">
 <link rel="stylesheet" type="text/css" href="~/Content/styles/product_responsive.css">
+<link href="~/Content/styles/checkout.css" rel="stylesheet" type="text/css">
 
 <div class="super_container">
 
@@ -65,11 +66,28 @@
 
             <div class="row description_row">
                 <div class="col">
-                    <div class="description_title_container">
-                        <div class="description_title">Feedbacks <span>(3)</span></div>
-                    </div>
-                    <div class="description_text">
-                        <p>Feedbacks here</p>
+                    <div class="order checkout_section">
+                        <div class="section_title">
+                            Feedbacks <span>(3)</span>
+                        </div>
+
+                        <div class="order_list_container">
+
+                            <!-- Feedback -->
+                            @foreach (var item in ViewBag.Feedbacks as IEnumerable<KiddyWeb.Models.FeedbackDTO>)
+                            {
+                                <div class="order checkout_section" style="border-bottom: 1px grey solid">
+                                    <div class="section_title">
+                                        @item.cusName
+                                    </div>
+                                    <div class="section_subtitle">
+                                        @item.content
+                                    </div>
+                                </div>
+                            }
+
+                        </div>
+
                     </div>
                 </div>
             </div>

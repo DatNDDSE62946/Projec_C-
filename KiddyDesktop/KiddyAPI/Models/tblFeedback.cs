@@ -23,10 +23,10 @@ namespace KiddyAPI.Models
         [StringLength(50)]
         public string confirmedBy { get; set; }
 
-        public virtual tblCustomer tblCustomer { get; set; }
+        //public virtual tblCustomer tblCustomer { get; set; }
 
-        public virtual tblEmployee tblEmployee { get; set; }
+        //public virtual tblEmployee tblEmployee { get; set; }
 
-        public virtual tblToy tblToy { get; set; }
+        //public virtual tblToy tblToy { get; set; }
     }
 }

@@ -243,13 +243,13 @@ namespace KiddyDesktop
                         MessageBox.Show("Username has already existed!");
                     }
                 }
-            }
+        }
             catch (Exception e)
             {
-
+                MessageBox.Show(e.Message);
             }
 
-        }
+}
 
         private void EditEmployee()
         {
