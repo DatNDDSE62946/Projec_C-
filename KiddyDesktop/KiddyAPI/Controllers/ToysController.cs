@@ -32,9 +32,20 @@ namespace KiddyAPI.Controllers
         public IHttpActionResult GettblToy(int id)
         {
             var toy = db.tblToys.SingleOrDefault(t => t.id == id && t.isActived == true);
-            ToyDTO dto = new ToyDTO { id = toy.id, name = toy.name,
-                                      price = toy.price, image = toy.image,
-                                      description = toy.desciption, category = toy.category};
+            ToyDTO dto = null;
+            if(toy != null)
+            {
+                dto = new ToyDTO
+                {
+                    id = toy.id,
+                    name = toy.name,
+                    price = toy.price,
+                    image = toy.image,
+                    description = toy.desciption,
+                    category = toy.category
+                };
+            }
+             
             if (toy == null)
             {
                 return NotFound();
@@ -80,8 +91,57 @@ namespace KiddyAPI.Controllers
             {
                 return BadRequest();
             }
+            
+            tblToy toy = db.tblToys.Find(id);
 
-            db.Entry(tblToy).State = EntityState.Modified;
+            toy.name = tblToy.name;
+            toy.price = tblToy.price;
+            toy.quantity = tblToy.quantity;
+            toy.category = tblToy.category;
+            toy.desciption = tblToy.description;
+            toy.image = tblToy.image;
+
+            db.Entry(toy).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!tblToyExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // PUT: api/Toys/5
+        [ResponseType(typeof(void))]
+        [Route("api/Toys/Delete")]
+        public IHttpActionResult PuttblToy(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            tblToy toy = db.tblToys.Find(id);
+
+            if (toy == null)
+            {
+                return BadRequest();
+            }
+
+            toy.isActived = false;
+
+            db.Entry(toy).State = EntityState.Modified;
 
             try
             {

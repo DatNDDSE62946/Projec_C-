@@ -635,6 +635,7 @@ namespace KiddyDesktop
                 dgvProducts.Columns["isActived"].Visible = false;
                 dgvProducts.Columns["description"].Visible = false;
                 dgvProducts.Columns["category"].Visible = false;
+                clearDataBindingForProduct();
                 addDataBindingForProduct();
             } else
             {
@@ -645,27 +646,56 @@ namespace KiddyDesktop
         private async void addToy(ToyDTO dto)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(BASE_URL + "Toys", dto);
-            response.EnsureSuccessStatusCode();
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private async void updateToy(ToyDTO dto)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync(BASE_URL + "Toys/" + dto.id, dto);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private async void deleteToy(int id)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync(BASE_URL + "Toys/Delete?id=" + id, "");
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnClearPro_Click(object sender, EventArgs e)
         {
+            clearDataBindingForProduct();
+
             txtProID.Text = "";
             txtProName.Text = "";
             txtProPrice.Text = "";
             txtProQuantity.Text = "";
             txtProDescription.Text = "";
+            cbProCategory.SelectedIndex = 0;
         }
 
         private void addDataBindingForProduct()
         {
-            txtProID.DataBindings.Clear();
-            txtProName.DataBindings.Clear();
-            txtProPrice.DataBindings.Clear();
-            txtProQuantity.DataBindings.Clear();
-            txtProDescription.DataBindings.Clear();
-            cbProCategory.DataBindings.Clear();
-
             txtProID.DataBindings.Add("Text", listToys, "id");
             txtProName.DataBindings.Add("Text", listToys, "name");
             txtProPrice.DataBindings.Add("Text", listToys, "price");
@@ -674,7 +704,15 @@ namespace KiddyDesktop
             cbProCategory.DataBindings.Add("Text", listToys, "category");
         }
 
-        #endregion
+        private void clearDataBindingForProduct()
+        {
+            txtProID.DataBindings.Clear();
+            txtProName.DataBindings.Clear();
+            txtProPrice.DataBindings.Clear();
+            txtProQuantity.DataBindings.Clear();
+            txtProDescription.DataBindings.Clear();
+            cbProCategory.DataBindings.Clear();
+        }
 
         private void btnAddPro_Click(object sender, EventArgs e)
         {
@@ -694,9 +732,79 @@ namespace KiddyDesktop
             };
 
             addToy(dto);
+            MessageBox.Show("Add a toy success!");
             btnClearPro_Click(sender, e);
             loadToys();
         }
+
+        private void dgvProducts_MouseClick(object sender, MouseEventArgs e)
+        {
+            clearDataBindingForProduct();
+            addDataBindingForProduct();
+        }
+
+        private void btnSavePro_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(txtProID.Text);
+            string proName = txtProName.Text.Trim();
+            float proPrice = float.Parse(txtProPrice.Text.Trim());
+            int proQuantity = int.Parse(txtProQuantity.Text.Trim());
+            string proCategory = (string)cbProCategory.SelectedItem;
+            string proDescription = txtProDescription.Text.Trim();
+
+            ToyDTO dto = new ToyDTO
+            {
+                id = id,
+                name = proName,
+                price = proPrice,
+                quantity = proQuantity,
+                category = proCategory,
+                description = proDescription
+            };
+
+            updateToy(dto);
+            MessageBox.Show("Update toy id" + id + " success!");
+            btnClearPro_Click(sender, e);
+            loadToys();
+        }
+
+        private void btnDeletePro_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(txtProID.Text);
+            DialogResult confirm = MessageBox.Show("Are you sure to delete toy id " + id + " ?",
+                                                    "Confirmation", MessageBoxButtons.YesNo);
+            if (confirm == DialogResult.Yes)
+            {
+                deleteToy(id);
+                MessageBox.Show("Delete toy id " + id + " success!");
+            }
+
+            loadToys();
+        }
+
+        private void txtProName_Enter(object sender, EventArgs e)
+        {
+            txtProName.DataBindings.Clear();
+        }
+
+        private void txtProPrice_Enter(object sender, EventArgs e)
+        {
+            txtProPrice.DataBindings.Clear();
+        }
+
+        private void txtProQuantity_Enter(object sender, EventArgs e)
+        {
+            txtProQuantity.DataBindings.Clear();
+        }
+
+        private void txtProDescription_Enter(object sender, EventArgs e)
+        {
+            txtProDescription.DataBindings.Clear();
+        }
+
+        #endregion
+
+        
     }
 }
 

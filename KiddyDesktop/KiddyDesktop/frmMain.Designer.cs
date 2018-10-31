@@ -193,6 +193,7 @@
             this.btnDeletePro.TabIndex = 7;
             this.btnDeletePro.Text = "Delete";
             this.btnDeletePro.UseVisualStyleBackColor = true;
+            this.btnDeletePro.Click += new System.EventHandler(this.btnDeletePro_Click);
             // 
             // btnSavePro
             // 
@@ -202,6 +203,7 @@
             this.btnSavePro.TabIndex = 6;
             this.btnSavePro.Text = "Save";
             this.btnSavePro.UseVisualStyleBackColor = true;
+            this.btnSavePro.Click += new System.EventHandler(this.btnSavePro_Click);
             // 
             // btnAddPro
             // 
@@ -239,6 +241,7 @@
             this.dgvProducts.ReadOnly = true;
             this.dgvProducts.Size = new System.Drawing.Size(959, 201);
             this.dgvProducts.TabIndex = 1;
+            this.dgvProducts.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvProducts_MouseClick);
             // 
             // groupBox1
             // 
@@ -292,6 +295,7 @@
             this.txtProDescription.Name = "txtProDescription";
             this.txtProDescription.Size = new System.Drawing.Size(246, 72);
             this.txtProDescription.TabIndex = 14;
+            this.txtProDescription.Enter += new System.EventHandler(this.txtProDescription_Enter);
             // 
             // groupBox2
             // 
@@ -322,10 +326,11 @@
             // 
             // txtProQuantity
             // 
-            this.txtProQuantity.Location = new System.Drawing.Point(282, 91);
+            this.txtProQuantity.Location = new System.Drawing.Point(282, 88);
             this.txtProQuantity.Name = "txtProQuantity";
             this.txtProQuantity.Size = new System.Drawing.Size(77, 20);
             this.txtProQuantity.TabIndex = 8;
+            this.txtProQuantity.Enter += new System.EventHandler(this.txtProQuantity_Enter);
             // 
             // txtProPrice
             // 
@@ -333,6 +338,7 @@
             this.txtProPrice.Name = "txtProPrice";
             this.txtProPrice.Size = new System.Drawing.Size(100, 20);
             this.txtProPrice.TabIndex = 7;
+            this.txtProPrice.Enter += new System.EventHandler(this.txtProPrice_Enter);
             // 
             // txtProName
             // 
@@ -340,6 +346,7 @@
             this.txtProName.Name = "txtProName";
             this.txtProName.Size = new System.Drawing.Size(246, 20);
             this.txtProName.TabIndex = 6;
+            this.txtProName.Enter += new System.EventHandler(this.txtProName_Enter);
             // 
             // txtProID
             // 
