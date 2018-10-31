@@ -145,7 +145,7 @@ namespace KiddyDesktop
                 gvEmployee.Columns["tblFeedbacks"].Visible = false;
                 gvEmployee.Columns["tblOrders"].Visible = false;
                 gvEmployee.Columns["tblToys"].Visible = false;
-            }catch(Exception e)
+            }catch(Exception )
             {
             }
 
@@ -243,8 +243,13 @@ namespace KiddyDesktop
                         MessageBox.Show("Username has already existed!");
                     }
                 }
+<<<<<<< HEAD
         }
             catch (Exception e)
+=======
+            }
+            catch (Exception)
+>>>>>>> cadc6239d0face62a38c3f6a767b44d07ed4a8bf
             {
                 MessageBox.Show(e.Message);
             }

@@ -58,3 +58,7 @@ C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDes
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.CopyComplete
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.exe
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.pdb
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\System.Net.Http.Formatting.xml

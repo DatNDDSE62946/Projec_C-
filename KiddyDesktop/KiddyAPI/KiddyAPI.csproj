@@ -193,14 +193,22 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\FeedbacksController.cs" />
+=======
+    <Compile Include="Controllers\EmployeesController.cs" />
+>>>>>>> cadc6239d0face62a38c3f6a767b44d07ed4a8bf
     <Compile Include="Controllers\ToysController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomerDTO.cs" />
     <Compile Include="Models\DBModel.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\FeedbackDTO.cs" />
+=======
+    <Compile Include="Models\EmployeeDTO.cs" />
+>>>>>>> cadc6239d0face62a38c3f6a767b44d07ed4a8bf
     <Compile Include="Models\tblAddress.cs" />
     <Compile Include="Models\tblCustomer.cs" />
     <Compile Include="Models\tblEmployee.cs" />
