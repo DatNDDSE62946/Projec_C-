@@ -211,6 +211,7 @@
             this.btnAddPro.TabIndex = 5;
             this.btnAddPro.Text = "Add";
             this.btnAddPro.UseVisualStyleBackColor = true;
+            this.btnAddPro.Click += new System.EventHandler(this.btnAddPro_Click);
             // 
             // txtSearchPro
             // 
@@ -344,6 +345,7 @@
             // 
             this.txtProID.Location = new System.Drawing.Point(113, 30);
             this.txtProID.Name = "txtProID";
+            this.txtProID.ReadOnly = true;
             this.txtProID.Size = new System.Drawing.Size(246, 20);
             this.txtProID.TabIndex = 5;
             // 

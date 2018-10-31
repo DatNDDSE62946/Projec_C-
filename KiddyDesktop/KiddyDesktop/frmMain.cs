@@ -41,6 +41,7 @@ namespace KiddyDesktop
         public frmMain(string username)
         {
             InitializeComponent();
+            
             loadToys();
             dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
             emp = data.tblEmployees.Single(em => em.username.Equals(username));
@@ -641,6 +642,12 @@ namespace KiddyDesktop
             }
         }
 
+        private async void addToy(ToyDTO dto)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync(BASE_URL + "Toys", dto);
+            response.EnsureSuccessStatusCode();
+        }
+
         private void btnClearPro_Click(object sender, EventArgs e)
         {
             txtProID.Text = "";
@@ -666,9 +673,30 @@ namespace KiddyDesktop
             txtProDescription.DataBindings.Add("Text", listToys, "description");
             cbProCategory.DataBindings.Add("Text", listToys, "category");
         }
+
         #endregion
 
+        private void btnAddPro_Click(object sender, EventArgs e)
+        {
+            string proName = txtProName.Text.Trim();
+            float proPrice = float.Parse(txtProPrice.Text.Trim());
+            int proQuantity = int.Parse(txtProQuantity.Text.Trim());
+            string proCategory = (string)cbProCategory.SelectedItem;
+            string proDescription = txtProDescription.Text.Trim();
 
+            ToyDTO dto = new ToyDTO
+            {
+                name = proName,
+                price = proPrice,
+                quantity = proQuantity,
+                category = proCategory,
+                description = proDescription
+            };
+
+            addToy(dto);
+            btnClearPro_Click(sender, e);
+            loadToys();
+        }
     }
 }
 
