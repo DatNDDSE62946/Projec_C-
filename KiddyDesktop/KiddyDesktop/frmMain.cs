@@ -145,7 +145,7 @@ namespace KiddyDesktop
                 gvEmployee.Columns["tblFeedbacks"].Visible = false;
                 gvEmployee.Columns["tblOrders"].Visible = false;
                 gvEmployee.Columns["tblToys"].Visible = false;
-            }catch(Exception e)
+            }catch(Exception )
             {
             }
 
@@ -244,7 +244,7 @@ namespace KiddyDesktop
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
 
             }

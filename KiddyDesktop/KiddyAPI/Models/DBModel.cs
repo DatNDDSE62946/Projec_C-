@@ -77,9 +77,9 @@ namespace KiddyAPI.Models
                 .Property(e => e.lastname)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<tblEmployee>()
-                .Property(e => e.image)
-                .IsUnicode(false);
+            //modelBuilder.Entity<tblEmployee>()
+            //    .Property(e => e.image)
+            //    .IsUnicode(false);
 
             //modelBuilder.Entity<tblEmployee>()
             //    .HasMany(e => e.tblFeedbacks)
