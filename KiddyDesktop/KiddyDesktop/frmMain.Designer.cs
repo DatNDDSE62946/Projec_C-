@@ -30,29 +30,29 @@
         {
             this.components = new System.ComponentModel.Container();
             this.TabControl = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tabProduct = new System.Windows.Forms.TabPage();
+            this.btnClearPro = new System.Windows.Forms.Button();
+            this.btnDeletePro = new System.Windows.Forms.Button();
+            this.btnSavePro = new System.Windows.Forms.Button();
+            this.btnAddPro = new System.Windows.Forms.Button();
+            this.txtSearchPro = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.pbProImage = new System.Windows.Forms.PictureBox();
+            this.btnUploadProImage = new System.Windows.Forms.Button();
+            this.txtProQuantity = new System.Windows.Forms.TextBox();
+            this.txtProPrice = new System.Windows.Forms.TextBox();
+            this.txtProName = new System.Windows.Forms.TextBox();
+            this.txtProID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.TPEmployee = new System.Windows.Forms.TabPage();
+            this.tabEmployee = new System.Windows.Forms.TabPage();
             this.btnEmployeeEdit = new System.Windows.Forms.Button();
             this.btnEmployeeDelete = new System.Windows.Forms.Button();
             this.btnEmployeeSave = new System.Windows.Forms.Button();
@@ -75,7 +75,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabOrderFeedback = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -94,7 +94,7 @@
             this.btnConfirmOrder = new System.Windows.Forms.Button();
             this.gvOrderDetail2 = new System.Windows.Forms.DataGridView();
             this.gvConfirmOrder = new System.Windows.Forms.DataGridView();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.tabCustomer = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.gvOrderDetail = new System.Windows.Forms.DataGridView();
@@ -112,25 +112,27 @@
             this.firstnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.lastnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label21 = new System.Windows.Forms.Label();
+            this.cbCategory = new System.Windows.Forms.ComboBox();
             this.TabControl.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabProduct.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.TPEmployee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProImage)).BeginInit();
+            this.tabEmployee.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployee)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PBEmployee)).BeginInit();
-            this.tabPage3.SuspendLayout();
+            this.tabOrderFeedback.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView5)).BeginInit();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConfirmOrder)).BeginInit();
-            this.tabPage4.SuspendLayout();
+            this.tabCustomer.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).BeginInit();
@@ -144,10 +146,10 @@
             // 
             // TabControl
             // 
-            this.TabControl.Controls.Add(this.tabPage1);
-            this.TabControl.Controls.Add(this.TPEmployee);
-            this.TabControl.Controls.Add(this.tabPage3);
-            this.TabControl.Controls.Add(this.tabPage4);
+            this.TabControl.Controls.Add(this.tabProduct);
+            this.TabControl.Controls.Add(this.tabEmployee);
+            this.TabControl.Controls.Add(this.tabOrderFeedback);
+            this.TabControl.Controls.Add(this.tabCustomer);
             this.TabControl.Cursor = System.Windows.Forms.Cursors.Default;
             this.TabControl.Location = new System.Drawing.Point(0, 56);
             this.TabControl.Name = "TabControl";
@@ -155,66 +157,66 @@
             this.TabControl.Size = new System.Drawing.Size(1042, 489);
             this.TabControl.TabIndex = 0;
             // 
-            // tabPage1
+            // tabProduct
             // 
-            this.tabPage1.Controls.Add(this.button14);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.button4);
-            this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.textBox6);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.dataGridView1);
-            this.tabPage1.Controls.Add(this.groupBox1);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1034, 463);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Product Management";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabProduct.Controls.Add(this.btnClearPro);
+            this.tabProduct.Controls.Add(this.btnDeletePro);
+            this.tabProduct.Controls.Add(this.btnSavePro);
+            this.tabProduct.Controls.Add(this.btnAddPro);
+            this.tabProduct.Controls.Add(this.txtSearchPro);
+            this.tabProduct.Controls.Add(this.label6);
+            this.tabProduct.Controls.Add(this.dgvProducts);
+            this.tabProduct.Controls.Add(this.groupBox1);
+            this.tabProduct.Location = new System.Drawing.Point(4, 22);
+            this.tabProduct.Name = "tabProduct";
+            this.tabProduct.Padding = new System.Windows.Forms.Padding(3);
+            this.tabProduct.Size = new System.Drawing.Size(1034, 463);
+            this.tabProduct.TabIndex = 0;
+            this.tabProduct.Text = "Product Management";
+            this.tabProduct.UseVisualStyleBackColor = true;
             // 
-            // button14
+            // btnClearPro
             // 
-            this.button14.Location = new System.Drawing.Point(893, 21);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(60, 50);
-            this.button14.TabIndex = 8;
-            this.button14.Text = "New";
-            this.button14.UseVisualStyleBackColor = true;
+            this.btnClearPro.Location = new System.Drawing.Point(893, 21);
+            this.btnClearPro.Name = "btnClearPro";
+            this.btnClearPro.Size = new System.Drawing.Size(60, 50);
+            this.btnClearPro.TabIndex = 8;
+            this.btnClearPro.Text = "Clear";
+            this.btnClearPro.UseVisualStyleBackColor = true;
             // 
-            // button5
+            // btnDeletePro
             // 
-            this.button5.Location = new System.Drawing.Point(801, 18);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(60, 50);
-            this.button5.TabIndex = 7;
-            this.button5.Text = "Delete";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnDeletePro.Location = new System.Drawing.Point(801, 18);
+            this.btnDeletePro.Name = "btnDeletePro";
+            this.btnDeletePro.Size = new System.Drawing.Size(60, 50);
+            this.btnDeletePro.TabIndex = 7;
+            this.btnDeletePro.Text = "Delete";
+            this.btnDeletePro.UseVisualStyleBackColor = true;
             // 
-            // button4
+            // btnSavePro
             // 
-            this.button4.Location = new System.Drawing.Point(703, 18);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(60, 50);
-            this.button4.TabIndex = 6;
-            this.button4.Text = "Save";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnSavePro.Location = new System.Drawing.Point(703, 18);
+            this.btnSavePro.Name = "btnSavePro";
+            this.btnSavePro.Size = new System.Drawing.Size(60, 50);
+            this.btnSavePro.TabIndex = 6;
+            this.btnSavePro.Text = "Save";
+            this.btnSavePro.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnAddPro
             // 
-            this.button3.Location = new System.Drawing.Point(608, 18);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(60, 50);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Add";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAddPro.Location = new System.Drawing.Point(608, 18);
+            this.btnAddPro.Name = "btnAddPro";
+            this.btnAddPro.Size = new System.Drawing.Size(60, 50);
+            this.btnAddPro.TabIndex = 5;
+            this.btnAddPro.Text = "Add";
+            this.btnAddPro.UseVisualStyleBackColor = true;
             // 
-            // textBox6
+            // txtSearchPro
             // 
-            this.textBox6.Location = new System.Drawing.Point(722, 214);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(187, 20);
-            this.textBox6.TabIndex = 3;
+            this.txtSearchPro.Location = new System.Drawing.Point(722, 214);
+            this.txtSearchPro.Name = "txtSearchPro";
+            this.txtSearchPro.Size = new System.Drawing.Size(187, 20);
+            this.txtSearchPro.TabIndex = 3;
             // 
             // label6
             // 
@@ -225,23 +227,25 @@
             this.label6.TabIndex = 2;
             this.label6.Text = "Search Product Name";
             // 
-            // dataGridView1
+            // dgvProducts
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 252);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(959, 201);
-            this.dataGridView1.TabIndex = 1;
+            this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvProducts.Location = new System.Drawing.Point(9, 252);
+            this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.Size = new System.Drawing.Size(959, 201);
+            this.dgvProducts.TabIndex = 1;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.cbCategory);
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.txtDescription);
             this.groupBox1.Controls.Add(this.groupBox2);
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.btnUploadProImage);
+            this.groupBox1.Controls.Add(this.txtProQuantity);
+            this.groupBox1.Controls.Add(this.txtProPrice);
+            this.groupBox1.Controls.Add(this.txtProName);
+            this.groupBox1.Controls.Add(this.txtProID);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
@@ -254,17 +258,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Product Detail";
             // 
-            // textBox5
+            // txtDescription
             // 
-            this.textBox5.Location = new System.Drawing.Point(113, 128);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(246, 90);
-            this.textBox5.TabIndex = 14;
+            this.txtDescription.Location = new System.Drawing.Point(113, 146);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(246, 72);
+            this.txtDescription.TabIndex = 14;
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Controls.Add(this.pbProImage);
             this.groupBox2.Location = new System.Drawing.Point(380, 20);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(168, 161);
@@ -272,55 +276,55 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Image";
             // 
-            // pictureBox1
+            // pbProImage
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(6, 19);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(156, 136);
-            this.pictureBox1.TabIndex = 11;
-            this.pictureBox1.TabStop = false;
+            this.pbProImage.Location = new System.Drawing.Point(6, 19);
+            this.pbProImage.Name = "pbProImage";
+            this.pbProImage.Size = new System.Drawing.Size(156, 136);
+            this.pbProImage.TabIndex = 11;
+            this.pbProImage.TabStop = false;
             // 
-            // button1
+            // btnUploadProImage
             // 
-            this.button1.Location = new System.Drawing.Point(380, 187);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(168, 31);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Upload Image";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnUploadProImage.Location = new System.Drawing.Point(380, 187);
+            this.btnUploadProImage.Name = "btnUploadProImage";
+            this.btnUploadProImage.Size = new System.Drawing.Size(168, 31);
+            this.btnUploadProImage.TabIndex = 12;
+            this.btnUploadProImage.Text = "Upload Image";
+            this.btnUploadProImage.UseVisualStyleBackColor = true;
             // 
-            // textBox4
+            // txtProQuantity
             // 
-            this.textBox4.Location = new System.Drawing.Point(282, 91);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(77, 20);
-            this.textBox4.TabIndex = 8;
+            this.txtProQuantity.Location = new System.Drawing.Point(282, 91);
+            this.txtProQuantity.Name = "txtProQuantity";
+            this.txtProQuantity.Size = new System.Drawing.Size(77, 20);
+            this.txtProQuantity.TabIndex = 8;
             // 
-            // textBox3
+            // txtProPrice
             // 
-            this.textBox3.Location = new System.Drawing.Point(113, 88);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 7;
+            this.txtProPrice.Location = new System.Drawing.Point(113, 88);
+            this.txtProPrice.Name = "txtProPrice";
+            this.txtProPrice.Size = new System.Drawing.Size(100, 20);
+            this.txtProPrice.TabIndex = 7;
             // 
-            // textBox2
+            // txtProName
             // 
-            this.textBox2.Location = new System.Drawing.Point(113, 58);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(246, 20);
-            this.textBox2.TabIndex = 6;
+            this.txtProName.Location = new System.Drawing.Point(113, 58);
+            this.txtProName.Name = "txtProName";
+            this.txtProName.Size = new System.Drawing.Size(246, 20);
+            this.txtProName.TabIndex = 6;
             // 
-            // textBox1
+            // txtProID
             // 
-            this.textBox1.Location = new System.Drawing.Point(113, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(246, 20);
-            this.textBox1.TabIndex = 5;
+            this.txtProID.Location = new System.Drawing.Point(113, 30);
+            this.txtProID.Name = "txtProID";
+            this.txtProID.Size = new System.Drawing.Size(246, 20);
+            this.txtProID.TabIndex = 5;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(16, 128);
+            this.label5.Location = new System.Drawing.Point(16, 149);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(60, 13);
             this.label5.TabIndex = 4;
@@ -362,24 +366,24 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "ID";
             // 
-            // TPEmployee
+            // tabEmployee
             // 
-            this.TPEmployee.Controls.Add(this.btnEmployeeEdit);
-            this.TPEmployee.Controls.Add(this.btnEmployeeDelete);
-            this.TPEmployee.Controls.Add(this.btnEmployeeSave);
-            this.TPEmployee.Controls.Add(this.btnEmployeeAdd);
-            this.TPEmployee.Controls.Add(this.txtSearch);
-            this.TPEmployee.Controls.Add(this.label7);
-            this.TPEmployee.Controls.Add(this.gvEmployee);
-            this.TPEmployee.Controls.Add(this.groupBox3);
-            this.TPEmployee.Location = new System.Drawing.Point(4, 22);
-            this.TPEmployee.Name = "TPEmployee";
-            this.TPEmployee.Padding = new System.Windows.Forms.Padding(3);
-            this.TPEmployee.Size = new System.Drawing.Size(1034, 463);
-            this.TPEmployee.TabIndex = 1;
-            this.TPEmployee.Text = "Employee Management";
-            this.TPEmployee.UseVisualStyleBackColor = true;
-            this.TPEmployee.Click += new System.EventHandler(this.tabPage2_Click);
+            this.tabEmployee.Controls.Add(this.btnEmployeeEdit);
+            this.tabEmployee.Controls.Add(this.btnEmployeeDelete);
+            this.tabEmployee.Controls.Add(this.btnEmployeeSave);
+            this.tabEmployee.Controls.Add(this.btnEmployeeAdd);
+            this.tabEmployee.Controls.Add(this.txtSearch);
+            this.tabEmployee.Controls.Add(this.label7);
+            this.tabEmployee.Controls.Add(this.gvEmployee);
+            this.tabEmployee.Controls.Add(this.groupBox3);
+            this.tabEmployee.Location = new System.Drawing.Point(4, 22);
+            this.tabEmployee.Name = "tabEmployee";
+            this.tabEmployee.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEmployee.Size = new System.Drawing.Size(1034, 463);
+            this.tabEmployee.TabIndex = 1;
+            this.tabEmployee.Text = "Employee Management";
+            this.tabEmployee.UseVisualStyleBackColor = true;
+            this.tabEmployee.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // btnEmployeeEdit
             // 
@@ -600,18 +604,17 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "Username";
             // 
-            // tabPage3
+            // tabOrderFeedback
             // 
-            this.tabPage3.Controls.Add(this.groupBox6);
-            this.tabPage3.Controls.Add(this.groupBox5);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1034, 463);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Order & Feedback";
-            this.tabPage3.UseVisualStyleBackColor = true;
-            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            this.tabOrderFeedback.Controls.Add(this.groupBox6);
+            this.tabOrderFeedback.Controls.Add(this.groupBox5);
+            this.tabOrderFeedback.Location = new System.Drawing.Point(4, 22);
+            this.tabOrderFeedback.Name = "tabOrderFeedback";
+            this.tabOrderFeedback.Padding = new System.Windows.Forms.Padding(3);
+            this.tabOrderFeedback.Size = new System.Drawing.Size(1034, 463);
+            this.tabOrderFeedback.TabIndex = 2;
+            this.tabOrderFeedback.Text = "Order & Feedback";
+            this.tabOrderFeedback.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -791,18 +794,17 @@
             this.gvConfirmOrder.TabIndex = 0;
             this.gvConfirmOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvConfirmOrder_CellContentClick);
             // 
-            // tabPage4
+            // tabCustomer
             // 
-            this.tabPage4.Controls.Add(this.groupBox8);
-            this.tabPage4.Controls.Add(this.groupBox7);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1034, 463);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Customer";
-            this.tabPage4.UseVisualStyleBackColor = true;
-            this.tabPage4.Click += new System.EventHandler(this.tabPage4_Click);
+            this.tabCustomer.Controls.Add(this.groupBox8);
+            this.tabCustomer.Controls.Add(this.groupBox7);
+            this.tabCustomer.Location = new System.Drawing.Point(4, 22);
+            this.tabCustomer.Name = "tabCustomer";
+            this.tabCustomer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCustomer.Size = new System.Drawing.Size(1034, 463);
+            this.tabCustomer.TabIndex = 3;
+            this.tabCustomer.Text = "Customer";
+            this.tabCustomer.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
@@ -865,7 +867,6 @@
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Customer List";
-            this.groupBox7.Enter += new System.EventHandler(this.groupBox7_Enter);
             // 
             // button13
             // 
@@ -949,10 +950,32 @@
             this.imageValidate.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.imageValidate.ContainerControl = this;
             // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(16, 119);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(49, 13);
+            this.label21.TabIndex = 15;
+            this.label21.Text = "Category";
+            // 
+            // cbCategory
+            // 
+            this.cbCategory.FormattingEnabled = true;
+            this.cbCategory.Items.AddRange(new object[] {
+            "Board Game",
+            "Lego",
+            "Rubik"});
+            this.cbCategory.Location = new System.Drawing.Point(113, 115);
+            this.cbCategory.Name = "cbCategory";
+            this.cbCategory.Size = new System.Drawing.Size(246, 21);
+            this.cbCategory.TabIndex = 16;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1042, 575);
             this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.button8);
@@ -962,21 +985,21 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.TabControl.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabProduct.ResumeLayout(false);
+            this.tabProduct.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.TPEmployee.ResumeLayout(false);
-            this.TPEmployee.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProImage)).EndInit();
+            this.tabEmployee.ResumeLayout(false);
+            this.tabEmployee.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvEmployee)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PBEmployee)).EndInit();
-            this.tabPage3.ResumeLayout(false);
+            this.tabOrderFeedback.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView6)).EndInit();
@@ -985,7 +1008,7 @@
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvConfirmOrder)).EndInit();
-            this.tabPage4.ResumeLayout(false);
+            this.tabCustomer.ResumeLayout(false);
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvOrderDetail)).EndInit();
@@ -1004,28 +1027,28 @@
         #endregion
 
         private System.Windows.Forms.TabControl TabControl;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage TPEmployee;
+        private System.Windows.Forms.TabPage tabProduct;
+        private System.Windows.Forms.TabPage tabEmployee;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtProQuantity;
+        private System.Windows.Forms.TextBox txtProPrice;
+        private System.Windows.Forms.TextBox txtProName;
+        private System.Windows.Forms.TextBox txtProID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnUploadProImage;
+        private System.Windows.Forms.PictureBox pbProImage;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button btnDeletePro;
+        private System.Windows.Forms.Button btnSavePro;
+        private System.Windows.Forms.Button btnAddPro;
+        private System.Windows.Forms.TextBox txtSearchPro;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.DataGridView dgvProducts;
+        private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView gvEmployee;
@@ -1044,7 +1067,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabPage tabOrderFeedback;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.DataGridView dataGridView6;
         private System.Windows.Forms.Button button11;
@@ -1063,7 +1086,7 @@
         private System.Windows.Forms.TextBox textBox11;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.TabPage tabCustomer;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DataGridView gvOrderDetail;
@@ -1074,7 +1097,7 @@
         private System.Windows.Forms.TextBox txtCustomerSearch;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridView gvCustomer;
-        private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button btnClearPro;
         private System.Windows.Forms.Button btnUploadImage;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.Label label20;
@@ -1086,5 +1109,7 @@
         private System.Windows.Forms.ErrorProvider lastnameValidate;
         private System.Windows.Forms.PictureBox PBEmployee;
         private System.Windows.Forms.ErrorProvider imageValidate;
+        private System.Windows.Forms.ComboBox cbCategory;
+        private System.Windows.Forms.Label label21;
     }
 }

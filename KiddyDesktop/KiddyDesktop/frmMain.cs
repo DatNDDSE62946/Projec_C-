@@ -124,7 +124,7 @@ namespace KiddyDesktop
             btnEmployeeSave.Enabled = false;
             if (emp.role.Equals("Employee"))
             {
-                TabControl.TabPages.Remove(TPEmployee);
+                TabControl.TabPages.Remove(tabEmployee);
             }
         }
 
@@ -478,21 +478,15 @@ namespace KiddyDesktop
             LoadCustomerData();
             SetUpConfirmOrder();
         }
-       
-        
-       
+         
         private void btnEmployeeSave_Click(object sender, EventArgs e)
         {
-           
             SaveEmployee();
-            
         }
 
         private void btnEmployeeEdit_Click(object sender, EventArgs e)
         {
             EditEmployee();
-
-
         }
 
         private void btnEmployeeDelete_Click(object sender, EventArgs e)
@@ -511,11 +505,6 @@ namespace KiddyDesktop
             LoadEmployeeData(dtEmployee);
         }
 
-        private void groupBox7_Enter(object sender, EventArgs e)
-        {
-
-        }
-
         private void gvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
@@ -528,7 +517,6 @@ namespace KiddyDesktop
         {
             int orderID = int.Parse(gvOrders.CurrentRow.Cells[0].Value.ToString());
             ViewOrderDetail(orderID);
-           
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
@@ -587,23 +575,10 @@ namespace KiddyDesktop
             }).ToList();
         }
 
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tabPage4_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void gvConfirmOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells[3].Value.ToString());
-          
             ViewOrderDetail2(ordIDConfirm);
-            
-
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -631,8 +606,6 @@ namespace KiddyDesktop
                 empImgString = fileChooser.FileName;
                 PBEmployee.SizeMode = PictureBoxSizeMode.StretchImage;
             }
-
-
         }
 
         private void btnUploadImage_Validating(object sender, CancelEventArgs e)

@@ -22,7 +22,7 @@ namespace KiddyAPI.Controllers
             var list = db.tblToys.Where(toy => toy.isActived == true)
                 .Select(toy => new ToyDTO { id = toy.id, name = toy.name,
                                             price = toy.price, image = toy.image,
-                                            category = toy.category})
+                                            category = toy.category, quantity = toy.quantity, description = toy.desciption})
                 .ToList();
             return list;
         }
