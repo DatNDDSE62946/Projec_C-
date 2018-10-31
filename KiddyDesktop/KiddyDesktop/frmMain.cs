@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using KiddyDesktop.Models;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace KiddyDesktop
 {
@@ -18,9 +20,18 @@ namespace KiddyDesktop
         tblEmployee emp;
         private KiddyStore data = new KiddyStore();
         private List<tblEmployee> dtEmployee;
-        private List<tblToy> dtToy;
+        private IEnumerable<ToyDTO> listToys;
         string empImgString;
         int ordIDConfirm;
+        private static HttpClient client = new HttpClient();
+        private static readonly string BASE_URL = "http://localhost:50815/api/";
+
+        public static void initClient()
+        {
+            client.DefaultRequestHeaders.Clear();
+            client.DefaultRequestHeaders.Accept
+                .Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+        }
 
         public frmMain()
         {
@@ -30,8 +41,8 @@ namespace KiddyDesktop
         public frmMain(string username)
         {
             InitializeComponent();
+            loadToys();
             dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
-            dtToy = data.tblToys.Where(toy => toy.isActived == true).ToList();
             emp = data.tblEmployees.Single(em => em.username.Equals(username));
         }
         //Add Employee button
@@ -230,7 +241,7 @@ namespace KiddyDesktop
                             data.SaveChanges();
                             dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
                             LoadEmployeeData(dtEmployee);
-           
+
                             MessageBox.Show("Save employee complete!");
                         }
                         else
@@ -243,13 +254,8 @@ namespace KiddyDesktop
                         MessageBox.Show("Username has already existed!");
                     }
                 }
-<<<<<<< HEAD
-        }
-            catch (Exception e)
-=======
             }
-            catch (Exception)
->>>>>>> cadc6239d0face62a38c3f6a767b44d07ed4a8bf
+            catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
@@ -395,8 +401,7 @@ namespace KiddyDesktop
 
         //</----------------------------end------------------------------------------------> 
         #endregion
-
-        //<----------------------Order&Feedback------------------------------------->
+            
         #region Order&Feedback_functions
         private void SetUpConfirmOrder()
         {
@@ -458,18 +463,11 @@ namespace KiddyDesktop
         }
 
         #endregion
-        //<----------------------end------------------------------------------------->
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             ViewEmployeeDetail(e);
             txtUsername.Enabled = false;
-        }
-
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-            
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -620,8 +618,57 @@ namespace KiddyDesktop
                 imageValidate.SetError(btnUploadImage, "");
             }
         }
+
+        #region Toy_Functions
+        private async void loadToys()
+        {
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Toys");
+            if(response.IsSuccessStatusCode)
+            {
+                string strResponse = response.Content.ReadAsStringAsync().Result;
+                listToys = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
+                dgvProducts.DataSource = null;
+                dgvProducts.DataSource = listToys;
+                dgvProducts.Columns["image"].Visible = false;
+                dgvProducts.Columns["createdBy"].Visible = false;
+                dgvProducts.Columns["isActived"].Visible = false;
+                dgvProducts.Columns["description"].Visible = false;
+                dgvProducts.Columns["category"].Visible = false;
+                addDataBindingForProduct();
+            } else
+            {
+                MessageBox.Show("Load product failed! Please check your connection!");
+            }
+        }
+
+        private void btnClearPro_Click(object sender, EventArgs e)
+        {
+            txtProID.Text = "";
+            txtProName.Text = "";
+            txtProPrice.Text = "";
+            txtProQuantity.Text = "";
+            txtProDescription.Text = "";
+        }
+
+        private void addDataBindingForProduct()
+        {
+            txtProID.DataBindings.Clear();
+            txtProName.DataBindings.Clear();
+            txtProPrice.DataBindings.Clear();
+            txtProQuantity.DataBindings.Clear();
+            txtProDescription.DataBindings.Clear();
+            cbProCategory.DataBindings.Clear();
+
+            txtProID.DataBindings.Add("Text", listToys, "id");
+            txtProName.DataBindings.Add("Text", listToys, "name");
+            txtProPrice.DataBindings.Add("Text", listToys, "price");
+            txtProQuantity.DataBindings.Add("Text", listToys, "quantity");
+            txtProDescription.DataBindings.Add("Text", listToys, "description");
+            cbProCategory.DataBindings.Add("Text", listToys, "category");
+        }
+        #endregion
+
+
     }
-    
-    
 }
 

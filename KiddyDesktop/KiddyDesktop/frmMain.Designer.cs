@@ -39,7 +39,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.cbProCategory = new System.Windows.Forms.ComboBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.txtProDescription = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pbProImage = new System.Windows.Forms.PictureBox();
             this.btnUploadProImage = new System.Windows.Forms.Button();
@@ -112,8 +114,6 @@
             this.firstnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.lastnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label21 = new System.Windows.Forms.Label();
-            this.cbCategory = new System.Windows.Forms.ComboBox();
             this.TabControl.SuspendLayout();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -183,6 +183,7 @@
             this.btnClearPro.TabIndex = 8;
             this.btnClearPro.Text = "Clear";
             this.btnClearPro.UseVisualStyleBackColor = true;
+            this.btnClearPro.Click += new System.EventHandler(this.btnClearPro_Click);
             // 
             // btnDeletePro
             // 
@@ -229,17 +230,20 @@
             // 
             // dgvProducts
             // 
+            this.dgvProducts.AllowUserToAddRows = false;
+            this.dgvProducts.AllowUserToDeleteRows = false;
             this.dgvProducts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProducts.Location = new System.Drawing.Point(9, 252);
             this.dgvProducts.Name = "dgvProducts";
+            this.dgvProducts.ReadOnly = true;
             this.dgvProducts.Size = new System.Drawing.Size(959, 201);
             this.dgvProducts.TabIndex = 1;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.cbCategory);
+            this.groupBox1.Controls.Add(this.cbProCategory);
             this.groupBox1.Controls.Add(this.label21);
-            this.groupBox1.Controls.Add(this.txtDescription);
+            this.groupBox1.Controls.Add(this.txtProDescription);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.btnUploadProImage);
             this.groupBox1.Controls.Add(this.txtProQuantity);
@@ -258,13 +262,35 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Product Detail";
             // 
-            // txtDescription
+            // cbProCategory
             // 
-            this.txtDescription.Location = new System.Drawing.Point(113, 146);
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(246, 72);
-            this.txtDescription.TabIndex = 14;
+            this.cbProCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbProCategory.FormattingEnabled = true;
+            this.cbProCategory.Items.AddRange(new object[] {
+            "BoardGame",
+            "Lego",
+            "Rubik"});
+            this.cbProCategory.Location = new System.Drawing.Point(113, 115);
+            this.cbProCategory.Name = "cbProCategory";
+            this.cbProCategory.Size = new System.Drawing.Size(246, 21);
+            this.cbProCategory.TabIndex = 16;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(16, 119);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(49, 13);
+            this.label21.TabIndex = 15;
+            this.label21.Text = "Category";
+            // 
+            // txtProDescription
+            // 
+            this.txtProDescription.Location = new System.Drawing.Point(113, 146);
+            this.txtProDescription.Multiline = true;
+            this.txtProDescription.Name = "txtProDescription";
+            this.txtProDescription.Size = new System.Drawing.Size(246, 72);
+            this.txtProDescription.TabIndex = 14;
             // 
             // groupBox2
             // 
@@ -383,7 +409,6 @@
             this.tabEmployee.TabIndex = 1;
             this.tabEmployee.Text = "Employee Management";
             this.tabEmployee.UseVisualStyleBackColor = true;
-            this.tabEmployee.Click += new System.EventHandler(this.tabPage2_Click);
             // 
             // btnEmployeeEdit
             // 
@@ -950,27 +975,6 @@
             this.imageValidate.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.imageValidate.ContainerControl = this;
             // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(16, 119);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(49, 13);
-            this.label21.TabIndex = 15;
-            this.label21.Text = "Category";
-            // 
-            // cbCategory
-            // 
-            this.cbCategory.FormattingEnabled = true;
-            this.cbCategory.Items.AddRange(new object[] {
-            "Board Game",
-            "Lego",
-            "Rubik"});
-            this.cbCategory.Location = new System.Drawing.Point(113, 115);
-            this.cbCategory.Name = "cbCategory";
-            this.cbCategory.Size = new System.Drawing.Size(246, 21);
-            this.cbCategory.TabIndex = 16;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1048,7 +1052,7 @@
         private System.Windows.Forms.TextBox txtSearchPro;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView dgvProducts;
-        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.TextBox txtProDescription;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridView gvEmployee;
@@ -1109,7 +1113,7 @@
         private System.Windows.Forms.ErrorProvider lastnameValidate;
         private System.Windows.Forms.PictureBox PBEmployee;
         private System.Windows.Forms.ErrorProvider imageValidate;
-        private System.Windows.Forms.ComboBox cbCategory;
+        private System.Windows.Forms.ComboBox cbProCategory;
         private System.Windows.Forms.Label label21;
     }
 }
