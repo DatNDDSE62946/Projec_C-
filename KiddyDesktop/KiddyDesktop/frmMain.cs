@@ -201,7 +201,6 @@ namespace KiddyDesktop
             return returnImage;
         }
 
-
         public byte[] imageToByteArray(System.Drawing.Image imageIn)
         {
             MemoryStream ms = new MemoryStream();
@@ -308,7 +307,6 @@ namespace KiddyDesktop
             }
 
         }
-
 
         private void DeleteEmployee()
         {
@@ -702,6 +700,7 @@ namespace KiddyDesktop
             txtProQuantity.DataBindings.Add("Text", listToys, "quantity");
             txtProDescription.DataBindings.Add("Text", listToys, "description");
             cbProCategory.DataBindings.Add("Text", listToys, "category");
+            pbProImage.DataBindings.Add("Image", listToys, "image", true);
         }
 
         private void clearDataBindingForProduct()
@@ -712,6 +711,7 @@ namespace KiddyDesktop
             txtProQuantity.DataBindings.Clear();
             txtProDescription.DataBindings.Clear();
             cbProCategory.DataBindings.Clear();
+            pbProImage.DataBindings.Clear();
         }
 
         private void btnAddPro_Click(object sender, EventArgs e)
@@ -721,6 +721,7 @@ namespace KiddyDesktop
             int proQuantity = int.Parse(txtProQuantity.Text.Trim());
             string proCategory = (string)cbProCategory.SelectedItem;
             string proDescription = txtProDescription.Text.Trim();
+            byte[] image = imageToByteArray(pbProImage.Image);
 
             ToyDTO dto = new ToyDTO
             {
@@ -728,7 +729,8 @@ namespace KiddyDesktop
                 price = proPrice,
                 quantity = proQuantity,
                 category = proCategory,
-                description = proDescription
+                description = proDescription,
+                image = image
             };
 
             addToy(dto);
@@ -751,6 +753,7 @@ namespace KiddyDesktop
             int proQuantity = int.Parse(txtProQuantity.Text.Trim());
             string proCategory = (string)cbProCategory.SelectedItem;
             string proDescription = txtProDescription.Text.Trim();
+            byte[] image = imageToByteArray(pbProImage.Image);
 
             ToyDTO dto = new ToyDTO
             {
@@ -759,7 +762,8 @@ namespace KiddyDesktop
                 price = proPrice,
                 quantity = proQuantity,
                 category = proCategory,
-                description = proDescription
+                description = proDescription,
+                image = image
             };
 
             updateToy(dto);
@@ -801,9 +805,30 @@ namespace KiddyDesktop
             txtProDescription.DataBindings.Clear();
         }
 
+        private void txtSearchPro_TextChanged(object sender, EventArgs e)
+        {
+            //clearDataBindingForProduct();
+            //string search = txtSearchPro.Text;
+            //BindingSource bs = new BindingSource();
+            //bs.DataSource = dgvProducts.DataSource;
+            //bs.Filter = "[name] = '" + search + "'";
+            //dgvProducts.DataSource = bs;
+        }
+
         #endregion
 
-        
+        private void btnUploadProImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileChooser = new OpenFileDialog();
+            fileChooser.Title = "Please select a photo";
+            fileChooser.Filter = "JPG|*.jpg|PNG|*.png|GIF|*gif";
+            fileChooser.Multiselect = false;
+            if (fileChooser.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.pbProImage.ImageLocation = fileChooser.FileName;
+                pbProImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+        }
     }
 }
 

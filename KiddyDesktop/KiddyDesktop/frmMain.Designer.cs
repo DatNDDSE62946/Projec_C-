@@ -221,6 +221,7 @@
             this.txtSearchPro.Name = "txtSearchPro";
             this.txtSearchPro.Size = new System.Drawing.Size(187, 20);
             this.txtSearchPro.TabIndex = 3;
+            this.txtSearchPro.TextChanged += new System.EventHandler(this.txtSearchPro_TextChanged);
             // 
             // label6
             // 
@@ -312,6 +313,7 @@
             this.pbProImage.Location = new System.Drawing.Point(6, 19);
             this.pbProImage.Name = "pbProImage";
             this.pbProImage.Size = new System.Drawing.Size(156, 136);
+            this.pbProImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbProImage.TabIndex = 11;
             this.pbProImage.TabStop = false;
             // 
@@ -323,6 +325,7 @@
             this.btnUploadProImage.TabIndex = 12;
             this.btnUploadProImage.Text = "Upload Image";
             this.btnUploadProImage.UseVisualStyleBackColor = true;
+            this.btnUploadProImage.Click += new System.EventHandler(this.btnUploadProImage_Click);
             // 
             // txtProQuantity
             // 
