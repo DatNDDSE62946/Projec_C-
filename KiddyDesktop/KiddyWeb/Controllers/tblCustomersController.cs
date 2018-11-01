@@ -51,6 +51,12 @@ namespace KiddyWeb.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         public async Task<ActionResult> ChangePassword(string oldpassword, string newpassword)
         {
