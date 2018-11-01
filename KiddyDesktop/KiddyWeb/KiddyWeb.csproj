@@ -107,6 +107,7 @@
     <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="Content\fonts\montserrat\OFL.txt" />
+    <Content Include="Content\images\advs_small.jpg" />
     <Content Include="Content\images\avds_large.jpg" />
     <Content Include="Content\images\avds_small.jpg" />
     <Content Include="Content\images\avds_xl.jpg" />
