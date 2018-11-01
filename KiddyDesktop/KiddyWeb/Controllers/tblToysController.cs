@@ -36,6 +36,11 @@ namespace KiddyWeb.Controllers
             return RedirectToAction("Login", "tblCustomers");
         }
 
+        public ActionResult ChangePassword()
+        {
+            return RedirectToAction("ChangePassword", "tblCustomers");
+        }
+
         // GET: tblToys/Details/5
         public async Task<ActionResult> Details(int? id)
         {

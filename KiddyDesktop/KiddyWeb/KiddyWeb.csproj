@@ -157,6 +157,7 @@
     <Content Include="Content\images\toystore3_banner.jpg" />
     <Content Include="Content\js\cart.js" />
     <Content Include="Content\js\categories.js" />
+    <Content Include="Content\js\change-password.js" />
     <Content Include="Content\js\checkout.js" />
     <Content Include="Content\js\contact.js" />
     <Content Include="Content\js\custom.js" />
@@ -353,6 +354,7 @@
     <Content Include="Views\tblCustomers\Login.cshtml" />
     <Content Include="Views\tblToys\Category.cshtml" />
     <Content Include="Views\tblToys\Details.cshtml" />
+    <Content Include="Views\tblCustomers\ChangePassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

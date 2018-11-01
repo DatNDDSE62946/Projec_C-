@@ -777,9 +777,8 @@ namespace KiddyDesktop
             {
                 deleteToy(id);
                 MessageBox.Show("Delete toy id " + id + " success!");
+                loadToys();
             }
-
-            loadToys();
         }
 
         private void txtProName_Enter(object sender, EventArgs e)

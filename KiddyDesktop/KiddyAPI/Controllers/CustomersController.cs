@@ -72,26 +72,36 @@ namespace KiddyAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Customers
-        [ResponseType(typeof(tblCustomer))]
-        public IHttpActionResult PosttblCustomer(tblCustomer tblCustomer)
+        // PUT: api/Customers/5
+        [ResponseType(typeof(void))]
+        [HttpPut]
+        [Route("api/Customers/ChangePassword")]
+        public IHttpActionResult ChangePassword(CustomerDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.tblCustomers.Add(tblCustomer);
+            tblCustomer cus = db.tblCustomers.Find(dto.username);
+
+            if(cus == null)
+            {
+                return BadRequest();
+            }
+            cus.password = dto.password;
+
+            db.Entry(cus).State = EntityState.Modified;
 
             try
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateConcurrencyException)
             {
-                if (tblCustomerExists(tblCustomer.username))
+                if (!tblCustomerExists(dto.username))
                 {
-                    return Conflict();
+                    return NotFound();
                 }
                 else
                 {
@@ -99,8 +109,38 @@ namespace KiddyAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = tblCustomer.username }, tblCustomer);
+            return StatusCode(HttpStatusCode.NoContent);
         }
+
+        //// POST: api/Customers
+        //[ResponseType(typeof(tblCustomer))]
+        //public IHttpActionResult PosttblCustomer(tblCustomer tblCustomer)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    db.tblCustomers.Add(tblCustomer);
+
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (tblCustomerExists(tblCustomer.username))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return CreatedAtRoute("DefaultApi", new { id = tblCustomer.username }, tblCustomer);
+        //}
 
         //POST: api/Customers/CheckLogin
         [HttpPost]

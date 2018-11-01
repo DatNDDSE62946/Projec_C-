@@ -17,9 +17,15 @@ namespace KiddyWeb.Controllers
     {
         static HttpClient client = new HttpClient();
         private string baseURL = "http://localhost:50815/api/Customers/";
+
         public ActionResult Login()
         {
             return View();
+        }
+
+        public ActionResult Index()
+        {
+            return RedirectToAction("Index", "tblToys");
         }
 
         [HttpPost]
@@ -29,7 +35,7 @@ namespace KiddyWeb.Controllers
             string resString = response.Content.ReadAsStringAsync().Result;
             CustomerDTO dto = JsonConvert.DeserializeObject<CustomerDTO>(resString);
             if(dto != null) {
-                Session["USER"] = dto;
+                Session["USER"] = dto.username;
                 Session["LASTNAME"] = dto.lastname;
                 return RedirectToAction("Index", "tblToys");
             } else
@@ -37,6 +43,33 @@ namespace KiddyWeb.Controllers
                 ViewBag.Invalid = "Invalid email or password!";
                 return View();
             }
+        }
+
+        [HttpGet]
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(string oldpassword, string newpassword)
+        {
+            string username = Session["USER"].ToString();
+            CustomerDTO customer = new CustomerDTO { username = username, password = oldpassword };
+            HttpResponseMessage response = await client.PostAsJsonAsync(baseURL + "CheckLogin", customer);
+            string resString = response.Content.ReadAsStringAsync().Result;
+            CustomerDTO dto = JsonConvert.DeserializeObject<CustomerDTO>(resString);
+            if(dto != null)
+            {
+                dto.password = newpassword;
+                response = await client.PutAsJsonAsync(baseURL + "ChangePassword", dto);
+                response.EnsureSuccessStatusCode();
+                ViewBag.Success = "Change Password Success!";
+            } else
+            {
+                ViewBag.Invalid = "Old password is wrong! Please try again!";
+            }
+            return View();
         }
 
         // POST: tblCustomers/Create
@@ -100,26 +133,6 @@ namespace KiddyWeb.Controllers
         //        return HttpNotFound();
         //    }
         //    return View(tblCustomer);
-        //}
-
-        // POST: tblCustomers/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult DeleteConfirmed(string id)
-        //{
-        //    tblCustomer tblCustomer = db.tblCustomers.Find(id);
-        //    db.tblCustomers.Remove(tblCustomer);
-        //    db.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (disposing)
-        //    {
-        //        db.Dispose();
-        //    }
-        //    base.Dispose(disposing);
         //}
     }
 }
