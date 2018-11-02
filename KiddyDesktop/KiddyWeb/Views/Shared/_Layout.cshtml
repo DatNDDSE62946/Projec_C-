@@ -14,7 +14,6 @@
     <link href="~/Content/plugins/OwlCarousel2-2.2.1/animate.css" rel="stylesheet" />
     
     <link href="~/Content/styles/responsive.css" rel="stylesheet" />
-    
 </head>
 <body>
     <div class="super_container">
@@ -30,17 +29,16 @@
                                 <nav class="main_nav">
                                     <ul>
                                         <li>
-                                            @Html.ActionLink("Home", "Index")
-
+                                            @Html.ActionLink("Home", "Index", "tblToys")
                                         </li>
                                         <li>
-                                            @Html.ActionLink("Board Game", "Category", new { category = "BoardGame" })
+                                            @Html.ActionLink("Board Game", "Category", "tblToys", new { category = "BoardGame" }, null)
                                         </li>
                                         <li>
-                                            @Html.ActionLink("Lego", "Category", new { category = "Lego" })
+                                            @Html.ActionLink("Lego", "Category", "tblToys", new { category = "Lego" }, null)
                                         </li>
                                         <li>
-                                            @Html.ActionLink("Rubik", "Category", new { category = "Rubik" })
+                                            @Html.ActionLink("Rubik", "Category", "tblToys", new { category = "Rubik" }, null)
                                         </li>
                                         <li><a href="contact.html">Contact</a></li>
                                     </ul>
@@ -60,6 +58,7 @@
                                                     </p>
                                                     <ul>
                                                         <li>@Html.ActionLink("Logout", "Logout")</li>
+                                                        <li>@Html.ActionLink("Change Password", "ChangePassword")</li>
                                                         <li><a href="#">Transaction History</a></li>
                                                     </ul>
                                                 </li>
@@ -77,6 +76,8 @@
 													C440.2,423.5,440.2,423.1,440.1,422.7z M244.5,27c37.9,0,68.8,30.4,69.6,68.1H174.9C175.7,57.4,206.6,27,244.5,27z M366.8,462
 													H122.2c-25.4,0-46-16.8-46.4-37.5l26.8-302.3h45.2v41c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h139.3v41
 													c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z" />
+
+
 
 											</g>
 										</svg>
@@ -100,6 +101,8 @@
 												c-25.031-25.029-37.546-55.144-37.546-90.36c0-35.21,12.518-65.334,37.546-90.36c25.026-25.032,55.15-37.546,90.36-37.546
 												c35.212,0,65.331,12.519,90.364,37.546c25.033,25.026,37.548,55.15,37.548,90.36C328.911,236.214,316.392,266.329,291.363,291.358z
 												" />
+
+
 
 										</g>
 									</svg>
@@ -244,6 +247,10 @@
     else if (ViewBag.Page == "Details")
     {
         <script src="~/Content/js/product.js"></script>
+    }
+    else if (ViewBag.Page == "Change Password")
+    {
+        <script src="~/Content/js/contact.js"></script>
     }
 
 

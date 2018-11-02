@@ -105,7 +105,7 @@
     <div class="avds">
         <div class="avds_container d-flex flex-lg-row flex-column align-items-start justify-content-between">
             <div class="avds_small">
-                <div class="avds_background" style="background-image:url(../../Content/images/avds_small.jpg)"></div>
+                <div class="avds_background" style="background-image:url(../../Content/images/advs_small.jpg)"></div>
                 <div class="avds_small_inner">
                     <div class="avds_discount_container">
                         <img src="~/Content/images/discount.png" alt="">
@@ -148,7 +148,8 @@
                         {
                             <!-- Product -->
                             <div class="product">
-                                <div class="product_image"><img src="~/Content/images/product_2.jpg" alt=""></div>
+                                @{ string imageName = "toy_" + toy.id + ".jpg";}
+                                <div class="product_image"><img src="~/Content/images/@imageName" alt=""></div>
                                 <div class="product_extra product_new"><a href="categories.html">New</a></div>
                                 <div class="product_content">
                                     <div class="product_title">@Html.ActionLink(toy.name, "Details", new { id = toy.id })</div>

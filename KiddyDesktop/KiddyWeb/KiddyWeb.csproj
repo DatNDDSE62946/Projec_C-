@@ -107,6 +107,7 @@
     <Content Include="Content\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="Content\fonts\montserrat\OFL.txt" />
+    <Content Include="Content\images\advs_small.jpg" />
     <Content Include="Content\images\avds_large.jpg" />
     <Content Include="Content\images\avds_small.jpg" />
     <Content Include="Content\images\avds_xl.jpg" />
@@ -157,6 +158,7 @@
     <Content Include="Content\images\toystore3_banner.jpg" />
     <Content Include="Content\js\cart.js" />
     <Content Include="Content\js\categories.js" />
+    <Content Include="Content\js\change-password.js" />
     <Content Include="Content\js\checkout.js" />
     <Content Include="Content\js\contact.js" />
     <Content Include="Content\js\custom.js" />
@@ -353,6 +355,8 @@
     <Content Include="Views\tblCustomers\Login.cshtml" />
     <Content Include="Views\tblToys\Category.cshtml" />
     <Content Include="Views\tblToys\Details.cshtml" />
+    <Content Include="Views\tblCustomers\ChangePassword.cshtml" />
+    <Content Include="Views\tblCustomers\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -27,6 +27,11 @@ namespace KiddyWeb.Controllers
             {
                 string listToy = response.Content.ReadAsStringAsync().Result;
                 list = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(listToy);
+                foreach (var toy in list)
+                {
+                    string imageName = "toy_" + toy.id + ".jpg";
+                    System.IO.File.WriteAllBytes("C:\\Users\\DAT\\source\\repos\\Projec_C-\\KiddyDesktop\\KiddyWeb\\Content\\images\\" + imageName, toy.image);
+                }
             }
             return View(list);
         }
@@ -34,6 +39,11 @@ namespace KiddyWeb.Controllers
         public ActionResult Login()
         {
             return RedirectToAction("Login", "tblCustomers");
+        }
+
+        public ActionResult ChangePassword()
+        {
+            return RedirectToAction("ChangePassword", "tblCustomers");
         }
 
         // GET: tblToys/Details/5
