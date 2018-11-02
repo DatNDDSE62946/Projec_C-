@@ -17,9 +17,10 @@ namespace KiddyDesktop
 {
     public partial class frmMain : Form
     {
-        tblEmployee emp;
+        EmployeeDTO emp;
         private KiddyStore data = new KiddyStore();
         private List<tblEmployee> dtEmployee;
+        private IEnumerable<EmployeeDTO> listEmployees;
         private IEnumerable<ToyDTO> listToys;
         string empImgString;
         int ordIDConfirm;
@@ -38,13 +39,13 @@ namespace KiddyDesktop
             InitializeComponent();
         }
 
-        public frmMain(string username)
+        public frmMain(EmployeeDTO dto)
         {
             InitializeComponent();
             
             loadToys();
             dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
-            emp = data.tblEmployees.Single(em => em.username.Equals(username));
+            emp = dto;
         }
         //Add Employee button
         private void button2_Click(object sender, EventArgs e)
@@ -127,6 +128,73 @@ namespace KiddyDesktop
             return result;
 
         }
+        private async void loadEmployees()
+        {
+
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Employees");
+            if (response.IsSuccessStatusCode)
+            {
+
+                string strResponse = response.Content.ReadAsStringAsync().Result;
+                listEmployees = JsonConvert.DeserializeObject<IEnumerable<EmployeeDTO>>(strResponse);
+                gvEmployee.DataSource = listEmployees;
+                gvEmployee.Columns["image"].Visible = false;
+                gvEmployee.Columns["dob"].Visible = false;
+                gvEmployee.Columns["isActived"].Visible = false;
+                gvEmployee.Columns["gender"].Visible = false;
+                gvEmployee.Columns["role"].Visible = false;
+                gvEmployee.Columns["password"].Visible = false;
+                gvEmployee.Columns["firstname"].Visible = false;
+                gvEmployee.Columns[0].HeaderText = "Username";
+                gvEmployee.Columns[1].HeaderText = "Name";
+            }
+        }
+       
+
+        private async void AddEmployee(EmployeeDTO dto)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync(BASE_URL + "Employees", dto);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Add Employee Success!");
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+        }
+
+        private async void EditEmployeeToDB(EmployeeDTO dto)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync(BASE_URL + "Employees/" + dto.username, dto);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Edit employee success");
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+        }
+        private async void DeleteEmployee(string username)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync(BASE_URL + "Employees/Delete?id=" + username, "");
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Delete employee success");
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+        }
+
 
         private void SetUpEmployeeData()
         {
@@ -142,8 +210,7 @@ namespace KiddyDesktop
 
         private void LoadEmployeeData(List<tblEmployee> listOfEmp)
         {
-            try
-            {
+           
                 gvEmployee.DataSource = listOfEmp;
                 gvEmployee.Columns["username"].HeaderText = "Username";
                 gvEmployee.Columns["firstname"].HeaderText = "First name";
@@ -157,17 +224,14 @@ namespace KiddyDesktop
                 gvEmployee.Columns["tblFeedbacks"].Visible = false;
                 gvEmployee.Columns["tblOrders"].Visible = false;
                 gvEmployee.Columns["tblToys"].Visible = false;
-            }catch(Exception )
-            {
-            }
+          
 
 
         }
 
         private void ViewEmployeeDetail(DataGridViewCellEventArgs e)
         {
-            try
-            {
+            
                 btnEmployeeSave.Enabled = false;
                 string gender = gvEmployee.Rows[e.RowIndex].Cells["gender"].Value.ToString();
                 txtUsername.Text = gvEmployee.Rows[e.RowIndex].Cells["username"].Value.ToString();
@@ -186,11 +250,7 @@ namespace KiddyDesktop
                 Image img = byteArrayToImage(imageByte);
                 PBEmployee.Image = img;
                 PBEmployee.SizeMode = PictureBoxSizeMode.StretchImage;
-            }
-            catch(Exception ex)
-            {
-
-            }
+           
             
         }
 
@@ -210,8 +270,6 @@ namespace KiddyDesktop
 
         private void SaveEmployee()
         {
-            try
-            {
                 if (!CheckEmployeeTabBlank())
                 {
                     if (!CheckEmployeeExistedUsername(txtUsername.Text))
@@ -227,7 +285,7 @@ namespace KiddyDesktop
                             }
                             Image img = Image.FromFile(empImgString);
                             byte[] imgByte = imageToByteArray(img);
-                            tblEmployee addEmp = new tblEmployee();
+                            EmployeeDTO addEmp = new EmployeeDTO();
                             addEmp.username = txtUsername.Text;
                             addEmp.password = "1";
                             addEmp.dob = mydob;
@@ -237,12 +295,9 @@ namespace KiddyDesktop
                             addEmp.firstname = txtFirstName.Text;
                             addEmp.lastname = txtLastName.Text;
                             addEmp.image = imgByte;
-                            data.tblEmployees.Add(addEmp);
-                            data.SaveChanges();
-                            dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
-                            LoadEmployeeData(dtEmployee);
-
-                            MessageBox.Show("Save employee complete!");
+                            AddEmployee(addEmp);
+                         
+                            
                         }
                         else
                         {
@@ -254,18 +309,13 @@ namespace KiddyDesktop
                         MessageBox.Show("Username has already existed!");
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+           
 
 }
 
         private void EditEmployee()
         {
-            try
-            {
+            
                 if (!CheckEmployeeTabBlank())
                 {
                     if (CheckEmployeeExistedUsername(txtUsername.Text))
@@ -282,16 +332,15 @@ namespace KiddyDesktop
                             }
                             Image image = Image.FromFile(empImgString);
                             byte[] imagebyte = imageToByteArray(image);
-                            tblEmployee editEmp = data.tblEmployees.Single(emp => emp.username.Equals(txtUsername.Text));
+                            EmployeeDTO editEmp = new EmployeeDTO();
+                            editEmp.username = txtUsername.Text;
                             editEmp.firstname = txtFirstName.Text;
                             editEmp.lastname = txtLastName.Text;
                             editEmp.dob = mydob;
                             editEmp.gender = myGender;
                             editEmp.image = imagebyte;
-                            data.SaveChanges();
-                            dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
-                            LoadEmployeeData(dtEmployee);
-                            MessageBox.Show("Edit employee complete!");
+                            EditEmployeeToDB(editEmp);
+                          g
                         }
                     }
                     else
@@ -300,19 +349,13 @@ namespace KiddyDesktop
                     }
 
                 }
-            }
-            catch (Exception e)
-            {
-
-            }
-
-        }
+            
+                   }
 
         private void DeleteEmployee()
         {
             string username = txtUsername.Text;
-            try
-            {
+          
                 if (CheckEmployeeExistedUsername(txtUsername.Text))
                 {
                     tblEmployee delEmp = data.tblEmployees.Single(emp => emp.username.Equals(username));
@@ -327,10 +370,7 @@ namespace KiddyDesktop
                 {
                     MessageBox.Show("Username is not existed!");
                 }
-            }
-            catch (Exception e)
-            {
-            }
+            
         }
 
 
@@ -342,23 +382,20 @@ namespace KiddyDesktop
 
         private void LoadCustomerData()
         {
-            try
-            {
+            
+
                 gvCustomer.DataSource = data.tblCustomers.Where(cus => cus.isActived == true).Select(cus => new
                 {
                     username = cus.username,
                     name = cus.firstname + " " + cus.lastname
 
                 }).ToList();
-            }catch(Exception e)
-            {
-            }
+           
         }
 
         private void ViewCustomerOrders(string cusID)
         {
-            try
-            {
+            
                 gvOrders.DataSource = data.tblOrders.Where(ord => ord.cusID.Equals(cusID)).Select(ord => new
                 {
                     id = ord.id,
@@ -366,17 +403,14 @@ namespace KiddyDesktop
                     Payment = ord.payment
                 }).ToList();
                 gvOrders.Columns["id"].Visible = false;
-            }
-            catch (Exception e)
-            {
-            }
+            
+           
             
         }
 
         private void ViewOrderDetail(int orderIDRef)
         {
-            try
-            {
+           
                 gvOrderDetail.ColumnCount = 2;
                 gvOrderDetail.Columns[0].Name = "Toy";
                 gvOrderDetail.Columns[1].Name = "Quantity";
@@ -390,10 +424,7 @@ namespace KiddyDesktop
                     row.Add(orderDetail.quantity);
                     gvOrderDetail.Rows.Add(row.ToArray());
                 }
-            }
-            catch (Exception e)
-            {
-            }
+            
             
         }
 
@@ -471,7 +502,7 @@ namespace KiddyDesktop
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            SetUpEmployeeData();
+            loadEmployees();
             LoadCustomerData();
             SetUpConfirmOrder();
         }
@@ -479,16 +510,19 @@ namespace KiddyDesktop
         private void btnEmployeeSave_Click(object sender, EventArgs e)
         {
             SaveEmployee();
+            loadEmployees();
         }
 
         private void btnEmployeeEdit_Click(object sender, EventArgs e)
         {
             EditEmployee();
+            loadEmployees();
         }
 
         private void btnEmployeeDelete_Click(object sender, EventArgs e)
         {
-            DeleteEmployee();
+            DeleteEmployee(txtUsername.Text);
+            loadEmployees();
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
@@ -617,7 +651,7 @@ namespace KiddyDesktop
                 imageValidate.SetError(btnUploadImage, "");
             }
         }
-
+       
         #region Toy_Functions
         private async void loadToys()
         {

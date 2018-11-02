@@ -19,7 +19,7 @@ namespace KiddyAPI.Controllers
         // GET: api/Employees
         public IEnumerable<EmployeeDTO> GettblEmployees()
         {
-            var emList = db.tblEmployees.Where(em => em.isActived == true).Select(em => new EmployeeDTO
+            var emList = db.tblEmployees.Where(em => em.isActived == true && em.role.Equals("Employee")).Select(em => new EmployeeDTO
             {
                 username = em.username,
                 dob = em.dob,
@@ -30,6 +30,8 @@ namespace KiddyAPI.Controllers
             }).ToList();
             return emList;
         }
+
+        
 
         // GET: api/Employees/5
         [ResponseType(typeof(tblEmployee))]
@@ -47,19 +49,60 @@ namespace KiddyAPI.Controllers
 
         // PUT: api/Employees/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblEmployee(string id, tblEmployee tblEmployee)
+        public IHttpActionResult PuttblEmployee(string id, EmployeeDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblEmployee.username)
+            if (id != dto.username)
             {
                 return BadRequest();
             }
+            tblEmployee employee = db.tblEmployees.Single(em => em.username.Equals(id));
+            employee.firstname = dto.firstname;
+            employee.lastname = dto.lastname;
+            employee.dob = dto.dob;
+            employee.gender = dto.gender;
+            employee.image = dto.image;
 
-            db.Entry(tblEmployee).State = EntityState.Modified;
+            db.Entry(employee).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!tblEmployeeExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+        // PUT: api/Employees/5
+        [ResponseType(typeof(void))]
+        [HttpPut]
+        [Route("api/Employees/Delete")]
+        public IHttpActionResult PutDeleteEmployee(string id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+
+            tblEmployee employee = db.tblEmployees.Find(id);
+            employee.isActived = false;
+
+            db.Entry(employee).State = EntityState.Modified;
 
             try
             {
@@ -81,62 +124,52 @@ namespace KiddyAPI.Controllers
         }
 
         // POST: api/Employees
-        [ResponseType(typeof(tblEmployee))]
-        public IHttpActionResult PosttblEmployee(tblEmployee tblEmployee)
+        [ResponseType(typeof(EmployeeDTO))]
+        public IHttpActionResult PosttblEmployee(EmployeeDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.tblEmployees.Add(tblEmployee);
-
-            try
+            db.tblEmployees.Add(new tblEmployee
             {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (tblEmployeeExists(tblEmployee.username))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+                username = dto.username,
+                password = dto.password,
+                dob = dto.dob,
+                firstname = dto.firstname,
+                gender = dto.gender,
+                isActived = dto.isActived,
+                lastname = dto.lastname,
+                role = dto.role,
+                image = dto.image
+            });
 
-            return CreatedAtRoute("DefaultApi", new { id = tblEmployee.username }, tblEmployee);
+                db.SaveChanges();       
+
+            return CreatedAtRoute("DefaultApi", new { id = dto.username }, dto);
         }
 
-        // DELETE: api/Employees/5
-        [ResponseType(typeof(tblEmployee))]
-        public IHttpActionResult DeletetblEmployee(string id)
-        {
-            tblEmployee tblEmployee = db.tblEmployees.Find(id);
-            if (tblEmployee == null)
-            {
-                return NotFound();
-            }
-
-            db.tblEmployees.Remove(tblEmployee);
-            db.SaveChanges();
-
-            return Ok(tblEmployee);
-        }
 
         //POST: api/Employees/CheckLogin
-        [HttpPost]
         [Route("api/Employees/CheckLogin")]
-        public EmployeeDTO CheckLogin(string username, string password)
+        [HttpPost]
+        [ResponseType(typeof(EmployeeDTO))]
+        public EmployeeDTO CheckLogin(EmployeeDTO dto)
         {
-
-            return db.tblEmployees.Select(em => new EmployeeDTO
+            EmployeeDTO result = null;          
+                var emp = db.tblEmployees.Find(dto.username);
+            if(emp != null)
             {
-                username = em.username,
-                lastname = em.lastname
-            }).Single(em => em.username.Equals(username) && em.password.Equals(password)) ;
+                result = new EmployeeDTO
+                {
+                    username = emp.username,
+                    password = emp.password
+                };
+            }
+                
+            
+            return result;
         }
 
 

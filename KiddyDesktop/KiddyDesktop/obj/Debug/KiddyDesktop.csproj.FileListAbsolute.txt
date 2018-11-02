@@ -62,3 +62,24 @@ C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\Newtonsoft.
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\Newtonsoft.Json.xml
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csprojAssemblyReference.cache
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.ChangePasswordForm.resources
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.frmLogin.resources
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.frmMain.resources
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.Properties.Resources.resources
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.GenerateResource.cache
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.CoreCompileInputs.cache
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.exe
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.pdb
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\KiddyDesktop.exe.config
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\KiddyDesktop.exe
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\KiddyDesktop.pdb
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.dll
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\Newtonsoft.Json.xml
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.xml
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyDesktop\obj\Debug\KiddyDesktop.csproj.CopyComplete
