@@ -10,6 +10,8 @@ using KiddyWeb.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using PagedList.Mvc;
+using PagedList;
 
 namespace KiddyWeb.Controllers
 {
@@ -113,12 +115,12 @@ namespace KiddyWeb.Controllers
             return RedirectToAction("Index");
         }
 
-        public async Task<ActionResult> Search(string value)
+        public async Task<ActionResult> Search(string value, int? page)
         {
             HttpResponseMessage response = await client.GetAsync(baseURL + "Toys/Search?value=" + value);
             string strResponse = response.Content.ReadAsStringAsync().Result;
             IEnumerable<ToyDTO> list = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
-            return View(list);
+            return View(list.ToPagedList(page ?? 1, 4));
         }
     }
 }

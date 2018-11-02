@@ -1,4 +1,6 @@
-﻿@model IEnumerable<KiddyWeb.Models.ToyDTO>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<KiddyWeb.Models.ToyDTO>
 @{
     ViewBag.Page = "Category";
 }
@@ -79,14 +81,11 @@
                         }
 
                     </div>
-                    <div class="product_pagination">
-                        <ul>
-                            <li class="active"><a href="#">01.</a></li>
-                            <li><a href="#">02.</a></li>
-                            <li><a href="#">03.</a></li>
-                        </ul>
-                    </div>
-
+                    @Html.PagedListPager(Model, page => Url.Action("Search",
+                               new { page, value = Request.QueryString["value"] }),
+                               new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded,
+                                   DisplayPageCountAndCurrentLocation = true,  ContainerDivClasses = new [] { "product_pagination" }
+                               })
                 </div>
             </div>
         </div>
