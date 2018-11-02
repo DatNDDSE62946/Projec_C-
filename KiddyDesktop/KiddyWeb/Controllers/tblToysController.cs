@@ -30,7 +30,7 @@ namespace KiddyWeb.Controllers
                 foreach (var toy in list)
                 {
                     string imageName = "toy_" + toy.id + ".jpg";
-                    System.IO.File.WriteAllBytes("C:\\Users\\DAT\\source\\repos\\Projec_C-\\KiddyDesktop\\KiddyWeb\\Content\\images\\" + imageName, toy.image);
+                    System.IO.File.WriteAllBytes(Server.MapPath(@"~/Content/images/") + imageName, toy.image);
                 }
             }
             return View(list);
