@@ -149,6 +149,7 @@ namespace KiddyDesktop
                 gvEmployee.Columns[1].HeaderText = "Name";
             }
         }
+       
 
         private async void AddEmployee(EmployeeDTO dto)
         {
@@ -172,6 +173,20 @@ namespace KiddyDesktop
             {
                 response.EnsureSuccessStatusCode();
                 MessageBox.Show("Edit employee success");
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+        }
+        private async void DeleteEmployee(string username)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync(BASE_URL + "Employees/Delete?id=" + username, "");
+            try
+            {
+                response.EnsureSuccessStatusCode();
+                MessageBox.Show("Delete employee success");
             }
             catch (Exception e)
             {
@@ -282,7 +297,7 @@ namespace KiddyDesktop
                             addEmp.lastname = txtLastName.Text;
                             addEmp.image = imgByte;
                             AddEmployee(addEmp);
-                            loadEmployees();
+                         
                             
                         }
                         else
@@ -319,13 +334,14 @@ namespace KiddyDesktop
                             Image image = Image.FromFile(empImgString);
                             byte[] imagebyte = imageToByteArray(image);
                             EmployeeDTO editEmp = new EmployeeDTO();
+                            editEmp.username = txtUsername.Text;
                             editEmp.firstname = txtFirstName.Text;
                             editEmp.lastname = txtLastName.Text;
                             editEmp.dob = mydob;
                             editEmp.gender = myGender;
                             editEmp.image = imagebyte;
                             EditEmployeeToDB(editEmp);
-                            loadEmployees();
+                          g
                         }
                     }
                     else
@@ -496,16 +512,19 @@ namespace KiddyDesktop
         private void btnEmployeeSave_Click(object sender, EventArgs e)
         {
             SaveEmployee();
+            loadEmployees();
         }
 
         private void btnEmployeeEdit_Click(object sender, EventArgs e)
         {
             EditEmployee();
+            loadEmployees();
         }
 
         private void btnEmployeeDelete_Click(object sender, EventArgs e)
         {
-            DeleteEmployee();
+            DeleteEmployee(txtUsername.Text);
+            loadEmployees();
         }
 
         private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
