@@ -28,10 +28,7 @@ namespace KiddyDesktop
             Application.Exit();
         }
 
-        private void label5_Click(object sender, EventArgs e)
-        {
 
-        }
         private async void Login(EmployeeDTO dto)
         {
             EmployeeDTO result = null;
@@ -60,11 +57,6 @@ namespace KiddyDesktop
                 password = txtPassword.Text
             };
             Login(dto);
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
 
         }
     }

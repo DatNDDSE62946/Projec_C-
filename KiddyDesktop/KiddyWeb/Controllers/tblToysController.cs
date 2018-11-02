@@ -15,15 +15,14 @@ namespace KiddyWeb.Controllers
 {
     public class tblToysController : Controller
     {
-        static HttpClient client = new HttpClient();
-        private string baseURL = "http://localhost:50815/api/";
+        private static HttpClient client = new HttpClient();
+        private static string baseURL = "http://localhost:50815/api/";
 
-        // GET: tblToys
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> LoadImage()
         {
             IEnumerable<ToyDTO> list = null;
-            HttpResponseMessage response = await client.GetAsync(baseURL + "Toys");
-            if(response.IsSuccessStatusCode)
+            HttpResponseMessage response = await client.GetAsync(baseURL + "Toys/Newest");
+            if (response.IsSuccessStatusCode)
             {
                 string listToy = response.Content.ReadAsStringAsync().Result;
                 list = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(listToy);
@@ -32,6 +31,19 @@ namespace KiddyWeb.Controllers
                     string imageName = "toy_" + toy.id + ".jpg";
                     System.IO.File.WriteAllBytes(Server.MapPath(@"~/Content/images/") + imageName, toy.image);
                 }
+            }
+            return RedirectToAction("Index");
+        }
+
+        // GET: tblToys
+        public async Task<ActionResult> Index()
+        {
+            IEnumerable<ToyDTO> list = null;
+            HttpResponseMessage response = await client.GetAsync(baseURL + "Toys/Newest");
+            if(response.IsSuccessStatusCode)
+            {
+                string listToy = response.Content.ReadAsStringAsync().Result;
+                list = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(listToy);
             }
             return View(list);
         }
@@ -101,6 +113,12 @@ namespace KiddyWeb.Controllers
             return RedirectToAction("Index");
         }
 
-
+        public async Task<ActionResult> Search(string value)
+        {
+            HttpResponseMessage response = await client.GetAsync(baseURL + "Toys/Search?value=" + value);
+            string strResponse = response.Content.ReadAsStringAsync().Result;
+            IEnumerable<ToyDTO> list = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
+            return View(list);
+        }
     }
 }

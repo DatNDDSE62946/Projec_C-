@@ -357,6 +357,7 @@
     <Content Include="Views\tblToys\Details.cshtml" />
     <Content Include="Views\tblCustomers\ChangePassword.cshtml" />
     <Content Include="Views\tblCustomers\Register.cshtml" />
+    <Content Include="Views\tblToys\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

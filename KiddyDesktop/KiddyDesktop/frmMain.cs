@@ -44,7 +44,7 @@ namespace KiddyDesktop
             InitializeComponent();
             
             loadToys();
-            dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
+            //dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
             emp = dto;
         }
         //Add Employee button
@@ -340,7 +340,6 @@ namespace KiddyDesktop
                             editEmp.gender = myGender;
                             editEmp.image = imagebyte;
                             EditEmployeeToDB(editEmp);
-                          g
                         }
                     }
                     else
