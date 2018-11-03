@@ -9,13 +9,13 @@ namespace KiddyAPI.Models
     [Table("tblEmployee")]
     public partial class tblEmployee
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        //public tblEmployee()
-        //{
-        //    tblFeedbacks = new HashSet<tblFeedback>();
-        //    tblOrders = new HashSet<tblOrder>();
-        //    tblToys = new HashSet<tblToy>();
-        //}
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblEmployee()
+        {
+            tblFeedbacks = new HashSet<tblFeedback>();
+            tblOrders = new HashSet<tblOrder>();
+            tblToys = new HashSet<tblToy>();
+        }
 
         [Key]
         [StringLength(50)]
@@ -44,13 +44,13 @@ namespace KiddyAPI.Models
         [Column(TypeName = "image")]
         public byte[] image { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<tblFeedback> tblFeedbacks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblFeedback> tblFeedbacks { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<tblOrder> tblOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrder> tblOrders { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<tblToy> tblToys { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblToy> tblToys { get; set; }
     }
 }
