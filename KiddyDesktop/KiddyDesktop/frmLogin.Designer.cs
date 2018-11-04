@@ -101,7 +101,6 @@
             this.label3.Size = new System.Drawing.Size(252, 49);
             this.label3.TabIndex = 5;
             this.label3.Text = "Employee Login";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // button2
             // 
@@ -142,7 +141,6 @@
             this.label5.Size = new System.Drawing.Size(157, 13);
             this.label5.TabIndex = 8;
             this.label5.Text = "_________________________";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // txtUsername
             // 

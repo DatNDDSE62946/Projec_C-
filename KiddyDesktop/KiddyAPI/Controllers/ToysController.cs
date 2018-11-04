@@ -27,6 +27,42 @@ namespace KiddyAPI.Controllers
             return list;
         }
 
+        //GET: api/Toys/Newest
+        [HttpGet]
+        [Route("api/Toys/Newest")]
+        public IEnumerable<ToyDTO> GetNewest()
+        {
+            var list = db.tblToys.OrderByDescending(toy => toy.id)
+                        .Where(toy => toy.isActived == true)
+                        .Take(12)
+                        .Select(toy => new ToyDTO
+                        {
+                            id = toy.id,
+                            name = toy.name,
+                            price = toy.price,
+                            image = toy.image,
+                            category = toy.category,
+                            quantity = toy.quantity,
+                            description = toy.desciption
+                        })
+                        .ToList();
+            return list;
+        }
+
+        //GET: api/Toys/Images
+        [HttpGet]
+        [Route("api/Toys/Images")]
+        public IEnumerable<ToyDTO> GetImages()
+        {
+            var list = db.tblToys.Where(toy => toy.isActived == true)
+                        .Select(toy => new ToyDTO
+                        {
+                            id = toy.id,
+                            image = toy.image
+                        }).ToList();
+            return list;
+        }
+
         // GET: api/Toys/5
         [ResponseType(typeof(ToyDTO))]
         public IHttpActionResult GettblToy(int id)
@@ -55,6 +91,7 @@ namespace KiddyAPI.Controllers
         }
 
         //GET: api/Toys?category=BoardGame
+        [HttpGet]
         public IEnumerable<ToyDTO> GetToysByCategory(string category)
         {
             var list = db.tblToys.Where(toy => toy.category == category && toy.isActived == true)
@@ -65,6 +102,24 @@ namespace KiddyAPI.Controllers
                     price = toy.price,
                     image = toy.image
                 }).ToList();
+            return list;
+        }
+
+        //GET: api/Toys/Search?value=uno
+        [HttpGet]
+        [Route("api/Toys/Search")]
+        public IEnumerable<ToyDTO> Search(string value)
+        {
+            var list = db.tblToys.Where(toy => toy.isActived == true && toy.name.Contains(value))
+                        .Select(toy => new ToyDTO
+                        {
+                            id = toy.id,
+                            name = toy.name,
+                            price = toy.price,
+                            image = toy.image,
+                            description = toy.desciption,
+                            category = toy.category
+                        }).ToList();
             return list;
         }
 

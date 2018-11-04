@@ -17,7 +17,10 @@
                 <!-- Product Image -->
                 <div class="col-lg-6">
                     <div class="details_image">
-                        <div class="details_image_large"><img src="~/Content/images/product_10.jpg" alt=""></div>
+                        @{ 
+                            string toyName = "toy_" + Model.id + ".jpg";
+                        }
+                        <div class="details_image_large"><img src="~/Content/images/@toyName" alt=""></div>
 
                     </div>
                 </div>

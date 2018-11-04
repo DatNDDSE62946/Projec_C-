@@ -117,3 +117,12 @@ C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\Kidd
 C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.csproj.CopyComplete
 C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.dll
 C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\obj\Debug\KiddyWeb.pdb
+C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.dll
+C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.Mvc.dll
+C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.xml
+C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.Mvc.xml
+>>>>>>> c82707f95342fa11459245abd5fad79cedd3350f
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.dll
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.Mvc.dll
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.xml
+C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.Mvc.xml

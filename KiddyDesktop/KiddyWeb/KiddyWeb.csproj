@@ -50,6 +50,12 @@
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -172,6 +178,7 @@
     <Content Include="Content\js\main.js" />
     <Content Include="Content\js\product.js" />
     <Content Include="Content\js\Register.js" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="Content\plugins\easing\easing.js" />
     <Content Include="Content\plugins\font-awesome-4.7.0\css\font-awesome.css" />
     <Content Include="Content\plugins\font-awesome-4.7.0\css\font-awesome.min.css" />
@@ -343,7 +350,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\tblCartController.cs" />
     <Compile Include="Controllers\tblCustomersController.cs" />
     <Compile Include="Controllers\tblToysController.cs" />
     <Compile Include="Global.asax.cs">
@@ -367,7 +373,7 @@
     <Content Include="Views\tblToys\Details.cshtml" />
     <Content Include="Views\tblCustomers\ChangePassword.cshtml" />
     <Content Include="Views\tblCustomers\Register.cshtml" />
-    <Content Include="Views\tblCarts\Cart.cshtml" />
+    <Content Include="Views\tblToys\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

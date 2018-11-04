@@ -42,8 +42,7 @@ namespace KiddyDesktop
 
         public frmMain(EmployeeDTO dto)
         {
-            InitializeComponent();     
-
+            InitializeComponent();
             emp = dto;
         }
 
