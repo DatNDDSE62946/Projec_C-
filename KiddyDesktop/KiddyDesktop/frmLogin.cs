@@ -41,7 +41,7 @@ namespace KiddyDesktop
             }
             else
             {
-                Form f = new frmMain(dto);
+                Form f = new frmMain(result);
                         f.Show();
                        this.Hide();
             }
@@ -55,6 +55,7 @@ namespace KiddyDesktop
             {
                 username = txtUsername.Text,
                 password = txtPassword.Text
+                
             };
             Login(dto);
 

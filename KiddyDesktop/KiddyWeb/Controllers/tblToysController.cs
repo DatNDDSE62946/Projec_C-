@@ -20,6 +20,7 @@ namespace KiddyWeb.Controllers
         private static HttpClient client = new HttpClient();
         private static string baseURL = "http://localhost:50815/api/";
 
+
         public async Task<ActionResult> LoadImage()
         {
             IEnumerable<ToyDTO> list = null;

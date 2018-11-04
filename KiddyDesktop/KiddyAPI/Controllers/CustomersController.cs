@@ -17,39 +17,57 @@ namespace KiddyAPI.Controllers
         private DBModel db = new DBModel();
 
         // GET: api/Customers
-        public IQueryable<CustomerDTO> GettblCustomers()
+        public IEnumerable<CustomerDTO> GettblCustomers()
         {
             var cusList = db.tblCustomers.Where(cus => cus.isActived == true)
                 .Select(cus => new CustomerDTO { username = cus.username, firstname = cus.firstname, lastname = cus.lastname });
             return cusList;
         }
 
-        // GET: api/Customers/5
-        [ResponseType(typeof(tblCustomer))]
-        public IHttpActionResult GettblCustomer(string id)
+        // POST: api/Customers/5
+        [ResponseType(typeof(CustomerDTO))]
+        public IHttpActionResult PosttblCustomer(string id)
         {
             tblCustomer tblCustomer = db.tblCustomers.Find(id);
+            
             if (tblCustomer == null)
             {
                 return NotFound();
             }
+            CustomerDTO dto = new CustomerDTO
+            {
+                username = tblCustomer.username,
+                password = tblCustomer.password,
+                firstname = tblCustomer.firstname,
+                lastname = tblCustomer.lastname,
+                isActived = tblCustomer.isActived
+            };
 
-            return Ok(tblCustomer);
+            return Ok(dto);
         }
 
         // PUT: api/Customers/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblCustomer(string id, tblCustomer tblCustomer)
+        [HttpPut]
+        public IHttpActionResult tblCustomer(string id, CustomerDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblCustomer.username)
+            if (id != dto.username)
             {
                 return BadRequest();
             }
+            tblCustomer tblCustomer = new tblCustomer
+            {
+                username = dto.username,
+                firstname = dto.firstname,
+                lastname = dto.lastname,
+                isActived = dto.isActived,
+                password  = dto.password,
+            };
 
             db.Entry(tblCustomer).State = EntityState.Modified;
 
@@ -71,6 +89,8 @@ namespace KiddyAPI.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
+
+
 
         // PUT: api/Customers/5
         [ResponseType(typeof(void))]

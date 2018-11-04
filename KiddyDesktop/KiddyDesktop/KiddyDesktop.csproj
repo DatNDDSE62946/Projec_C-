@@ -78,8 +78,11 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomerDTO.cs" />
     <Compile Include="Models\EmployeeDTO.cs" />
     <Compile Include="Models\KiddyStore.cs" />
+    <Compile Include="Models\OrderDetailDTO.cs" />
+    <Compile Include="Models\OrderDTO.cs" />
     <Compile Include="Models\tblAddress.cs" />
     <Compile Include="Models\tblCustomer.cs" />
     <Compile Include="Models\tblEmployee.cs" />

@@ -9,12 +9,12 @@ namespace KiddyAPI.Models
     [Table("tblToy")]
     public partial class tblToy
     {
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        //public tblToy()
-        //{
-        //    tblFeedbacks = new HashSet<tblFeedback>();
-        //    tblOrderDetails = new HashSet<tblOrderDetail>();
-        //}
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblToy()
+        {
+            tblFeedbacks = new HashSet<tblFeedback>();
+            tblOrderDetails = new HashSet<tblOrderDetail>();
+        }
 
         public int id { get; set; }
 
@@ -38,12 +38,12 @@ namespace KiddyAPI.Models
         [Column(TypeName = "image")]
         public byte[] image { get; set; }
 
-        //public virtual tblEmployee tblEmployee { get; set; }
+        public virtual tblEmployee tblEmployee { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<tblFeedback> tblFeedbacks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblFeedback> tblFeedbacks { get; set; }
 
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        //public virtual ICollection<tblOrderDetail> tblOrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblOrderDetail> tblOrderDetails { get; set; }
     }
 }

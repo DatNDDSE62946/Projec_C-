@@ -103,7 +103,7 @@
             this.label18 = new System.Windows.Forms.Label();
             this.gvOrders = new System.Windows.Forms.DataGridView();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.button13 = new System.Windows.Forms.Button();
+            this.btnBlock = new System.Windows.Forms.Button();
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.gvCustomer = new System.Windows.Forms.DataGridView();
@@ -114,6 +114,7 @@
             this.firstnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.lastnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.TabControl.SuspendLayout();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -142,6 +143,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -594,6 +596,7 @@
             this.PBEmployee.Location = new System.Drawing.Point(0, 19);
             this.PBEmployee.Name = "PBEmployee";
             this.PBEmployee.Size = new System.Drawing.Size(138, 132);
+            this.PBEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.PBEmployee.TabIndex = 0;
             this.PBEmployee.TabStop = false;
             // 
@@ -894,7 +897,7 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.button13);
+            this.groupBox7.Controls.Add(this.btnBlock);
             this.groupBox7.Controls.Add(this.txtCustomerSearch);
             this.groupBox7.Controls.Add(this.label17);
             this.groupBox7.Controls.Add(this.gvCustomer);
@@ -905,14 +908,15 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Customer List";
             // 
-            // button13
+            // btnBlock
             // 
-            this.button13.Location = new System.Drawing.Point(154, 385);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(57, 47);
-            this.button13.TabIndex = 3;
-            this.button13.Text = "Block";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnBlock.Location = new System.Drawing.Point(154, 385);
+            this.btnBlock.Name = "btnBlock";
+            this.btnBlock.Size = new System.Drawing.Size(57, 47);
+            this.btnBlock.TabIndex = 3;
+            this.btnBlock.Text = "Block";
+            this.btnBlock.UseVisualStyleBackColor = true;
+            this.btnBlock.Click += new System.EventHandler(this.btnBlock_Click);
             // 
             // txtCustomerSearch
             // 
@@ -948,6 +952,7 @@
             this.button8.TabIndex = 1;
             this.button8.Text = "Logout";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // entityCommand1
             // 
@@ -986,6 +991,10 @@
             // 
             this.imageValidate.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.imageValidate.ContainerControl = this;
+            // 
+            // bindingSource1
+            // 
+            this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
             // 
             // frmMain
             // 
@@ -1036,6 +1045,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1109,7 +1119,7 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.DataGridView gvOrders;
         private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnBlock;
         private System.Windows.Forms.TextBox txtCustomerSearch;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridView gvCustomer;
@@ -1127,5 +1137,6 @@
         private System.Windows.Forms.ErrorProvider imageValidate;
         private System.Windows.Forms.ComboBox cbProCategory;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
