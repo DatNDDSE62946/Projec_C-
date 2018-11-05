@@ -779,6 +779,7 @@ namespace KiddyDesktop
             txtProQuantity.Text = "";
             txtProDescription.Text = "";
             cbProCategory.SelectedIndex = 0;
+            pbProImage.Image = null;
         }
         
 
@@ -807,27 +808,69 @@ namespace KiddyDesktop
 
         private void btnAddPro_Click(object sender, EventArgs e)
         {
-            string proName = txtProName.Text.Trim();
-            float proPrice = float.Parse(txtProPrice.Text.Trim());
-            int proQuantity = int.Parse(txtProQuantity.Text.Trim());
-            string proCategory = (string)cbProCategory.SelectedItem;
-            string proDescription = txtProDescription.Text.Trim();
-            byte[] image = imageToByteArray(pbProImage.Image);
-
-            ToyDTO dto = new ToyDTO
+            string proName, proCategory, proDescription;
+            float proPrice = -1;
+            int proQuantity = -1;
+            byte[] image = null;
+            bool check = true;
+            proName = txtProName.Text.Trim();
+            proCategory = (string)cbProCategory.SelectedItem;
+            proDescription = txtProDescription.Text.Trim();
+            if(proName.Length == 0 || proCategory.Length == 0 || proDescription.Length == 0)
             {
-                name = proName,
-                price = proPrice,
-                quantity = proQuantity,
-                category = proCategory,
-                description = proDescription,
-                image = image
-            };
+                check = false;
+            }
+            try
+            {
+                proPrice = float.Parse(txtProPrice.Text.Trim());
+                if(proPrice <= 0)
+                {
+                    check = false;
+                }
+            } catch (Exception ex)
+            {
+                check = false;
+            }
+            try
+            {
+                proQuantity = int.Parse(txtProQuantity.Text.Trim());
+                if(proQuantity <= 0)
+                {
+                    check = false;
+                }
+            } catch (Exception ex)
+            {
+                check = false;
+            }
+            if (pbProImage.Image == null)
+            {
+                check = false;
+            } else
+            {
+                image = imageToByteArray(pbProImage.Image);
+            }
+            
+            if(check)
+            {
+                ToyDTO dto = new ToyDTO
+                {
+                    name = proName,
+                    price = proPrice,
+                    quantity = proQuantity,
+                    category = proCategory,
+                    description = proDescription,
+                    image = image
+                };
 
-            addToy(dto);
-            MessageBox.Show("Add a toy success!");
-            btnClearPro_Click(sender, e);
-            loadToys();
+                addToy(dto);
+                MessageBox.Show("Add a toy success!");
+                btnClearPro_Click(sender, e);
+                loadToys();
+            } else
+            {
+                MessageBox.Show("Your input is invalid! Please try again!");
+            }
+            
         }
 
         private void dgvProducts_MouseClick(object sender, MouseEventArgs e)
@@ -906,8 +949,6 @@ namespace KiddyDesktop
             //dgvProducts.DataSource = bs;
         }
 
-        #endregion
-
         private void btnUploadProImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileChooser = new OpenFileDialog();
@@ -920,6 +961,70 @@ namespace KiddyDesktop
                 pbProImage.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
+
+        private void txtProName_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtProName.Text == "")
+            {
+                errProduct.SetError(txtProName, "Name is required!");
+            }
+            else
+            {
+                errProduct.SetError(txtProName, "");
+            }
+        }
+
+        private void txtProPrice_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                float price = float.Parse(txtProPrice.Text);
+                errProduct.SetError(txtProPrice, "");
+            }
+            catch (Exception ex)
+            {
+                errProduct.SetError(txtProPrice, "Price must be a number!");
+            }
+        }
+
+        private void txtProQuantity_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                int price = int.Parse(txtProQuantity.Text);
+                errProduct.SetError(txtProQuantity, "");
+            }
+            catch (Exception ex)
+            {
+                errProduct.SetError(txtProQuantity, "Quantity must be a number!");
+            }
+        }
+
+        private void txtProDescription_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtProDescription.Text == "")
+            {
+                errProduct.SetError(txtProDescription, "Description is required!");
+            }
+            else
+            {
+                errProduct.SetError(txtProDescription, "");
+            }
+        }
+
+        private void btnUploadProImage_Validating(object sender, CancelEventArgs e)
+        {
+            if (pbProImage.Image == null)
+            {
+                errProduct.SetError(btnUploadProImage, "Image is required!");
+            }
+            else
+            {
+                errProduct.SetError(btnUploadProImage, "");
+            }
+        }
+
+        #endregion
 
         private void button8_Click(object sender, EventArgs e)
         {
@@ -1087,9 +1192,8 @@ namespace KiddyDesktop
             }
         }
 
-        #endregion
 
-        
+        #endregion
     }
 }
 

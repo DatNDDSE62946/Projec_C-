@@ -115,6 +115,7 @@
             this.lastnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.errProduct = new System.Windows.Forms.ErrorProvider(this.components);
             this.TabControl.SuspendLayout();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
@@ -144,6 +145,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errProduct)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -299,6 +301,7 @@
             this.txtProDescription.Size = new System.Drawing.Size(246, 72);
             this.txtProDescription.TabIndex = 14;
             this.txtProDescription.Enter += new System.EventHandler(this.txtProDescription_Enter);
+            this.txtProDescription.Validating += new System.ComponentModel.CancelEventHandler(this.txtProDescription_Validating);
             // 
             // groupBox2
             // 
@@ -328,6 +331,7 @@
             this.btnUploadProImage.Text = "Upload Image";
             this.btnUploadProImage.UseVisualStyleBackColor = true;
             this.btnUploadProImage.Click += new System.EventHandler(this.btnUploadProImage_Click);
+            this.btnUploadProImage.Validating += new System.ComponentModel.CancelEventHandler(this.btnUploadProImage_Validating);
             // 
             // txtProQuantity
             // 
@@ -336,14 +340,16 @@
             this.txtProQuantity.Size = new System.Drawing.Size(77, 20);
             this.txtProQuantity.TabIndex = 8;
             this.txtProQuantity.Enter += new System.EventHandler(this.txtProQuantity_Enter);
+            this.txtProQuantity.Validating += new System.ComponentModel.CancelEventHandler(this.txtProQuantity_Validating);
             // 
             // txtProPrice
             // 
             this.txtProPrice.Location = new System.Drawing.Point(113, 88);
             this.txtProPrice.Name = "txtProPrice";
-            this.txtProPrice.Size = new System.Drawing.Size(100, 20);
+            this.txtProPrice.Size = new System.Drawing.Size(99, 20);
             this.txtProPrice.TabIndex = 7;
             this.txtProPrice.Enter += new System.EventHandler(this.txtProPrice_Enter);
+            this.txtProPrice.Validating += new System.ComponentModel.CancelEventHandler(this.txtProPrice_Validating);
             // 
             // txtProName
             // 
@@ -352,6 +358,7 @@
             this.txtProName.Size = new System.Drawing.Size(246, 20);
             this.txtProName.TabIndex = 6;
             this.txtProName.Enter += new System.EventHandler(this.txtProName_Enter);
+            this.txtProName.Validating += new System.ComponentModel.CancelEventHandler(this.txtProName_Validating);
             // 
             // txtProID
             // 
@@ -1006,6 +1013,11 @@
             // 
             this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
             // 
+            // errProduct
+            // 
+            this.errProduct.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
+            this.errProduct.ContainerControl = this;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1056,6 +1068,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errProduct)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1148,5 +1161,6 @@
         private System.Windows.Forms.ComboBox cbProCategory;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private System.Windows.Forms.ErrorProvider errProduct;
     }
 }
