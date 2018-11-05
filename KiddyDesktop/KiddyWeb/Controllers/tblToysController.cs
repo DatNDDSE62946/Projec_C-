@@ -85,6 +85,7 @@ namespace KiddyWeb.Controllers
             string strFeedback = response.Content.ReadAsStringAsync().Result;
             IEnumerable<FeedbackDTO> feedbacks = JsonConvert.DeserializeObject<IEnumerable<FeedbackDTO>>(strFeedback);
             ViewBag.Feedbacks = feedbacks;
+            ViewBag.NoFeedback = feedbacks.Count();
 
             return View(dto);
         }

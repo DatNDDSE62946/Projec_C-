@@ -16,11 +16,18 @@ namespace KiddyAPI.Controllers
     {
         private DBModel db = new DBModel();
 
-        //// GET: api/Feedbacks
-        //public IQueryable<tblFeedback> GettblFeedbacks()
-        //{
-        //    return db.tblFeedbacks;
-        //}
+        // GET: api/Feedbacks
+        public IEnumerable<FeedbackDTO> GettblFeedbacks()
+        {
+            var list = db.tblFeedbacks.Where(fb => fb.status == 0)
+                .Select(fb => new FeedbackDTO { id = fb.id, content = fb.content, cusName = fb.cusID, toyID = fb.toyID })
+                .ToList();
+            foreach (var item in list)
+            {
+                item.cusName = db.tblCustomers.SingleOrDefault(cus => cus.username == item.cusName).lastname;
+            }
+            return list;
+        }
 
         //// GET: api/Feedbacks/5
         //[ResponseType(typeof(tblFeedback))]
@@ -51,39 +58,42 @@ namespace KiddyAPI.Controllers
         }
 
         //// PUT: api/Feedbacks/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PuttblFeedback(int id, tblFeedback tblFeedback)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PuttblFeedback(int id, FeedbackDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    if (id != tblFeedback.id)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (id != dto.id)
+            {
+                return BadRequest();
+            }
+            tblFeedback feedback = db.tblFeedbacks.Find(dto.id);
+            if(feedback != null)
+            {
+                feedback.status = dto.status;
+                db.Entry(feedback).State = EntityState.Modified;
+            }
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!tblFeedbackExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    db.Entry(tblFeedback).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!tblFeedbackExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
         //// POST: api/Feedbacks
         //[ResponseType(typeof(tblFeedback))]

@@ -22,6 +22,8 @@ namespace KiddyDesktop
         private IEnumerable<EmployeeDTO> listEmployees;
         private IEnumerable<ToyDTO> listToys;
         private IEnumerable<CustomerDTO> listCustomer;
+        private IEnumerable<ToyDTO> listToyFeedback;
+        private IEnumerable<FeedbackDTO> listFeedback;
         private string empImgString;
         private int ordIDConfirm;
         private CustomerDTO currCustomer;
@@ -925,8 +927,6 @@ namespace KiddyDesktop
 
         }
 
-
-
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
         {
             EmployeeDTO currEmp = (EmployeeDTO) bindingSource1.Current ;
@@ -941,7 +941,155 @@ namespace KiddyDesktop
             }
         }
 
-       
+        #region Feedback_Functions
+        private void tabOrderFeedback_Enter(object sender, EventArgs e)
+        {
+            loadToyFeedback();
+            loadFeedback();
+        }
+
+        private async void loadToyFeedback()
+        {
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Toys\\Feedbacks");
+            string stringResponse = response.Content.ReadAsStringAsync().Result;
+            listToyFeedback = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(stringResponse);
+            dgvProFeedback.DataSource = null;
+            dgvProFeedback.DataSource = listToyFeedback;
+
+            if (listToyFeedback != null)
+            {
+                dgvProFeedback.Columns["image"].Visible = false;
+                dgvProFeedback.Columns["createdBy"].Visible = false;
+                dgvProFeedback.Columns["isActived"].Visible = false;
+                dgvProFeedback.Columns["description"].Visible = false;
+                dgvProFeedback.Columns["category"].Visible = false;
+                dgvProFeedback.Columns["price"].Visible = false;
+                dgvProFeedback.Columns["quantity"].Visible = false;
+            }
+        }
+
+        private async void loadFeedback()
+        {
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Feedbacks");
+            string stringResponse = response.Content.ReadAsStringAsync().Result;
+            listFeedback = JsonConvert.DeserializeObject<IEnumerable<FeedbackDTO>>(stringResponse);
+            dgvFeedback.DataSource = null;
+        }
+
+        private async void updateFeedback(FeedbackDTO dto)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync(BASE_URL + "Feedbacks/" + dto.id, dto);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dgvProFeedback_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int currentRow = e.RowIndex;
+            int toyID = (int)dgvProFeedback.Rows[currentRow].Cells["id"].Value;
+            List<FeedbackDTO> feedbacks = new List<FeedbackDTO>();
+            foreach (FeedbackDTO feedback in listFeedback)
+            {
+                if (feedback.toyID == toyID)
+                {
+                    feedbacks.Add(feedback);
+                }
+            }
+            dgvFeedback.DataSource = null;
+            dgvFeedback.DataSource = feedbacks;
+
+            dgvFeedback.Columns["toyID"].Visible = false;
+            dgvFeedback.Columns["content"].Visible = false;
+            dgvFeedback.Columns["status"].Visible = false;
+            dgvFeedback.Columns["id"].Width = 20;
+
+            clearDatabindingForFeedback();
+            addDataBindingForFeedback(feedbacks);
+        }
+
+        private void clearDatabindingForFeedback()
+        {
+            txtFeedback.DataBindings.Clear();
+        }
+
+        private void addDataBindingForFeedback(List<FeedbackDTO> feedbacks)
+        {
+            txtFeedback.DataBindings.Add("Text", feedbacks, "content");
+        }
+
+        private void btnConfirmFeedback_Click(object sender, EventArgs e)
+        {
+            if (dgvFeedback.CurrentRow == null)
+            {
+                if (listToyFeedback.Count() == 0)
+                {
+                    MessageBox.Show("There are no feedback to confirm!");
+                } else
+                {
+                    MessageBox.Show("Please choose a feedback to confirm!");
+                }
+            } else {
+                int currentRowIndex = dgvFeedback.CurrentRow.Index;
+                int feedbackID = (int)dgvFeedback.Rows[currentRowIndex].Cells["id"].Value;
+                FeedbackDTO dto = new FeedbackDTO { id = feedbackID, status = 1 };
+                updateFeedback(dto);
+                updateFeedbackGridview(feedbackID, sender);
+            }
+        }
+
+        private void btnDeleteFeedback_Click(object sender, EventArgs e)
+        {
+            if (dgvFeedback.CurrentRow == null)
+            {
+                if (listToyFeedback.Count() == 0)
+                {
+                    MessageBox.Show("There are no feedback to confirm!");
+                }
+                else
+                {
+                    MessageBox.Show("Please choose a feedback to confirm!");
+                }
+            }
+            else
+            {
+                int currentRowIndex = dgvFeedback.CurrentRow.Index;
+                int feedbackID = (int)dgvFeedback.Rows[currentRowIndex].Cells["id"].Value;
+                FeedbackDTO dto = new FeedbackDTO { id = feedbackID, status = -1 };
+                updateFeedback(dto);
+                updateFeedbackGridview(feedbackID, sender);
+            }
+        }
+
+        private void updateFeedbackGridview(int feedbackID, Object sender)
+        {
+            listFeedback = listFeedback.Where(feedback => feedback.id != feedbackID).ToList();
+            dgvProFeedback_CellClick(sender, new DataGridViewCellEventArgs(0, dgvProFeedback.CurrentRow.Index));
+            if (dgvFeedback.Rows.Count == 0)
+            {
+                int toyID = (int)dgvProFeedback.Rows[dgvProFeedback.CurrentRow.Index].Cells["id"].Value;
+                listToyFeedback = listToyFeedback.Where(toy => toy.id != toyID).ToList();
+                dgvProFeedback.DataSource = null;
+                dgvProFeedback.DataSource = listToyFeedback;
+
+                dgvProFeedback.Columns["image"].Visible = false;
+                dgvProFeedback.Columns["createdBy"].Visible = false;
+                dgvProFeedback.Columns["isActived"].Visible = false;
+                dgvProFeedback.Columns["description"].Visible = false;
+                dgvProFeedback.Columns["category"].Visible = false;
+                dgvProFeedback.Columns["price"].Visible = false;
+                dgvProFeedback.Columns["quantity"].Visible = false;
+            }
+        }
+
+        #endregion
+
+        
     }
 }
 

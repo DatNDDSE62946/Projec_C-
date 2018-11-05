@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Models\CustomerDTO.cs" />
     <Compile Include="Models\EmployeeDTO.cs" />
+    <Compile Include="Models\FeedbackDTO.cs" />
     <Compile Include="Models\KiddyStore.cs" />
     <Compile Include="Models\OrderDetailDTO.cs" />
     <Compile Include="Models\OrderDTO.cs" />
