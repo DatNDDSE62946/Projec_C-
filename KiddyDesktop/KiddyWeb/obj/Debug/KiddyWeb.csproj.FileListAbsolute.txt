@@ -121,7 +121,6 @@ C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.dll
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.Mvc.dll
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.xml
 C:\Users\DAT\source\repos\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.Mvc.xml
-<<<<<<< HEAD
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\Newtonsoft.Json.dll
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.dll
@@ -132,7 +131,6 @@ C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.xml
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.Mvc.xml
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\System.Net.Http.Formatting.xml
 C:\Users\ykdns\Desktop\Projec_C-\KiddyDesktop\KiddyWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-=======
 >>>>>>> c82707f95342fa11459245abd5fad79cedd3350f
 C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.dll
 C:\Users\ykdns\Desktop\New folder\Projec_C-\KiddyDesktop\KiddyWeb\bin\PagedList.Mvc.dll
