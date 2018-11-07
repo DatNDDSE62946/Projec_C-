@@ -169,6 +169,11 @@ namespace KiddyAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = cus.username }, dto);
         }
 
+<<<<<<< HEAD
+=======
+      
+
+>>>>>>> fc27e809963853ef2816116efa47512664c35f95
         //POST: api/Customers/CheckLogin
         [HttpPost]
         [Route("api/Customers/CheckLogin")]

@@ -38,29 +38,29 @@
                     <div class="get_in_touch">
                         <div class="section_title">Welcome to Kiddy!</div>
                         <div class="contact_form_container">
-                            <form action="#" id="contact_form" class="contact_form">
+                            <form action="#" id="contact_form" class="contact_form" action="register" method="post" >
                                 <div>
                                     <label for="confirm">Email*</label>
-                                    <input type="text" id="email" class="contact_input" placeholder="Example@gmail.com" />
+                                    <input type="text" name="username" id="email" class="contact_input" placeholder="Example@gmail.com" />
                                     <p id="emailValidate" class="validateP"></p>
                                 </div>
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <!-- Name -->
                                         <label for="register_name">First Name*</label>
-                                        <input type="text" id="first_name" class="contact_input">
+                                        <input type="text" name="firstname" id="first_name" class="contact_input">
                                         <p id="fNameValidate" class="validateP"></p>
                                     </div>
                                     <div class="col-xl-6 last_name_col">
                                         <!-- Last Name -->
                                         <label for="register_last_name">Last Name*</label>
-                                        <input type="text" id="last_name" class="contact_input">
+                                        <input type="text" name="lastname" id="last_name" class="contact_input">
                                         <p id="lastNameValidate" class="validateP"></p>
                                     </div>
                                 </div>
                                 <div>
                                     <label for="password">Password:</label>
-                                    <input type="password" id="password" class="contact_input" />
+                                    <input type="password" name="password" id="password" class="contact_input" />
                                     <p id="passwordValidate" class="validateP"></p>
                                 </div>
                                 <div>

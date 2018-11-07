@@ -44,6 +44,12 @@ namespace KiddyWeb.Controllers
                 return View();
             }
         }
+        [HttpPost]
+        public async Task<ActionResult> Register([Bind(Include = "username, firstname, lastname, password")]CustomerDTO customer)
+        {
+            HttpResponseMessage responseMessage = await client
+            return View();
+        }
 
         [HttpGet]
         public ActionResult ChangePassword()

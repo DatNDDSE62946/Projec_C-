@@ -32,7 +32,8 @@ namespace KiddyWeb.Controllers
                 foreach (var toy in list)
                 {
                     string imageName = "toy_" + toy.id + ".jpg";
-                    System.IO.File.WriteAllBytes(Server.MapPath(@"~/Content/images/") + imageName, toy.image);
+                    string path = Server.MapPath(@"~/Content/images/") + imageName;
+                    System.IO.File.WriteAllBytes( path, toy.image);
                 }
             }
             return RedirectToAction("Index");
@@ -123,6 +124,11 @@ namespace KiddyWeb.Controllers
             string strResponse = response.Content.ReadAsStringAsync().Result;
             IEnumerable<ToyDTO> list = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
             return View(list.ToPagedList(page ?? 1, 4));
+        }
+        public async Task<ActionResult> Cart()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(baseURL);
+            return View();
         }
     }
 }

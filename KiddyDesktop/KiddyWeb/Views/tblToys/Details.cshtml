@@ -1,10 +1,11 @@
 ﻿@model KiddyWeb.Models.ToyDTO
-@{ 
+@{
     ViewBag.Page = "Details";
 }
 <link rel="stylesheet" type="text/css" href="~/Content/styles/product.css">
 <link rel="stylesheet" type="text/css" href="~/Content/styles/product_responsive.css">
 <link href="~/Content/styles/checkout.css" rel="stylesheet" type="text/css">
+
 
 <div class="super_container">
 
@@ -17,7 +18,7 @@
                 <!-- Product Image -->
                 <div class="col-lg-6">
                     <div class="details_image">
-                        @{ 
+                        @{
                             string toyName = "toy_" + Model.id + ".jpg";
                         }
                         <div class="details_image_large"><img src="~/Content/images/@toyName" alt=""></div>
@@ -50,8 +51,48 @@
                                     <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
                                 </div>
                             </div>
-                            <div class="button cart_button"><a href="#">Add to cart</a></div>
+                            <div class="button cart_button" onclick="AddToCart()"><a>Add to cart</a></div>
                         </div>
+                        <script>
+                            var cart = [];
+                            var Toy = function (id, quantity) {
+                                this.id = id
+                                this.quantity = quantity
+
+                            };
+                            function AddToCart() {
+                                var cartData = localStorage.getItem("listOfToys");
+                                if (cartData != null) {
+                                    cart = JSON.parse(cartData);
+                                }
+                                var id = @Model.id;
+                                var quantity = parseInt(document.getElementById("quantity_input").value);
+                                var name = "@Model.name";
+                                var check = false;
+                                for (var i in cart) {
+                                    if (cart[i].id === id) {
+                                        cart[i].quantity += quantity;
+                                        check = true;
+                                    }
+                                };
+                                if (!check) {
+                                    var toy = new Toy(id, quantity);
+                                    cart.push(toy);
+                                }
+
+                                console.log(cart);
+                                SaveCart();
+                                document.getElementById("numberProsInCart").innerHTML = "("+ cart.length + ")";
+                                alert("Add " + quantity + "-" + name + " success!");
+                            }
+
+
+
+                            function SaveCart() {
+                                localStorage.setItem("listOfToys", JSON.stringify(cart));
+                            }
+
+                        </script>
 
                         <!-- Share -->
                         <div class="details_share">
@@ -122,7 +163,7 @@
                                 <div class="product_extra product_new"><a href="categories.html">New</a></div>
                                 <div class="product_content">
                                     <div class="product_title">
-                                        @Html.ActionLink(relatedToy.name, "Details", new { id = relatedToy.id})
+                                        @Html.ActionLink(relatedToy.name, "Details", new { id = relatedToy.id })
                                     </div>
                                     <div class="product_price">$@relatedToy.price</div>
                                 </div>
