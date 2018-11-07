@@ -24,71 +24,71 @@ namespace KiddyAPI.Controllers
             return cusList;
         }
 
-        // POST: api/Customers/5
-        [ResponseType(typeof(CustomerDTO))]
-        public IHttpActionResult PosttblCustomer(string id)
-        {
-            tblCustomer tblCustomer = db.tblCustomers.Find(id);
+        //GET: api/Customers/5
+        //[ResponseType(typeof(CustomerDTO))]
+        //public IHttpActionResult PosttblCustomer(string id)
+        //{
+        //    tblCustomer tblCustomer = db.tblCustomers.Find(id);
             
-            if (tblCustomer == null)
-            {
-                return NotFound();
-            }
-            CustomerDTO dto = new CustomerDTO
-            {
-                username = tblCustomer.username,
-                password = tblCustomer.password,
-                firstname = tblCustomer.firstname,
-                lastname = tblCustomer.lastname,
-                isActived = tblCustomer.isActived
-            };
+        //    if (tblCustomer == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    CustomerDTO dto = new CustomerDTO
+        //    {
+        //        username = tblCustomer.username,
+        //        password = tblCustomer.password,
+        //        firstname = tblCustomer.firstname,
+        //        lastname = tblCustomer.lastname,
+        //        isActived = tblCustomer.isActived
+        //    };
 
-            return Ok(dto);
-        }
+        //    return Ok(dto);
+        //}
 
         // PUT: api/Customers/5
-        [ResponseType(typeof(void))]
-        [HttpPut]
-        public IHttpActionResult tblCustomer(string id, CustomerDTO dto)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[ResponseType(typeof(void))]
+        //[HttpPut]
+        //public IHttpActionResult tblCustomer(string id, CustomerDTO dto)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != dto.username)
-            {
-                return BadRequest();
-            }
-            tblCustomer tblCustomer = new tblCustomer
-            {
-                username = dto.username,
-                firstname = dto.firstname,
-                lastname = dto.lastname,
-                isActived = dto.isActived,
-                password  = dto.password,
-            };
+        //    if (id != dto.username)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    tblCustomer tblCustomer = new tblCustomer
+        //    {
+        //        username = dto.username,
+        //        firstname = dto.firstname,
+        //        lastname = dto.lastname,
+        //        isActived = dto.isActived,
+        //        password  = dto.password,
+        //    };
 
-            db.Entry(tblCustomer).State = EntityState.Modified;
+        //    db.Entry(tblCustomer).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!tblCustomerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!tblCustomerExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
 
 
@@ -132,8 +132,48 @@ namespace KiddyAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // POST: api/Customers
+        [ResponseType(typeof(tblCustomer))]
+        public IHttpActionResult PosttblCustomer(CustomerDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            tblCustomer cus = new tblCustomer
+            {
+                username = dto.username,
+                firstname = dto.firstname,
+                lastname = dto.lastname,
+                password = dto.password,
+                isActived = true
+            };
+            db.tblCustomers.Add(cus);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (tblCustomerExists(cus.username))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = cus.username }, dto);
+        }
+
+<<<<<<< HEAD
+=======
       
 
+>>>>>>> fc27e809963853ef2816116efa47512664c35f95
         //POST: api/Customers/CheckLogin
         [HttpPost]
         [Route("api/Customers/CheckLogin")]
