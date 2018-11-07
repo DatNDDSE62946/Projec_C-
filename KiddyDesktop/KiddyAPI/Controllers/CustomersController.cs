@@ -112,35 +112,7 @@ namespace KiddyAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        //// POST: api/Customers
-        //[ResponseType(typeof(tblCustomer))]
-        //public IHttpActionResult PosttblCustomer(tblCustomer tblCustomer)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    db.tblCustomers.Add(tblCustomer);
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (tblCustomerExists(tblCustomer.username))
-        //        {
-        //            return Conflict();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return CreatedAtRoute("DefaultApi", new { id = tblCustomer.username }, tblCustomer);
-        //}
+      
 
         //POST: api/Customers/CheckLogin
         [HttpPost]

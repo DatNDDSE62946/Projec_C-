@@ -12,10 +12,34 @@
     <link href="~/Content/plugins/OwlCarousel2-2.2.1/owl.carousel.css" rel="stylesheet" />
     <link href="~/Content/plugins/OwlCarousel2-2.2.1/owl.theme.default.css" rel="stylesheet" />
     <link href="~/Content/plugins/OwlCarousel2-2.2.1/animate.css" rel="stylesheet" />
-    
+
     <link href="~/Content/styles/responsive.css" rel="stylesheet" />
 </head>
-<body>
+
+
+<body onload="LoadNoCart()">
+    <script>
+
+        function LoadNoCart() {
+            var toyData = localStorage.getItem("listOfToys");
+            var toys = JSON.parse(toyData);
+            var noCart = toys.length;
+            document.getElementById("numberProsInCart").innerHTML = "(" + noCart + ")";
+
+        };
+        function LoadCart() {
+            alert("aaa");
+            var toyData = localStorage.getItem("listOfToys");
+            var toys = JSON.parse(toyData);
+            var xhttp = new XMLHttpRequest();
+           
+            xhttp.open("POST", "http://localhost:57422/tblToys/Cart");
+
+            xhttp.setRequestHeader("Content-type", "application/json");
+            xhttp.send("listOfToys=" + toyData);
+        }
+
+    </script>
     <div class="super_container">
         <!-- Header -->
 
@@ -67,7 +91,7 @@
 
                                     </div>
                                     <div class="shopping_cart">
-                                        <a href="cart.html">
+                                        <a href="#" onclick="LoadCart()">
                                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
                                             <g>
@@ -79,9 +103,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 											</g>
 										</svg>
-                                            <div>Cart <span>(0)</span></div>
+                                            <div>Cart <span id="numberProsInCart">(0)</span></div>
+
                                         </a>
                                     </div>
                                     <div class="search">
@@ -104,6 +141,18 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 										</g>
 									</svg>
                                         </div>
@@ -123,8 +172,8 @@
                         <div class="col">
                             <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
                                 <form action="Search">
-                                    <input type="text" class="search_input
-                                           placeholder="Search" required="required" name="value">
+                                    <input type="text" class="search_input">
+                                    placeholder="Search" required="required" name="value">
                                 </form>
                             </div>
                         </div>
