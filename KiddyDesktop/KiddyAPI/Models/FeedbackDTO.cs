@@ -10,5 +10,7 @@ namespace KiddyAPI.Models
         public int id { get; set; }
         public string content { get; set; }
         public string cusName { get; set; }
+        public int? toyID { get; set; }
+        public int status { get; set; }
     }
 }

@@ -17,13 +17,16 @@ namespace KiddyDesktop
 {
     public partial class frmMain : Form
     {
-        EmployeeDTO emp;
+        private EmployeeDTO emp;
         private KiddyStore data = new KiddyStore();
-        private List<tblEmployee> dtEmployee;
         private IEnumerable<EmployeeDTO> listEmployees;
         private IEnumerable<ToyDTO> listToys;
-        string empImgString;
-        int ordIDConfirm;
+        private IEnumerable<CustomerDTO> listCustomer;
+        private IEnumerable<ToyDTO> listToyFeedback;
+        private IEnumerable<FeedbackDTO> listFeedback;
+        private string empImgString;
+        private int ordIDConfirm;
+        private CustomerDTO currCustomer;
         private static HttpClient client = new HttpClient();
         private static readonly string BASE_URL = "http://localhost:50815/api/";
 
@@ -42,25 +45,58 @@ namespace KiddyDesktop
         public frmMain(EmployeeDTO dto)
         {
             InitializeComponent();
-            
-            loadToys();
-            //dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
             emp = dto;
         }
-        //Add Employee button
-        private void button2_Click(object sender, EventArgs e)
-        {
-            SetEmployeeTabBlank();
-            btnEmployeeSave.Enabled = true;
-            gvEmployee.ClearSelection();
-            empImgString = null;
-            ordIDConfirm = -1;
-            txtUsername.Enabled = true;
 
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmLogin login = new frmLogin();
+            login.Show();
         }
+
 
         #region Employee_functions
         //<----------------------------Employee function----------------------------------->
+        private void txtUsername_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtUsername.Text.Equals(""))
+            {
+                usernameValidate.SetError(txtUsername, "Username can not be blank!");
+                txtUsername.Focus();
+            }
+            else
+            {
+                this.usernameValidate.SetError(txtUsername, "");
+            }
+        }
+
+        private void txtFirstName_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtFirstName.Text.Equals(""))
+            {
+                firstnameValidate.SetError(txtFirstName, "Firstname can not be blank!");
+                txtFirstName.Focus();
+
+            }
+            else
+            {
+                this.firstnameValidate.SetError(txtFirstName, "");
+            }
+        }
+
+        private void txtLastName_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtLastName.Text.Equals(""))
+            {
+                lastnameValidate.SetError(txtLastName, "Firstname can not be blank!");
+                txtLastName.Focus();
+            }
+            else
+            {
+                this.lastnameValidate.SetError(txtLastName, "");
+            }
+        }
+
 
         private void SetEmployeeTabBlank()
         {
@@ -101,7 +137,7 @@ namespace KiddyDesktop
             bool result = false;
             try
             {
-                tblEmployee emp = data.tblEmployees.Single(em => em.username.Equals(username));
+                EmployeeDTO emp = listEmployees.Single(em => em.username.Equals(username));
                 result = true;
             }
             catch (Exception)
@@ -128,6 +164,7 @@ namespace KiddyDesktop
             return result;
 
         }
+
         private async void loadEmployees()
         {
 
@@ -137,21 +174,31 @@ namespace KiddyDesktop
 
                 string strResponse = response.Content.ReadAsStringAsync().Result;
                 listEmployees = JsonConvert.DeserializeObject<IEnumerable<EmployeeDTO>>(strResponse);
-                gvEmployee.DataSource = listEmployees;
-                gvEmployee.Columns["image"].Visible = false;
-                gvEmployee.Columns["dob"].Visible = false;
-                gvEmployee.Columns["isActived"].Visible = false;
-                gvEmployee.Columns["gender"].Visible = false;
-                gvEmployee.Columns["role"].Visible = false;
-                gvEmployee.Columns["password"].Visible = false;
-                gvEmployee.Columns["firstname"].Visible = false;
-                gvEmployee.Columns[0].HeaderText = "Username";
-                gvEmployee.Columns[1].HeaderText = "Name";
+                LoadEmployeeData(listEmployees);
+               
             }
+            ClearDataBindingForEmployee();
+            bindingSource1.DataSource = listEmployees;
+            gvEmployee.DataSource = bindingSource1.DataSource;
+            AddDataBindingForEmployee();
         }
-       
 
-        private async void AddEmployee(EmployeeDTO dto)
+        private void LoadEmployeeData(IEnumerable<EmployeeDTO> list)
+        {
+            gvEmployee.DataSource = list;
+            gvEmployee.Columns["image"].Visible = false;
+            gvEmployee.Columns["dob"].Visible = false;
+            gvEmployee.Columns["isActived"].Visible = false;
+            gvEmployee.Columns["gender"].Visible = false;
+            gvEmployee.Columns["role"].Visible = false;
+            gvEmployee.Columns["password"].Visible = false;
+            gvEmployee.Columns["firstname"].Visible = false;
+            gvEmployee.Columns[0].HeaderText = "Username";
+            gvEmployee.Columns[1].HeaderText = "Name";
+        }
+
+
+        private async void AddEmployeeToDB(EmployeeDTO dto)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(BASE_URL + "Employees", dto);
             try
@@ -180,6 +227,8 @@ namespace KiddyDesktop
                 MessageBox.Show(e.Message);
             }
         }
+
+
         private async void DeleteEmployee(string username)
         {
             HttpResponseMessage response = await client.PutAsJsonAsync(BASE_URL + "Employees/Delete?id=" + username, "");
@@ -198,7 +247,7 @@ namespace KiddyDesktop
 
         private void SetUpEmployeeData()
         {
-            LoadEmployeeData(dtEmployee);
+           
             dtDOB.Format = DateTimePickerFormat.Custom;
             dtDOB.CustomFormat = "yyyy-MMM-dd";
             btnEmployeeSave.Enabled = false;
@@ -206,52 +255,8 @@ namespace KiddyDesktop
             {
                 TabControl.TabPages.Remove(tabEmployee);
             }
-        }
-
-        private void LoadEmployeeData(List<tblEmployee> listOfEmp)
-        {
-           
-                gvEmployee.DataSource = listOfEmp;
-                gvEmployee.Columns["username"].HeaderText = "Username";
-                gvEmployee.Columns["firstname"].HeaderText = "First name";
-                gvEmployee.Columns["lastname"].HeaderText = "Last name";
-                gvEmployee.Columns["Role"].Visible = false;
-                gvEmployee.Columns["password"].Visible = false;
-                gvEmployee.Columns["dob"].Visible = false;
-                gvEmployee.Columns["gender"].Visible = false;
-                gvEmployee.Columns["isActived"].Visible = false;
-                gvEmployee.Columns["image"].Visible = false;
-                gvEmployee.Columns["tblFeedbacks"].Visible = false;
-                gvEmployee.Columns["tblOrders"].Visible = false;
-                gvEmployee.Columns["tblToys"].Visible = false;
-          
-
-
-        }
-
-        private void ViewEmployeeDetail(DataGridViewCellEventArgs e)
-        {
             
-                btnEmployeeSave.Enabled = false;
-                string gender = gvEmployee.Rows[e.RowIndex].Cells["gender"].Value.ToString();
-                txtUsername.Text = gvEmployee.Rows[e.RowIndex].Cells["username"].Value.ToString();
-                txtFirstName.Text = gvEmployee.Rows[e.RowIndex].Cells["firstname"].Value.ToString();
-                txtLastName.Text = gvEmployee.Rows[e.RowIndex].Cells["lastname"].Value.ToString();
-                byte[] imageByte = (byte[])gvEmployee.Rows[e.RowIndex].Cells["image"].Value;
-                dtDOB.Text = gvEmployee.Rows[e.RowIndex].Cells["dob"].Value.ToString();
-                if (gender.Equals("female"))
-                {
-                    rdFemail.Checked = true;
-                }
-                else
-                {
-                    rdMale.Checked = true;
-                }
-                Image img = byteArrayToImage(imageByte);
-                PBEmployee.Image = img;
-                PBEmployee.SizeMode = PictureBoxSizeMode.StretchImage;
            
-            
         }
 
         public Image byteArrayToImage(byte[] byteArrayIn)
@@ -295,7 +300,7 @@ namespace KiddyDesktop
                             addEmp.firstname = txtFirstName.Text;
                             addEmp.lastname = txtLastName.Text;
                             addEmp.image = imgByte;
-                            AddEmployee(addEmp);
+                            AddEmployeeToDB(addEmp);
                          
                             
                         }
@@ -340,6 +345,7 @@ namespace KiddyDesktop
                             editEmp.gender = myGender;
                             editEmp.image = imagebyte;
                             EditEmployeeToDB(editEmp);
+                          
                         }
                     }
                     else
@@ -357,12 +363,7 @@ namespace KiddyDesktop
           
                 if (CheckEmployeeExistedUsername(txtUsername.Text))
                 {
-                    tblEmployee delEmp = data.tblEmployees.Single(emp => emp.username.Equals(username));
-                    delEmp.isActived = false;
-                    data.SaveChanges();
-                    dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true).ToList();
-                    LoadEmployeeData(dtEmployee);
-                    MessageBox.Show("Delete employee complete");
+                DeleteEmployee(txtUsername.Text);
                     SetEmployeeTabBlank();
                 }
                 else
@@ -372,67 +373,219 @@ namespace KiddyDesktop
             
         }
 
+        private void ClearDataBindingForEmployee()
+        {
+            txtUsername.DataBindings.Clear();
+            txtFirstName.DataBindings.Clear();
+            txtLastName.DataBindings.Clear();
+            dtDOB.DataBindings.Clear();
+            PBEmployee.DataBindings.Clear();
+            rdMale.DataBindings.Clear();
+            rdFemail.DataBindings.Clear();
+        }
+
+        private void AddDataBindingForEmployee()
+        {
+            txtUsername.DataBindings.Add("Text", listEmployees, "username");
+            txtFirstName.DataBindings.Add("Text", listEmployees, "firstname");
+            txtLastName.DataBindings.Add("Text", listEmployees, "lastname");
+            dtDOB.DataBindings.Add("Text", listEmployees, "dob");
+            PBEmployee.DataBindings.Add("Image", listEmployees, "image", true);
+            //Binding maleBinding = new Binding("Checked", listEmployees, "gender");
+            //maleBinding.Format += (s, args) => args.Value = ((string)args.Value) == "male";
+            //maleBinding.Parse += (s, args) => args.Value = (bool)args.Value ? "male" : "female";
+            //rdMale.DataBindings.Add(maleBinding);
+            //Binding femaleBinding = new Binding("Checked", listEmployees, "gender");
+            //femaleBinding.Format += (s, args) => args.Value = ((string)args.Value) == "female";
+            //femaleBinding.Parse += (s, args) => args.Value = (bool)args.Value ? "male" : "female";
+            //rdFemail.DataBindings.Add(femaleBinding);
+
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            loadToys();
+            loadEmployees();
+            SetUpEmployeeData();
+            LoadCustomerData();
+            SetUpConfirmOrder();
+
+        }
+
+
+        //Add Employee button
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SetEmployeeTabBlank();
+            btnEmployeeSave.Enabled = true;
+            gvEmployee.ClearSelection();
+            empImgString = null;
+            ordIDConfirm = -1;
+            txtUsername.Enabled = true;
+
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            txtUsername.Enabled = false;
+        }
+
+
+        private void btnEmployeeSave_Click(object sender, EventArgs e)
+        {
+            SaveEmployee();
+            loadEmployees();
+        }
+
+        private void btnEmployeeEdit_Click(object sender, EventArgs e)
+        {
+            EditEmployee();
+            loadEmployees();
+        }
+
+        private void btnEmployeeDelete_Click(object sender, EventArgs e)
+        {
+            DeleteEmployee(txtUsername.Text);
+            loadEmployees();
+        }
+        private void textBox7_TextChanged(object sender, EventArgs e)
+        {
+            IEnumerable<EmployeeDTO> searchListEmployees = listEmployees.Where(em => (em.firstname + " " + em.lastname).Contains(txtSearch.Text)).ToList();
+            LoadEmployeeData(searchListEmployees);
+        }
+
 
         //<----------------------------end------------------------------------------------>     
         #endregion
 
         #region Customer_functions
         //<----------------------------Customer function----------------------------------->
-
-        private void LoadCustomerData()
+        private async void LoadCustomerData()
         {
-            
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Customers");
+            if (response.IsSuccessStatusCode)
+            {
+                string strResponse = response.Content.ReadAsStringAsync().Result;
+                listCustomer = JsonConvert.DeserializeObject<IEnumerable<CustomerDTO>>(strResponse);
+                
+            }
+            gvCustomer.DataSource = listCustomer.Select(cus => new
+            {
+                username = cus.username,
+                name = cus.firstname + " " + cus.lastname
 
-                gvCustomer.DataSource = data.tblCustomers.Where(cus => cus.isActived == true).Select(cus => new
-                {
-                    username = cus.username,
-                    name = cus.firstname + " " + cus.lastname
-
-                }).ToList();
-           
-        }
-
-        private void ViewCustomerOrders(string cusID)
-        {
-            
-                gvOrders.DataSource = data.tblOrders.Where(ord => ord.cusID.Equals(cusID)).Select(ord => new
-                {
-                    id = ord.id,
-                    Date = ord.datetime,
-                    Payment = ord.payment
-                }).ToList();
-                gvOrders.Columns["id"].Visible = false;
-            
-           
+            }).ToList();
             
         }
 
-        private void ViewOrderDetail(int orderIDRef)
+        private async void LoadCustomerOrders(string cusID)
         {
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Orders/OrdersByCusID?cusID=" + cusID);
+            IEnumerable<OrderDTO> listOrders = null;
+            if (response.IsSuccessStatusCode)
+            {
+                string strResponse = response.Content.ReadAsStringAsync().Result;
+                listOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
+            }
+            gvOrders.DataSource = listOrders;
+            gvOrders.Columns["cusID"].Visible = false;
+            gvOrders.Columns["emlID"].Visible = false;
+            gvOrders.Columns["address"].Visible = false;
+            gvOrders.Columns["payment"].Visible = false;
+            gvOrders.Columns["ID"].Visible = false;
+        }
+
+        private async void ViewOrderDetail(int orderIDRef)
+        {
+            IEnumerable<OrderDetailDTO> listOfOrderDetails = null;
+            HttpResponseMessage response= await client.GetAsync(BASE_URL + "OrderDetails/OrderDetailsByOrderID?orderID=" + orderIDRef);
+            if (response.IsSuccessStatusCode)
+            {
+                string strResponse = response.Content.ReadAsStringAsync().Result;
+                listOfOrderDetails = JsonConvert.DeserializeObject<IEnumerable<OrderDetailDTO>>(strResponse);
+            }
+                
+            gvOrderDetail.ColumnCount = 2;
+            gvOrderDetail.Columns[0].Name = "Toy";
+            gvOrderDetail.Columns[1].Name = "Quantity";
+            gvOrderDetail.Rows.Clear();
+               
+            foreach (OrderDetailDTO orderDetail in listOfOrderDetails)
+            {
+                ArrayList row = new ArrayList();
+                string toyName = listToys.Single(toy => toy.id == orderDetail.toyID).name;
+                row.Add(toyName);
+                row.Add(orderDetail.quantity);
+                gvOrderDetail.Rows.Add(row.ToArray());
+            }
+            
+            
+        }
+
+        private async void BlockCustomer(string id)
+        {
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(BASE_URL + "Customers?id=" + id, "");
+            string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                currCustomer = JsonConvert.DeserializeObject<CustomerDTO>(strResponse);
+            }
+            currCustomer.isActive = false;
+            HttpResponseMessage responseMessage2 = await client.PutAsJsonAsync(BASE_URL + "Customers?id=" + currCustomer.username, currCustomer);
+            try
+            {
+                responseMessage2.EnsureSuccessStatusCode();
+                MessageBox.Show("Block Customer success!");
+            }
+            catch (Exception e)
+            {
+
+                MessageBox.Show(e.Message);
+            }
+        }
+        
+
+        private void btnBlock_Click(object sender, EventArgs e)
+        {
+            string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
+            BlockCustomer(cusID);
+            LoadCustomerData();
            
-                gvOrderDetail.ColumnCount = 2;
-                gvOrderDetail.Columns[0].Name = "Toy";
-                gvOrderDetail.Columns[1].Name = "Quantity";
-                gvOrderDetail.Rows.Clear();
-                List<tblOrderDetail> listOfOrderDetails = data.tblOrderDetails.Where(ord => ord.orderID == orderIDRef).ToList();
-                foreach (tblOrderDetail orderDetail in listOfOrderDetails)
-                {
-                    ArrayList row = new ArrayList();
-                    string toyName = data.tblToys.Single(toy => toy.id == orderDetail.toyID).name;
-                    row.Add(toyName);
-                    row.Add(orderDetail.quantity);
-                    gvOrderDetail.Rows.Add(row.ToArray());
-                }
+
+        }
+
+        private void gvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            gvOrderDetail.DataSource = null;
+            string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
+            LoadCustomerOrders(cusID);
             
-            
+
+        }
+
+        private void gvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int orderID = int.Parse(gvOrders.CurrentRow.Cells[0].Value.ToString());
+            ViewOrderDetail(orderID);
+        }
+
+        private void textBox12_TextChanged(object sender, EventArgs e)
+        {
+            gvCustomer.DataSource = listCustomer.Where(cus =>  (cus.firstname + " " + cus.lastname).Contains(txtCustomerSearch.Text)).Select(cus => new
+            {
+                username = cus.username,
+                name = cus.firstname + " " + cus.lastname
+
+            }).ToList();
         }
 
 
         //</----------------------------end------------------------------------------------> 
         #endregion
-            
+
         #region Order&Feedback_functions
-        private void SetUpConfirmOrder()
+        private async void SetUpConfirmOrder()
         {
             gvConfirmOrder.Rows.Clear();
             gvConfirmOrder.ColumnCount = 4;
@@ -440,19 +593,24 @@ namespace KiddyDesktop
             gvConfirmOrder.Columns[1].Name = "Date";
             gvConfirmOrder.Columns[2].Name = "Address";
             gvConfirmOrder.Columns[3].Name = "id";
-
-            List<tblOrder> listOfOrders = data.tblOrders.Where(ord => ord.payment.Equals("confirm")).ToList();
-            foreach(tblOrder ord in listOfOrders)
+            HttpResponseMessage responseMessage = await client.GetAsync(BASE_URL + "Orders");
+            string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
+            if (responseMessage.IsSuccessStatusCode)
             {
-                ArrayList row = new ArrayList();
-                string cusName = data.tblCustomers.Single(cus => cus.username.Equals(ord.cusID)).firstname + " " + data.tblCustomers.Single(cus => cus.username.Equals(ord.cusID)).lastname;
-                row.Add(cusName);
-                row.Add(ord.datetime);
-                row.Add(ord.address);
-                row.Add(ord.id);
-                gvConfirmOrder.Rows.Add(row.ToArray());
+                IEnumerable<OrderDTO> listOfOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
+                foreach (OrderDTO ord in listOfOrders)
+                {
+                    ArrayList row = new ArrayList();
+                    //string cusName = data.tblCustomers.Single(cus => cus.username.Equals(ord.cusID)).firstname + " " + data.tblCustomers.Single(cus => cus.username.Equals(ord.cusID)).lastname;
+                    row.Add(ord.cusID);
+                    row.Add(ord.datetime);
+                    row.Add(ord.address);
+                    row.Add(ord.id);
+                    gvConfirmOrder.Rows.Add(row.ToArray());
+                }
+                gvConfirmOrder.Columns["id"].Visible = false;
             }
-            gvConfirmOrder.Columns["id"].Visible = false;
+            
         }
         private void ViewOrderDetail2(int orderIDRef)
         {
@@ -493,61 +651,6 @@ namespace KiddyDesktop
 
         #endregion
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            ViewEmployeeDetail(e);
-            txtUsername.Enabled = false;
-        }
-
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            loadEmployees();
-            LoadCustomerData();
-            SetUpConfirmOrder();
-        }
-         
-        private void btnEmployeeSave_Click(object sender, EventArgs e)
-        {
-            SaveEmployee();
-            loadEmployees();
-        }
-
-        private void btnEmployeeEdit_Click(object sender, EventArgs e)
-        {
-            EditEmployee();
-            loadEmployees();
-        }
-
-        private void btnEmployeeDelete_Click(object sender, EventArgs e)
-        {
-            DeleteEmployee(txtUsername.Text);
-            loadEmployees();
-        }
-
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void textBox7_TextChanged(object sender, EventArgs e)
-        {
-            dtEmployee = data.tblEmployees.Where(em => em.role.Equals("Employee") && em.isActived == true && (em.firstname + " " + em.lastname).Contains(txtSearch.Text)).ToList();
-            LoadEmployeeData(dtEmployee);
-        }
-
-        private void gvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
-            ViewCustomerOrders(cusID);
-            gvOrderDetail.DataSource = null;
-            
-        }
-
-        private void gvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int orderID = int.Parse(gvOrders.CurrentRow.Cells[0].Value.ToString());
-            ViewOrderDetail(orderID);
-        }
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
@@ -555,55 +658,8 @@ namespace KiddyDesktop
             CPasswordform.Show();
         }
 
-        private void txtUsername_Validating(object sender, CancelEventArgs e)
-        {
-            if (txtUsername.Text.Equals(""))
-            {
-                usernameValidate.SetError(txtUsername, "Username can not be blank!");
-                txtUsername.Focus();
-            }
-            else
-            {
-                this.usernameValidate.SetError(txtUsername, "");
-            }
-        }
-
-        private void txtFirstName_Validating(object sender, CancelEventArgs e)
-        {
-            if (txtFirstName.Text.Equals(""))
-            {
-                firstnameValidate.SetError(txtFirstName, "Firstname can not be blank!");
-                txtFirstName.Focus();
-
-            }
-            else
-            {
-                this.firstnameValidate.SetError(txtFirstName, "");
-            }
-        }
-
-        private void txtLastName_Validating(object sender, CancelEventArgs e)
-        {
-            if (txtLastName.Text.Equals(""))
-            {
-                lastnameValidate.SetError(txtLastName, "Firstname can not be blank!");
-                txtLastName.Focus();
-            }
-            else
-            {
-                this.lastnameValidate.SetError(txtLastName, "");
-            }
-        }
-
-        private void textBox12_TextChanged(object sender, EventArgs e)
-        {
-            gvCustomer.DataSource = data.tblCustomers.Where(cus => cus.isActived == true && (cus.firstname + " " + cus.lastname).Contains(txtCustomerSearch.Text)).Select(cus => new
-            {
-                username = cus.username,
-                name = cus.firstname + " " + cus.lastname
-
-            }).ToList();
-        }
+     
+      
 
         private void gvConfirmOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -723,7 +779,9 @@ namespace KiddyDesktop
             txtProQuantity.Text = "";
             txtProDescription.Text = "";
             cbProCategory.SelectedIndex = 0;
+            pbProImage.Image = null;
         }
+        
 
         private void addDataBindingForProduct()
         {
@@ -734,6 +792,7 @@ namespace KiddyDesktop
             txtProDescription.DataBindings.Add("Text", listToys, "description");
             cbProCategory.DataBindings.Add("Text", listToys, "category");
             pbProImage.DataBindings.Add("Image", listToys, "image", true);
+
         }
 
         private void clearDataBindingForProduct()
@@ -749,27 +808,69 @@ namespace KiddyDesktop
 
         private void btnAddPro_Click(object sender, EventArgs e)
         {
-            string proName = txtProName.Text.Trim();
-            float proPrice = float.Parse(txtProPrice.Text.Trim());
-            int proQuantity = int.Parse(txtProQuantity.Text.Trim());
-            string proCategory = (string)cbProCategory.SelectedItem;
-            string proDescription = txtProDescription.Text.Trim();
-            byte[] image = imageToByteArray(pbProImage.Image);
-
-            ToyDTO dto = new ToyDTO
+            string proName, proCategory, proDescription;
+            float proPrice = -1;
+            int proQuantity = -1;
+            byte[] image = null;
+            bool check = true;
+            proName = txtProName.Text.Trim();
+            proCategory = (string)cbProCategory.SelectedItem;
+            proDescription = txtProDescription.Text.Trim();
+            if(proName.Length == 0 || proCategory.Length == 0 || proDescription.Length == 0)
             {
-                name = proName,
-                price = proPrice,
-                quantity = proQuantity,
-                category = proCategory,
-                description = proDescription,
-                image = image
-            };
+                check = false;
+            }
+            try
+            {
+                proPrice = float.Parse(txtProPrice.Text.Trim());
+                if(proPrice <= 0)
+                {
+                    check = false;
+                }
+            } catch (Exception ex)
+            {
+                check = false;
+            }
+            try
+            {
+                proQuantity = int.Parse(txtProQuantity.Text.Trim());
+                if(proQuantity <= 0)
+                {
+                    check = false;
+                }
+            } catch (Exception ex)
+            {
+                check = false;
+            }
+            if (pbProImage.Image == null)
+            {
+                check = false;
+            } else
+            {
+                image = imageToByteArray(pbProImage.Image);
+            }
+            
+            if(check)
+            {
+                ToyDTO dto = new ToyDTO
+                {
+                    name = proName,
+                    price = proPrice,
+                    quantity = proQuantity,
+                    category = proCategory,
+                    description = proDescription,
+                    image = image
+                };
 
-            addToy(dto);
-            MessageBox.Show("Add a toy success!");
-            btnClearPro_Click(sender, e);
-            loadToys();
+                addToy(dto);
+                MessageBox.Show("Add a toy success!");
+                btnClearPro_Click(sender, e);
+                loadToys();
+            } else
+            {
+                MessageBox.Show("Your input is invalid! Please try again!");
+            }
+            
         }
 
         private void dgvProducts_MouseClick(object sender, MouseEventArgs e)
@@ -848,8 +949,6 @@ namespace KiddyDesktop
             //dgvProducts.DataSource = bs;
         }
 
-        #endregion
-
         private void btnUploadProImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileChooser = new OpenFileDialog();
@@ -862,6 +961,239 @@ namespace KiddyDesktop
                 pbProImage.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
+
+        private void txtProName_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtProName.Text == "")
+            {
+                errProduct.SetError(txtProName, "Name is required!");
+            }
+            else
+            {
+                errProduct.SetError(txtProName, "");
+            }
+        }
+
+        private void txtProPrice_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                float price = float.Parse(txtProPrice.Text);
+                errProduct.SetError(txtProPrice, "");
+            }
+            catch (Exception ex)
+            {
+                errProduct.SetError(txtProPrice, "Price must be a number!");
+            }
+        }
+
+        private void txtProQuantity_Validating(object sender, CancelEventArgs e)
+        {
+            try
+            {
+                int price = int.Parse(txtProQuantity.Text);
+                errProduct.SetError(txtProQuantity, "");
+            }
+            catch (Exception ex)
+            {
+                errProduct.SetError(txtProQuantity, "Quantity must be a number!");
+            }
+        }
+
+        private void txtProDescription_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtProDescription.Text == "")
+            {
+                errProduct.SetError(txtProDescription, "Description is required!");
+            }
+            else
+            {
+                errProduct.SetError(txtProDescription, "");
+            }
+        }
+
+        private void btnUploadProImage_Validating(object sender, CancelEventArgs e)
+        {
+            if (pbProImage.Image == null)
+            {
+                errProduct.SetError(btnUploadProImage, "Image is required!");
+            }
+            else
+            {
+                errProduct.SetError(btnUploadProImage, "");
+            }
+        }
+
+        #endregion
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
+        {
+            EmployeeDTO currEmp = (EmployeeDTO) bindingSource1.Current ;
+
+            if (currEmp.gender.Equals("male"))
+            {
+                rdMale.Checked = true;
+            }
+            else
+            {
+                rdFemail.Checked = true;
+            }
+        }
+
+        #region Feedback_Functions
+        private void tabOrderFeedback_Enter(object sender, EventArgs e)
+        {
+            loadToyFeedback();
+            loadFeedback();
+        }
+
+        private async void loadToyFeedback()
+        {
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Toys\\Feedbacks");
+            string stringResponse = response.Content.ReadAsStringAsync().Result;
+            listToyFeedback = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(stringResponse);
+            dgvProFeedback.DataSource = null;
+            dgvProFeedback.DataSource = listToyFeedback;
+
+            if (listToyFeedback != null)
+            {
+                dgvProFeedback.Columns["image"].Visible = false;
+                dgvProFeedback.Columns["createdBy"].Visible = false;
+                dgvProFeedback.Columns["isActived"].Visible = false;
+                dgvProFeedback.Columns["description"].Visible = false;
+                dgvProFeedback.Columns["category"].Visible = false;
+                dgvProFeedback.Columns["price"].Visible = false;
+                dgvProFeedback.Columns["quantity"].Visible = false;
+            }
+        }
+
+        private async void loadFeedback()
+        {
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Feedbacks");
+            string stringResponse = response.Content.ReadAsStringAsync().Result;
+            listFeedback = JsonConvert.DeserializeObject<IEnumerable<FeedbackDTO>>(stringResponse);
+            dgvFeedback.DataSource = null;
+        }
+
+        private async void updateFeedback(FeedbackDTO dto)
+        {
+            HttpResponseMessage response = await client.PutAsJsonAsync(BASE_URL + "Feedbacks/" + dto.id, dto);
+            try
+            {
+                response.EnsureSuccessStatusCode();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dgvProFeedback_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int currentRow = e.RowIndex;
+            int toyID = (int)dgvProFeedback.Rows[currentRow].Cells["id"].Value;
+            List<FeedbackDTO> feedbacks = new List<FeedbackDTO>();
+            foreach (FeedbackDTO feedback in listFeedback)
+            {
+                if (feedback.toyID == toyID)
+                {
+                    feedbacks.Add(feedback);
+                }
+            }
+            dgvFeedback.DataSource = null;
+            dgvFeedback.DataSource = feedbacks;
+
+            dgvFeedback.Columns["toyID"].Visible = false;
+            dgvFeedback.Columns["content"].Visible = false;
+            dgvFeedback.Columns["status"].Visible = false;
+            dgvFeedback.Columns["id"].Width = 20;
+
+            clearDatabindingForFeedback();
+            addDataBindingForFeedback(feedbacks);
+        }
+
+        private void clearDatabindingForFeedback()
+        {
+            txtFeedback.DataBindings.Clear();
+        }
+
+        private void addDataBindingForFeedback(List<FeedbackDTO> feedbacks)
+        {
+            txtFeedback.DataBindings.Add("Text", feedbacks, "content");
+        }
+
+        private void btnConfirmFeedback_Click(object sender, EventArgs e)
+        {
+            if (dgvFeedback.CurrentRow == null)
+            {
+                if (listToyFeedback.Count() == 0)
+                {
+                    MessageBox.Show("There are no feedback to confirm!");
+                } else
+                {
+                    MessageBox.Show("Please choose a feedback to confirm!");
+                }
+            } else {
+                int currentRowIndex = dgvFeedback.CurrentRow.Index;
+                int feedbackID = (int)dgvFeedback.Rows[currentRowIndex].Cells["id"].Value;
+                FeedbackDTO dto = new FeedbackDTO { id = feedbackID, status = 1 };
+                updateFeedback(dto);
+                updateFeedbackGridview(feedbackID, sender);
+            }
+        }
+
+        private void btnDeleteFeedback_Click(object sender, EventArgs e)
+        {
+            if (dgvFeedback.CurrentRow == null)
+            {
+                if (listToyFeedback.Count() == 0)
+                {
+                    MessageBox.Show("There are no feedback to confirm!");
+                }
+                else
+                {
+                    MessageBox.Show("Please choose a feedback to confirm!");
+                }
+            }
+            else
+            {
+                int currentRowIndex = dgvFeedback.CurrentRow.Index;
+                int feedbackID = (int)dgvFeedback.Rows[currentRowIndex].Cells["id"].Value;
+                FeedbackDTO dto = new FeedbackDTO { id = feedbackID, status = -1 };
+                updateFeedback(dto);
+                updateFeedbackGridview(feedbackID, sender);
+            }
+        }
+
+        private void updateFeedbackGridview(int feedbackID, Object sender)
+        {
+            listFeedback = listFeedback.Where(feedback => feedback.id != feedbackID).ToList();
+            dgvProFeedback_CellClick(sender, new DataGridViewCellEventArgs(0, dgvProFeedback.CurrentRow.Index));
+            if (dgvFeedback.Rows.Count == 0)
+            {
+                int toyID = (int)dgvProFeedback.Rows[dgvProFeedback.CurrentRow.Index].Cells["id"].Value;
+                listToyFeedback = listToyFeedback.Where(toy => toy.id != toyID).ToList();
+                dgvProFeedback.DataSource = null;
+                dgvProFeedback.DataSource = listToyFeedback;
+
+                dgvProFeedback.Columns["image"].Visible = false;
+                dgvProFeedback.Columns["createdBy"].Visible = false;
+                dgvProFeedback.Columns["isActived"].Visible = false;
+                dgvProFeedback.Columns["description"].Visible = false;
+                dgvProFeedback.Columns["category"].Visible = false;
+                dgvProFeedback.Columns["price"].Visible = false;
+                dgvProFeedback.Columns["quantity"].Visible = false;
+            }
+        }
+
+
+        #endregion
     }
 }
 

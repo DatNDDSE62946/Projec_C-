@@ -164,7 +164,9 @@ namespace KiddyAPI.Controllers
                 result = new EmployeeDTO
                 {
                     username = emp.username,
-                    password = emp.password
+                    password = emp.password,
+                    role = emp.role
+                   
                 };
             }
                 

@@ -133,6 +133,25 @@ namespace KiddyAPI.Controllers
             return list;
         }
 
+        //GET: api/Toys/Feedbacks
+        //Get list toys which have feedbacks are waiting to confirm
+        [HttpGet]
+        [Route("api/Toys/Feedbacks")]
+        public IEnumerable<ToyDTO> GetToyWithFeedback()
+        {
+            List<FeedbackDTO> listFeedback = db.tblFeedbacks.Where(feedback => feedback.status == 0)
+                .Select(feedback => new FeedbackDTO { toyID = feedback.toyID}).ToList();
+            List<int?> toyIDs = new List<int?>();
+            foreach (FeedbackDTO feedback in listFeedback)
+            {
+                toyIDs.Add(feedback.toyID);
+            }
+            var list = from toy in db.tblToys
+                       where toyIDs.Contains(toy.id)
+                       select new ToyDTO { id = toy.id, name = toy.name};
+            return list;
+        }
+
         // PUT: api/Toys/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PuttblToy(int id, ToyDTO tblToy)

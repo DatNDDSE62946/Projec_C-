@@ -20,6 +20,7 @@ namespace KiddyWeb.Controllers
         private static HttpClient client = new HttpClient();
         private static string baseURL = "http://localhost:50815/api/";
 
+
         public async Task<ActionResult> LoadImage()
         {
             IEnumerable<ToyDTO> list = null;
@@ -85,6 +86,7 @@ namespace KiddyWeb.Controllers
             string strFeedback = response.Content.ReadAsStringAsync().Result;
             IEnumerable<FeedbackDTO> feedbacks = JsonConvert.DeserializeObject<IEnumerable<FeedbackDTO>>(strFeedback);
             ViewBag.Feedbacks = feedbacks;
+            ViewBag.NoFeedback = feedbacks.Count();
 
             return View(dto);
         }
