@@ -37,8 +37,9 @@
                 <div class="col-lg-8 contact_col">
                     <div class="get_in_touch">
                         <div class="section_title">Welcome to Kiddy!</div>
+                        <p class="text-success">@ViewBag.Success</p>
                         <div class="contact_form_container">
-                            <form action="#" id="contact_form" class="contact_form" action="register" method="post" >
+                            <form action="Register" id="contact_form" class="contact_form"  method="post" onsubmit="return (myValidate())" >
                                 <div>
                                     <label for="confirm">Email*</label>
                                     <input type="text" name="username" id="email" class="contact_input" placeholder="Example@gmail.com" />
@@ -68,8 +69,8 @@
                                     <input type="password" id="confirm" class="contact_input" />
                                     <p id="confirmValidate" class="validateP"></p>
                                 </div>
-
-                                <button type="submit" class="button contact_button" onclick="return myValidate()"><span>Create account</span></button>
+                                <p class="text-danger">@ViewBag.Fail</p>
+                                <button type="submit" class="button contact_button" ><span>Create account</span></button>
                             </form>
                         </div>
                     </div>

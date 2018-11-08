@@ -45,9 +45,23 @@ namespace KiddyWeb.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult> Register([Bind(Include = "username, firstname, lastname, password")]CustomerDTO customer)
+        public async Task<ActionResult> Register([Bind(Include = "username, firstname, lastname, password")]CustomerDTO dto)
         {
-            HttpResponseMessage responseMessage = await client
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(baseURL, dto);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
+                CustomerDTO customer = JsonConvert.DeserializeObject<CustomerDTO>(strResponse);
+                if(customer != null)
+                {
+                    ViewBag.Success = "Register successfully!";
+                }
+                else
+                {
+                    ViewBag.Fail = "Register fail!";
+                }
+            }
+            
             return View();
         }
 
