@@ -22,7 +22,7 @@ namespace KiddyAPI.Controllers
             return db.tblOrders.Select(ord => new OrderDTO
             {
                 id= ord.id,
-                datetime = ord.datetime,
+                date = ord.date,
                 cusID = ord.cusID,
                 address = ord.address,
                 status = ord.status
@@ -48,7 +48,7 @@ namespace KiddyAPI.Controllers
             return db.tblOrders.Where(ord => ord.cusID.Equals(cusID)).Select(ord => new OrderDTO
             {
                 id = ord.id,
-                datetime = ord.datetime,
+                date = ord.date,
                 status = ord.status
             }).ToList();
         }

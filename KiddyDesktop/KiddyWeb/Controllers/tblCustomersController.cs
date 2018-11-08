@@ -44,6 +44,7 @@ namespace KiddyWeb.Controllers
                 return View();
             }
         }
+
         [HttpPost]
         public async Task<ActionResult> Register([Bind(Include = "username, firstname, lastname, password")]CustomerDTO dto)
         {
@@ -96,6 +97,20 @@ namespace KiddyWeb.Controllers
                 ViewBag.Invalid = "Old password is wrong! Please try again!";
             }
             return View();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> TransactionHistory()
+        {
+            string username = Session["USER"].ToString();
+            IEnumerable<OrderDTO> list = null;
+            if(username != null)
+            {
+                HttpResponseMessage response = await client.GetAsync("http://localhost:50815/api/Orders/OrdersByCusID?cusID=" + username);
+                string strResponse = response.Content.ReadAsStringAsync().Result;
+                list = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
+            }
+            return View(list);
         }
 
         // POST: tblCustomers/Create

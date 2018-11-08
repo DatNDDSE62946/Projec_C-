@@ -29,7 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.TabControl = new System.Windows.Forms.TabControl();
+            this.tabWelcome = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabProduct = new System.Windows.Forms.TabPage();
             this.btnClearPro = new System.Windows.Forms.Button();
             this.btnDeletePro = new System.Windows.Forms.Button();
@@ -116,7 +124,12 @@
             this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.errProduct = new System.Windows.Forms.ErrorProvider(this.components);
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnMinimize = new System.Windows.Forms.Button();
             this.TabControl.SuspendLayout();
+            this.tabWelcome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -150,16 +163,122 @@
             // 
             // TabControl
             // 
+            this.TabControl.Controls.Add(this.tabWelcome);
             this.TabControl.Controls.Add(this.tabProduct);
             this.TabControl.Controls.Add(this.tabEmployee);
             this.TabControl.Controls.Add(this.tabOrderFeedback);
             this.TabControl.Controls.Add(this.tabCustomer);
             this.TabControl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.TabControl.Location = new System.Drawing.Point(0, 56);
+            this.TabControl.ImageList = this.imageList1;
+            this.TabControl.Location = new System.Drawing.Point(12, 77);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(1042, 489);
+            this.TabControl.Size = new System.Drawing.Size(1018, 486);
             this.TabControl.TabIndex = 0;
+            // 
+            // tabWelcome
+            // 
+            this.tabWelcome.Controls.Add(this.button4);
+            this.tabWelcome.Controls.Add(this.button3);
+            this.tabWelcome.Controls.Add(this.button2);
+            this.tabWelcome.Controls.Add(this.button1);
+            this.tabWelcome.Controls.Add(this.pictureBox1);
+            this.tabWelcome.ImageIndex = 1;
+            this.tabWelcome.Location = new System.Drawing.Point(4, 47);
+            this.tabWelcome.Name = "tabWelcome";
+            this.tabWelcome.Padding = new System.Windows.Forms.Padding(3);
+            this.tabWelcome.Size = new System.Drawing.Size(1010, 435);
+            this.tabWelcome.TabIndex = 4;
+            this.tabWelcome.Text = "Welcome to Kiddy";
+            this.tabWelcome.UseVisualStyleBackColor = true;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.button4.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.Black;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button4.ImageIndex = 0;
+            this.button4.ImageList = this.imageList1;
+            this.button4.Location = new System.Drawing.Point(575, 225);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(172, 167);
+            this.button4.TabIndex = 4;
+            this.button4.Text = "Product Management";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "puzzle.png");
+            this.imageList1.Images.SetKeyName(1, "blocks.png");
+            this.imageList1.Images.SetKeyName(2, "employees.png");
+            this.imageList1.Images.SetKeyName(3, "man.png");
+            this.imageList1.Images.SetKeyName(4, "shopping-cart.png");
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.button3.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button3.ImageIndex = 0;
+            this.button3.ImageList = this.imageList1;
+            this.button3.Location = new System.Drawing.Point(792, 225);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(172, 167);
+            this.button3.TabIndex = 3;
+            this.button3.Text = "Product Management";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.button2.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button2.ImageIndex = 0;
+            this.button2.ImageList = this.imageList1;
+            this.button2.Location = new System.Drawing.Point(792, 27);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(172, 167);
+            this.button2.TabIndex = 2;
+            this.button2.Text = "Product Management";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.button1.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.button1.ImageIndex = 0;
+            this.button1.ImageList = this.imageList1;
+            this.button1.Location = new System.Drawing.Point(575, 27);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(172, 167);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Product Management";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(31, 27);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(336, 365);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // tabProduct
             // 
@@ -171,12 +290,13 @@
             this.tabProduct.Controls.Add(this.label6);
             this.tabProduct.Controls.Add(this.dgvProducts);
             this.tabProduct.Controls.Add(this.groupBox1);
-            this.tabProduct.Location = new System.Drawing.Point(4, 22);
+            this.tabProduct.ImageIndex = 0;
+            this.tabProduct.Location = new System.Drawing.Point(4, 47);
             this.tabProduct.Name = "tabProduct";
             this.tabProduct.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProduct.Size = new System.Drawing.Size(1034, 463);
+            this.tabProduct.Size = new System.Drawing.Size(1010, 435);
             this.tabProduct.TabIndex = 0;
-            this.tabProduct.Text = "Product Management";
+            this.tabProduct.Text = "Product";
             this.tabProduct.UseVisualStyleBackColor = true;
             // 
             // btnClearPro
@@ -423,12 +543,13 @@
             this.tabEmployee.Controls.Add(this.label7);
             this.tabEmployee.Controls.Add(this.gvEmployee);
             this.tabEmployee.Controls.Add(this.groupBox3);
-            this.tabEmployee.Location = new System.Drawing.Point(4, 22);
+            this.tabEmployee.ImageIndex = 2;
+            this.tabEmployee.Location = new System.Drawing.Point(4, 47);
             this.tabEmployee.Name = "tabEmployee";
             this.tabEmployee.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEmployee.Size = new System.Drawing.Size(1034, 463);
+            this.tabEmployee.Size = new System.Drawing.Size(1010, 435);
             this.tabEmployee.TabIndex = 1;
-            this.tabEmployee.Text = "Employee Management";
+            this.tabEmployee.Text = "Employee";
             this.tabEmployee.UseVisualStyleBackColor = true;
             // 
             // btnEmployeeEdit
@@ -655,10 +776,11 @@
             // 
             this.tabOrderFeedback.Controls.Add(this.groupBox6);
             this.tabOrderFeedback.Controls.Add(this.groupBox5);
-            this.tabOrderFeedback.Location = new System.Drawing.Point(4, 22);
+            this.tabOrderFeedback.ImageIndex = 4;
+            this.tabOrderFeedback.Location = new System.Drawing.Point(4, 47);
             this.tabOrderFeedback.Name = "tabOrderFeedback";
             this.tabOrderFeedback.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOrderFeedback.Size = new System.Drawing.Size(1034, 463);
+            this.tabOrderFeedback.Size = new System.Drawing.Size(1010, 435);
             this.tabOrderFeedback.TabIndex = 2;
             this.tabOrderFeedback.Text = "Order & Feedback";
             this.tabOrderFeedback.UseVisualStyleBackColor = true;
@@ -855,10 +977,11 @@
             // 
             this.tabCustomer.Controls.Add(this.groupBox8);
             this.tabCustomer.Controls.Add(this.groupBox7);
-            this.tabCustomer.Location = new System.Drawing.Point(4, 22);
+            this.tabCustomer.ImageIndex = 3;
+            this.tabCustomer.Location = new System.Drawing.Point(4, 47);
             this.tabCustomer.Name = "tabCustomer";
             this.tabCustomer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCustomer.Size = new System.Drawing.Size(1034, 463);
+            this.tabCustomer.Size = new System.Drawing.Size(1010, 435);
             this.tabCustomer.TabIndex = 3;
             this.tabCustomer.Text = "Customer";
             this.tabCustomer.UseVisualStyleBackColor = true;
@@ -963,7 +1086,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(897, 12);
+            this.button8.Location = new System.Drawing.Point(890, 26);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(83, 59);
             this.button8.TabIndex = 1;
@@ -981,7 +1104,7 @@
             // 
             // btnChangePassword
             // 
-            this.btnChangePassword.Location = new System.Drawing.Point(706, 12);
+            this.btnChangePassword.Location = new System.Drawing.Point(699, 26);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(155, 56);
             this.btnChangePassword.TabIndex = 8;
@@ -1018,20 +1141,61 @@
             this.errProduct.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errProduct.ContainerControl = this;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(12, 26);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(103, 25);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Kiddy.com";
+            // 
+            // btnExit
+            // 
+            this.btnExit.FlatAppearance.BorderSize = 0;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Image = ((System.Drawing.Image)(resources.GetObject("btnExit.Image")));
+            this.btnExit.Location = new System.Drawing.Point(1019, 0);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(23, 23);
+            this.btnExit.TabIndex = 10;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
+            this.btnMinimize.Location = new System.Drawing.Point(990, 0);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(23, 23);
+            this.btnMinimize.TabIndex = 11;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1042, 575);
+            this.Controls.Add(this.btnMinimize);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.TabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kiddy Store Management";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.TabControl.ResumeLayout(false);
+            this.tabWelcome.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabProduct.ResumeLayout(false);
             this.tabProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
@@ -1070,6 +1234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1162,5 +1327,15 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ErrorProvider errProduct;
+        private System.Windows.Forms.TabPage tabWelcome;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnMinimize;
     }
 }

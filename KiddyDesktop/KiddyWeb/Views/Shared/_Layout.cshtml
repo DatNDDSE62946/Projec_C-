@@ -81,9 +81,9 @@
                                                         @Session["LASTNAME"]
                                                     </p>
                                                     <ul>
-                                                        <li>@Html.ActionLink("Logout", "Logout")</li>
+                                                        <li>@Html.ActionLink("Logout", "Logout", "tblToys")</li>
                                                         <li>@Html.ActionLink("Change Password", "ChangePassword")</li>
-                                                        <li><a href="#">Transaction History</a></li>
+                                                        <li>@Html.ActionLink("Transaction History", "TransactionHistory", "tblCustomers")</li>
                                                     </ul>
                                                 </li>
                                             </ul>

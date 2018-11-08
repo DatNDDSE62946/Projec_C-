@@ -113,10 +113,6 @@ namespace KiddyAPI.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<tblOrder>()
-                .Property(e => e.datetime)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tblOrder>()
                 .Property(e => e.emlID)
                 .IsUnicode(false);
 
@@ -126,10 +122,6 @@ namespace KiddyAPI.Models
 
             modelBuilder.Entity<tblOrder>()
                 .Property(e => e.address)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tblOrder>()
-                .Property(e => e.status)
                 .IsUnicode(false);
 
             modelBuilder.Entity<tblOrder>()
