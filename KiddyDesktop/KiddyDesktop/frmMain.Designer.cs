@@ -37,7 +37,6 @@
             this.btnWelcomeCustomer = new System.Windows.Forms.Button();
             this.btnWelcomeEmployee = new System.Windows.Forms.Button();
             this.btnWelcomeProduct = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabProduct = new System.Windows.Forms.TabPage();
             this.btnClearPro = new System.Windows.Forms.Button();
             this.btnDeletePro = new System.Windows.Forms.Button();
@@ -115,6 +114,7 @@
             this.txtCustomerSearch = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.gvCustomer = new System.Windows.Forms.DataGridView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogout = new System.Windows.Forms.Button();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
             this.btnChangePassword = new System.Windows.Forms.Button();
@@ -128,9 +128,9 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.TabControl.SuspendLayout();
             this.tabWelcome.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -154,12 +154,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usernameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -179,11 +181,12 @@
             // 
             // tabWelcome
             // 
+            this.tabWelcome.Controls.Add(this.linkLabel1);
+            this.tabWelcome.Controls.Add(this.pictureBox2);
             this.tabWelcome.Controls.Add(this.btnWelcomeOrder);
             this.tabWelcome.Controls.Add(this.btnWelcomeCustomer);
             this.tabWelcome.Controls.Add(this.btnWelcomeEmployee);
             this.tabWelcome.Controls.Add(this.btnWelcomeProduct);
-            this.tabWelcome.Controls.Add(this.pictureBox1);
             this.tabWelcome.ImageIndex = 1;
             this.tabWelcome.Location = new System.Drawing.Point(4, 47);
             this.tabWelcome.Name = "tabWelcome";
@@ -276,16 +279,6 @@
             this.btnWelcomeProduct.UseVisualStyleBackColor = false;
             this.btnWelcomeProduct.Click += new System.EventHandler(this.btnWelcomeProduct_Click);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(22, 27);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(336, 365);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // tabProduct
             // 
             this.tabProduct.Controls.Add(this.btnClearPro);
@@ -373,7 +366,7 @@
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.ReadOnly = true;
             this.dgvProducts.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvProducts.Size = new System.Drawing.Size(959, 177);
+            this.dgvProducts.Size = new System.Drawing.Size(988, 177);
             this.dgvProducts.TabIndex = 1;
             this.dgvProducts.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvProducts_MouseClick);
             // 
@@ -563,7 +556,7 @@
             // 
             // btnEmployeeEdit
             // 
-            this.btnEmployeeEdit.Location = new System.Drawing.Point(802, 285);
+            this.btnEmployeeEdit.Location = new System.Drawing.Point(745, 284);
             this.btnEmployeeEdit.Name = "btnEmployeeEdit";
             this.btnEmployeeEdit.Size = new System.Drawing.Size(75, 56);
             this.btnEmployeeEdit.TabIndex = 7;
@@ -573,7 +566,7 @@
             // 
             // btnEmployeeDelete
             // 
-            this.btnEmployeeDelete.Location = new System.Drawing.Point(933, 285);
+            this.btnEmployeeDelete.Location = new System.Drawing.Point(860, 284);
             this.btnEmployeeDelete.Name = "btnEmployeeDelete";
             this.btnEmployeeDelete.Size = new System.Drawing.Size(75, 56);
             this.btnEmployeeDelete.TabIndex = 6;
@@ -583,7 +576,7 @@
             // 
             // btnEmployeeSave
             // 
-            this.btnEmployeeSave.Location = new System.Drawing.Point(659, 285);
+            this.btnEmployeeSave.Location = new System.Drawing.Point(628, 284);
             this.btnEmployeeSave.Name = "btnEmployeeSave";
             this.btnEmployeeSave.Size = new System.Drawing.Size(75, 56);
             this.btnEmployeeSave.TabIndex = 5;
@@ -630,7 +623,7 @@
             this.gvEmployee.ReadOnly = true;
             this.gvEmployee.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.gvEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvEmployee.Size = new System.Drawing.Size(482, 378);
+            this.gvEmployee.Size = new System.Drawing.Size(482, 372);
             this.gvEmployee.TabIndex = 1;
             this.gvEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
             // 
@@ -651,7 +644,7 @@
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Location = new System.Drawing.Point(514, 57);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(494, 221);
+            this.groupBox3.Size = new System.Drawing.Size(483, 221);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Employee Detail";
@@ -677,7 +670,7 @@
             // 
             this.btnUploadImage.Location = new System.Drawing.Point(310, 177);
             this.btnUploadImage.Name = "btnUploadImage";
-            this.btnUploadImage.Size = new System.Drawing.Size(138, 23);
+            this.btnUploadImage.Size = new System.Drawing.Size(155, 23);
             this.btnUploadImage.TabIndex = 11;
             this.btnUploadImage.Text = "Upload Image";
             this.btnUploadImage.UseVisualStyleBackColor = true;
@@ -727,14 +720,14 @@
             this.groupBox4.Controls.Add(this.PBEmployee);
             this.groupBox4.Location = new System.Drawing.Point(310, 19);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(138, 151);
+            this.groupBox4.Size = new System.Drawing.Size(155, 151);
             this.groupBox4.TabIndex = 6;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Image";
             // 
             // PBEmployee
             // 
-            this.PBEmployee.Location = new System.Drawing.Point(0, 19);
+            this.PBEmployee.Location = new System.Drawing.Point(6, 13);
             this.PBEmployee.Name = "PBEmployee";
             this.PBEmployee.Size = new System.Drawing.Size(138, 132);
             this.PBEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -812,9 +805,9 @@
             this.groupBox6.Controls.Add(this.btnDeleteFeedback);
             this.groupBox6.Controls.Add(this.btnConfirmFeedback);
             this.groupBox6.Controls.Add(this.dgvProFeedback);
-            this.groupBox6.Location = new System.Drawing.Point(483, 11);
+            this.groupBox6.Location = new System.Drawing.Point(519, 7);
             this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(485, 446);
+            this.groupBox6.Size = new System.Drawing.Size(485, 422);
             this.groupBox6.TabIndex = 1;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Confirm Feedback";
@@ -879,7 +872,7 @@
             this.txtFeedback.Multiline = true;
             this.txtFeedback.Name = "txtFeedback";
             this.txtFeedback.ReadOnly = true;
-            this.txtFeedback.Size = new System.Drawing.Size(236, 158);
+            this.txtFeedback.Size = new System.Drawing.Size(236, 140);
             this.txtFeedback.TabIndex = 8;
             // 
             // dgvFeedback
@@ -894,7 +887,7 @@
             // 
             // btnDeleteFeedback
             // 
-            this.btnDeleteFeedback.Location = new System.Drawing.Point(301, 363);
+            this.btnDeleteFeedback.Location = new System.Drawing.Point(301, 345);
             this.btnDeleteFeedback.Name = "btnDeleteFeedback";
             this.btnDeleteFeedback.Size = new System.Drawing.Size(178, 67);
             this.btnDeleteFeedback.TabIndex = 6;
@@ -933,7 +926,7 @@
             this.groupBox5.Controls.Add(this.gvConfirmOrder);
             this.groupBox5.Location = new System.Drawing.Point(9, 7);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(468, 446);
+            this.groupBox5.Size = new System.Drawing.Size(504, 446);
             this.groupBox5.TabIndex = 0;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Confirm Order";
@@ -951,7 +944,7 @@
             // 
             this.btnRejectOrder.Location = new System.Drawing.Point(284, 103);
             this.btnRejectOrder.Name = "btnRejectOrder";
-            this.btnRejectOrder.Size = new System.Drawing.Size(178, 67);
+            this.btnRejectOrder.Size = new System.Drawing.Size(201, 67);
             this.btnRejectOrder.TabIndex = 3;
             this.btnRejectOrder.Text = "Reject";
             this.btnRejectOrder.UseVisualStyleBackColor = true;
@@ -961,7 +954,7 @@
             // 
             this.btnConfirmOrder.Location = new System.Drawing.Point(284, 20);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
-            this.btnConfirmOrder.Size = new System.Drawing.Size(178, 67);
+            this.btnConfirmOrder.Size = new System.Drawing.Size(201, 67);
             this.btnConfirmOrder.TabIndex = 2;
             this.btnConfirmOrder.Text = "Confirm";
             this.btnConfirmOrder.UseVisualStyleBackColor = true;
@@ -970,18 +963,22 @@
             // gvOrderDetail2
             // 
             this.gvOrderDetail2.AllowUserToAddRows = false;
+            this.gvOrderDetail2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvOrderDetail2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrderDetail2.Location = new System.Drawing.Point(7, 213);
             this.gvOrderDetail2.Name = "gvOrderDetail2";
-            this.gvOrderDetail2.Size = new System.Drawing.Size(455, 227);
+            this.gvOrderDetail2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gvOrderDetail2.Size = new System.Drawing.Size(478, 209);
             this.gvOrderDetail2.TabIndex = 1;
             // 
             // gvConfirmOrder
             // 
             this.gvConfirmOrder.AllowUserToAddRows = false;
+            this.gvConfirmOrder.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvConfirmOrder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvConfirmOrder.Location = new System.Drawing.Point(7, 20);
             this.gvConfirmOrder.Name = "gvConfirmOrder";
+            this.gvConfirmOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvConfirmOrder.Size = new System.Drawing.Size(261, 150);
             this.gvConfirmOrder.TabIndex = 0;
             this.gvConfirmOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvConfirmOrder_CellContentClick);
@@ -1007,7 +1004,7 @@
             this.groupBox8.Controls.Add(this.gvOrders);
             this.groupBox8.Location = new System.Drawing.Point(397, 7);
             this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(571, 446);
+            this.groupBox8.Size = new System.Drawing.Size(600, 422);
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Customer\'s Order History";
@@ -1027,7 +1024,7 @@
             this.gvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrderDetail.Location = new System.Drawing.Point(269, 45);
             this.gvOrderDetail.Name = "gvOrderDetail";
-            this.gvOrderDetail.Size = new System.Drawing.Size(296, 395);
+            this.gvOrderDetail.Size = new System.Drawing.Size(325, 366);
             this.gvOrderDetail.TabIndex = 2;
             // 
             // label18
@@ -1044,7 +1041,7 @@
             this.gvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrders.Location = new System.Drawing.Point(6, 45);
             this.gvOrders.Name = "gvOrders";
-            this.gvOrders.Size = new System.Drawing.Size(256, 395);
+            this.gvOrders.Size = new System.Drawing.Size(256, 366);
             this.gvOrders.TabIndex = 0;
             this.gvOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvOrders_CellContentClick);
             // 
@@ -1056,14 +1053,14 @@
             this.groupBox7.Controls.Add(this.gvCustomer);
             this.groupBox7.Location = new System.Drawing.Point(9, 7);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(381, 446);
+            this.groupBox7.Size = new System.Drawing.Size(381, 422);
             this.groupBox7.TabIndex = 0;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Customer List";
             // 
             // btnBlock
             // 
-            this.btnBlock.Location = new System.Drawing.Point(154, 385);
+            this.btnBlock.Location = new System.Drawing.Point(156, 364);
             this.btnBlock.Name = "btnBlock";
             this.btnBlock.Size = new System.Drawing.Size(57, 47);
             this.btnBlock.TabIndex = 3;
@@ -1090,12 +1087,24 @@
             // 
             // gvCustomer
             // 
+            this.gvCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvCustomer.Location = new System.Drawing.Point(6, 45);
             this.gvCustomer.Name = "gvCustomer";
-            this.gvCustomer.Size = new System.Drawing.Size(369, 334);
+            this.gvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gvCustomer.Size = new System.Drawing.Size(369, 313);
             this.gvCustomer.TabIndex = 0;
             this.gvCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvCustomer_CellContentClick);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(150, 71);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // btnLogout
             // 
@@ -1163,10 +1172,10 @@
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Segoe Script", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(7, -2);
+            this.linkLabel1.Font = new System.Drawing.Font("Segoe Script", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(176, 395);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(103, 25);
+            this.linkLabel1.Size = new System.Drawing.Size(135, 33);
             this.linkLabel1.TabIndex = 9;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Kiddy.com";
@@ -1197,27 +1206,37 @@
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             this.btnMinimize.MouseHover += new System.EventHandler(this.btnMinimize_MouseHover);
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(50, 27);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(392, 365);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.MintCream;
+            this.BackColor = System.Drawing.Color.Honeydew;
             this.ClientSize = new System.Drawing.Size(1042, 575);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.btnChangePassword);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.TabControl);
+            this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "s";
+            this.Text = "Kiddy Management";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.TabControl.ResumeLayout(false);
             this.tabWelcome.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabWelcome.PerformLayout();
             this.tabProduct.ResumeLayout(false);
             this.tabProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
@@ -1249,14 +1268,15 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usernameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -1360,5 +1380,6 @@
         private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

@@ -941,12 +941,9 @@ namespace KiddyDesktop
 
         private void txtSearchPro_TextChanged(object sender, EventArgs e)
         {
-            //clearDataBindingForProduct();
-            //string search = txtSearchPro.Text;
-            //BindingSource bs = new BindingSource();
-            //bs.DataSource = dgvProducts.DataSource;
-            //bs.Filter = "[name] = '" + search + "'";
-            //dgvProducts.DataSource = bs;
+            string searchPro = txtSearchPro.Text.Trim();
+            IEnumerable<ToyDTO> listSearch = listToys.Where(toy => toy.name.Contains(searchPro)).ToList();
+            dgvProducts.DataSource = listSearch;
         }
 
         private void btnUploadProImage_Click(object sender, EventArgs e)

@@ -1,7 +1,9 @@
 ﻿@model IEnumerable<KiddyWeb.Models.OrderDetailDTO>
 <link rel="stylesheet" type="text/css" href="~/Content/styles/cart.css">
 <link rel="stylesheet" type="text/css" href="~/Content/styles/cart_responsive.css">
-
+@{ 
+    ViewBag.Page = "Transaction";
+}
 
 <div class="super_container">
     <!-- Home -->
@@ -105,7 +107,18 @@
                                     <div><img src="~/Content/images/@imageName" alt="@orderDetail.name"></div>
                                 </div>
                                 <div class="cart_item_name_container">
-                                    <div class="cart_item_name"><a href="#">@orderDetail.name</a></div>
+                                    <div class="cart_item_name">
+                                        <h4>@orderDetail.name</h4>
+                                        @if (ViewBag.Order.status == 1 && orderDetail.isFeedback == false)
+                                        {
+                                        <form action="ProductFeedback">
+                                            <input type="hidden" name="id" value="@orderDetail.toyID"/>
+                                            <input type="hidden" name="name" value="@orderDetail.name"/>
+                                            <button class="btn btn-outline-warning" type="submit">Feedback</button>
+                                        </form>
+                                            
+                                        }
+                                    </div>
                                 </div>
                             </div>
                             <!-- Price -->

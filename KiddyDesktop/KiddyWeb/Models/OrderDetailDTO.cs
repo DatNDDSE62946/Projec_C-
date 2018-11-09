@@ -18,5 +18,7 @@ namespace KiddyWeb.Models
         public double? price { get; set; }
 
         public string name { get; set; }
+
+        public bool? isFeedback { get; set; }
     }
 }

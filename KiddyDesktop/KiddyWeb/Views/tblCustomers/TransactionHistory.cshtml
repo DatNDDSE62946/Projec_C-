@@ -35,73 +35,82 @@
 
     <div class="cart_info">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <!-- Column Titles -->
-                    <div class="cart_info_columns clearfix">
-                        <div class="cart_info_col cart_info_col_product">Order ID</div>
-                        <div class="cart_info_col cart_info_col_price">Date</div>
-                        <div class="cart_info_col cart_info_col_quantity">-</div>
-                        <div class="cart_info_col cart_info_col_total">Status</div>
+            @if (Model.Count() == 0)
+            {
+                <div class="row">
+                    <div class="col">
+                        <p class="text-center text-danger">You have bought nothing yet!</p>
                     </div>
                 </div>
-            </div>
-            <div class="row cart_items_row">
-                <div class="col">
-                    @foreach (var order in Model)
-                    {
-                        <!-- Cart Item -->
-                        <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-                            <!-- ID -->
-                            <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
-                                <div class="cart_item_image">
-                                    <div><img src="~/Content/images/cart.png" alt=""></div>
-                                </div>
-                                <div class="cart_item_name_container">
-                                    <div class="cart_item_name">
-                                        <form action="TransactionHistoryDetail" method="post">
-                                            <input type="hidden" name="id" value="@order.id"/>
-                                            <input type="hidden" name="status" value="@order.status"/>
-                                            <input type="hidden" name="date" value="@order.date"/>
-                                            <input type="hidden" name="payment" value="@order.payment"/>
-                                            <input type="hidden" name="address" value="@order.address"/>
-                                            <button type="submit" class="btn btn-outline-success" 
-                                                    title="Click to see detail">
-                                                #@order.id
-                                            </button>
-                                        </form>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col">
+                        <!-- Column Titles -->
+                        <div class="cart_info_columns clearfix">
+                            <div class="cart_info_col cart_info_col_product">Order ID</div>
+                            <div class="cart_info_col cart_info_col_price">Date</div>
+                            <div class="cart_info_col cart_info_col_quantity">-</div>
+                            <div class="cart_info_col cart_info_col_total">Status</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row cart_items_row">
+                    <div class="col">
+                        @foreach (var order in Model)
+                        {
+                            <!-- Cart Item -->
+                            <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                <!-- ID -->
+                                <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_item_image">
+                                        <div><img src="~/Content/images/cart.png" alt=""></div>
+                                    </div>
+                                    <div class="cart_item_name_container">
+                                        <div class="cart_item_name">
+                                            <form action="TransactionHistoryDetail" method="post">
+                                                <input type="hidden" name="id" value="@order.id" />
+                                                <input type="hidden" name="status" value="@order.status" />
+                                                <input type="hidden" name="date" value="@order.date" />
+                                                <input type="hidden" name="payment" value="@order.payment" />
+                                                <input type="hidden" name="address" value="@order.address" />
+                                                <button type="submit" class="btn btn-outline-success"
+                                                        title="Click to see detail">
+                                                    #@order.id
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
+                                <!-- Date -->
+                                <div class="cart_item_price">@order.date.ToString("dd-MM-yyyy")</div>
+                                <!-- Quantity -->
+                                <div class="cart_item_quantity">
+
+                                </div>
+                                <!-- Status -->
+                                <div class="cart_item_total">
+                                    @if (order.status == 0)
+                                    {
+                                        <p class="text-dark">Pending</p>
+                                    }
+                                    else if (order.status == 1)
+                                    {
+                                        <p class="text-success">Success</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="text-danger">Failed</p>
+                                    }
+                                </div>
                             </div>
-                            <!-- Date -->
-                            <div class="cart_item_price">@order.date.ToString("dd-MM-yyyy")</div>
-                            <!-- Quantity -->
-                            <div class="cart_item_quantity">
 
-                            </div>
-                            <!-- Status -->
-                            <div class="cart_item_total">
-                                @if (order.status == 0)
-                                {
-                                    <p class="text-dark">Pending</p>
-                                }
-                                else if (order.status == 1)
-                                {
-                                    <p class="text-success">Success</p>
-                                }
-                                else
-                                {
-                                    <p class="text-danger">Failed</p>
-                                }
-                            </div>
-                        </div>
-
-                    }
-
-
-
+                        }
+                    </div>
                 </div>
-            </div>
+            }
+
 
         </div>
     </div>

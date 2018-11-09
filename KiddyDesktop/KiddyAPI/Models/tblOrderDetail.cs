@@ -21,6 +21,8 @@ namespace KiddyAPI.Models
 
         public string name { get; set; }
 
+        public bool? isFeedback { get; set; }
+
         public virtual tblOrder tblOrder { get; set; }
 
         public virtual tblToy tblToy { get; set; }

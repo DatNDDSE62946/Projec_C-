@@ -110,15 +110,22 @@ namespace KiddyWeb.Controllers
         [HttpGet]
         public async Task<ActionResult> TransactionHistory()
         {
-            string username = Session["USER"].ToString();
-            IEnumerable<OrderDTO> list = null;
-            if(username != null)
+            if(Session["USER"] != null)
             {
-                HttpResponseMessage response = await client.GetAsync("http://localhost:50815/api/Orders/OrdersByCusID?cusID=" + username);
-                string strResponse = response.Content.ReadAsStringAsync().Result;
-                list = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
+                string username = Session["USER"].ToString();
+                IEnumerable<OrderDTO> list = null;
+                if (username != null)
+                {
+                    HttpResponseMessage response = await client.GetAsync("http://localhost:50815/api/Orders/OrdersByCusID?cusID=" + username);
+                    string strResponse = response.Content.ReadAsStringAsync().Result;
+                    list = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
+                }
+                return View(list);
+            } else
+            {
+                return RedirectToAction("Login");
             }
-            return View(list);
+            
         }
 
         [HttpPost]
@@ -130,6 +137,12 @@ namespace KiddyWeb.Controllers
             list = JsonConvert.DeserializeObject<IEnumerable<OrderDetailDTO>>(strResponse);
             ViewBag.Order = dto;
             return View(list);
+        }
+
+        [HttpGet]
+        public ActionResult ProductFeedback(int id, string name)
+        {
+            return View();
         }
 
         // POST: tblCustomers/Create
