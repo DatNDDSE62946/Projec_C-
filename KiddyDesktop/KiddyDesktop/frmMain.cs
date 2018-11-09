@@ -1029,7 +1029,6 @@ namespace KiddyDesktop
         private void button8_Click(object sender, EventArgs e)
         {
             this.Close();
-
         }
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
@@ -1199,6 +1198,46 @@ namespace KiddyDesktop
         private void btnExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnLogout_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.SetToolTip(btnLogout, "Logout");
+        }
+
+        private void btnMinimize_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.SetToolTip(btnMinimize, "Minimize");
+        }
+
+        private void btnExit_MouseHover(object sender, EventArgs e)
+        {
+            toolTip.SetToolTip(btnExit, "Exit program");
+        }
+
+        private void btnWelcomeProduct_Click(object sender, EventArgs e)
+        {
+            TabControl.SelectedIndex = 1;
+        }
+
+        private void btnWelcomeEmployee_Click(object sender, EventArgs e)
+        {
+            TabControl.SelectedIndex = 2;
+        }
+
+        private void btnWelcomeOrder_Click(object sender, EventArgs e)
+        {
+            TabControl.SelectedIndex = 3;
+        }
+
+        private void btnWelcomeCustomer_Click(object sender, EventArgs e)
+        {
+            TabControl.SelectedIndex = 4;
         }
     }
 }
