@@ -45,13 +45,18 @@ namespace KiddyAPI.Controllers
         [ResponseType(typeof(OrderDetailDTO))]
         public IEnumerable<OrderDetailDTO> GetOrderDetailsByOrderID(int orderID)
         {
-            return db.tblOrderDetails.Where(ordDetail => ordDetail.orderID == orderID).Select(ordDetail => new OrderDetailDTO
-            {
-                id = ordDetail.id,
-                toyID = ordDetail.toyID,
-                orderID = ordDetail.orderID,
-                quantity = ordDetail.quantity
-            });
+            IEnumerable<OrderDetailDTO> list = db.tblOrderDetails
+                .Where(ordDetail => ordDetail.orderID == orderID)
+                .Select(ordDetail => new OrderDetailDTO
+                {
+                    id = ordDetail.id,
+                    toyID = ordDetail.toyID,
+                    orderID = ordDetail.orderID,
+                    quantity = ordDetail.quantity,
+                    price = ordDetail.price, 
+                    name = ordDetail.name
+                }).ToList();
+            return list;
         }
 
         // PUT: api/OrderDetails/5

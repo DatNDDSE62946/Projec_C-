@@ -49,7 +49,9 @@ namespace KiddyAPI.Controllers
             {
                 id = ord.id,
                 date = ord.date,
-                status = ord.status
+                status = ord.status,
+                payment = ord.payment,
+                address = ord.address
             }).ToList();
         }
 

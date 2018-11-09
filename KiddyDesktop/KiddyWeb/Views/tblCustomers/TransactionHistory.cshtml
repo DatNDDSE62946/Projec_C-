@@ -1,9 +1,9 @@
 ﻿@model IEnumerable<KiddyWeb.Models.OrderDTO>
 <link rel="stylesheet" type="text/css" href="~/Content/styles/cart.css">
 <link rel="stylesheet" type="text/css" href="~/Content/styles/cart_responsive.css">
-
-
-
+@{ 
+    ViewBag.Page = "Transaction";
+}
 
 <div class="super_container">
 
@@ -58,8 +58,18 @@
                                     <div><img src="~/Content/images/cart.png" alt=""></div>
                                 </div>
                                 <div class="cart_item_name_container">
-                                    <div class="cart_item_name"><a href="#" title="Click to see detail">
-                                        #@order.id</a>
+                                    <div class="cart_item_name">
+                                        <form action="TransactionHistoryDetail" method="post">
+                                            <input type="hidden" name="id" value="@order.id"/>
+                                            <input type="hidden" name="status" value="@order.status"/>
+                                            <input type="hidden" name="date" value="@order.date"/>
+                                            <input type="hidden" name="payment" value="@order.payment"/>
+                                            <input type="hidden" name="address" value="@order.address"/>
+                                            <button type="submit" class="btn btn-outline-success" 
+                                                    title="Click to see detail">
+                                                #@order.id
+                                            </button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -71,12 +81,17 @@
                             </div>
                             <!-- Status -->
                             <div class="cart_item_total">
-                                @if(order.status == 0)
+                                @if (order.status == 0)
                                 {
                                     <p class="text-dark">Pending</p>
-                                } else if(order.status == 1)
+                                }
+                                else if (order.status == 1)
                                 {
                                     <p class="text-success">Success</p>
+                                }
+                                else
+                                {
+                                    <p class="text-danger">Failed</p>
                                 }
                             </div>
                         </div>

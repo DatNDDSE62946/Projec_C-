@@ -9,12 +9,9 @@ namespace KiddyWeb.Models
     {
         public int id { get; set; }
 
-
         public string cusID { get; set; }
 
-
         public DateTime date { get; set; }
-
 
         public string emlID { get; set; }
 

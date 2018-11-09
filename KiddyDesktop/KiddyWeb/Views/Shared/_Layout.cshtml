@@ -32,7 +32,7 @@
             var toyData = localStorage.getItem("listOfToys");
             var toys = JSON.parse(toyData);
             var xhttp = new XMLHttpRequest();
-           
+
             xhttp.open("POST", "http://localhost:57422/tblToys/Cart");
 
             xhttp.setRequestHeader("Content-type", "application/json");
@@ -115,6 +115,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 											</g>
 										</svg>
                                             <div>Cart <span id="numberProsInCart">(0)</span></div>
@@ -153,6 +169,22 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 										</g>
 									</svg>
                                         </div>
@@ -171,9 +203,9 @@
                     <div class="row">
                         <div class="col">
                             <div class="search_panel_content d-flex flex-row align-items-center justify-content-end">
-                                <form action="Search">
-                                    <input type="text" class="search_input">
-                                    placeholder="Search" required="required" name="value">
+                                <form action="~/tblToys/Search">
+                                    <input type="text" class="search_input"
+                                           placeholder="Search" required="required" name="value">
                                 </form>
                             </div>
                         </div>
@@ -301,6 +333,10 @@
     else if (ViewBag.Page == "Change Password")
     {
         <script src="~/Content/js/contact.js"></script>
+    }
+    else if (ViewBag.Page == "Transaction")
+    {
+        <script src="~/Content/js/cart.js"></script>
     }
 
 

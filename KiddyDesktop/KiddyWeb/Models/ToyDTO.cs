@@ -13,5 +13,6 @@ namespace KiddyWeb.Models
         public byte[] image { get; set; }
         public string category { get; set; }
         public string description { get; set; }
+        public int? quantity { get; set; }
     }
 }

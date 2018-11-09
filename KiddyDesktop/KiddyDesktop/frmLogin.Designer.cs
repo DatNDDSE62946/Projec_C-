@@ -80,12 +80,11 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(153, 13);
             this.txtPassword.TabIndex = 3;
-            this.txtPassword.Text = "123456";
             // 
             // btnLogin
             // 
             this.btnLogin.Image = ((System.Drawing.Image)(resources.GetObject("btnLogin.Image")));
-            this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLogin.Location = new System.Drawing.Point(380, 204);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(97, 23);
@@ -146,12 +145,14 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.AcceptsTab = true;
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsername.Location = new System.Drawing.Point(353, 118);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(155, 13);
             this.txtUsername.TabIndex = 9;
             this.txtUsername.Text = "datlp";
+            this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // label6
             // 

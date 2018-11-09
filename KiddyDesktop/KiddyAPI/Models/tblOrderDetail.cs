@@ -17,6 +17,10 @@ namespace KiddyAPI.Models
 
         public int? quantity { get; set; }
 
+        public double? price { get; set; }
+
+        public string name { get; set; }
+
         public virtual tblOrder tblOrder { get; set; }
 
         public virtual tblToy tblToy { get; set; }

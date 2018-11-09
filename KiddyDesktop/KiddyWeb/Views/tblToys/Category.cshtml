@@ -1,4 +1,6 @@
-﻿@model IEnumerable<KiddyWeb.Models.ToyDTO>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<KiddyWeb.Models.ToyDTO>
 @{ 
     ViewBag.Page = "Category";
 }
@@ -62,7 +64,7 @@
                         {
                             <!-- Product -->
                             <div class="product">
-                                @{ 
+                                @{
                                     string imageName = "toy_" + toy.id + ".jpg";
                                 }
                                 <div class="product_image"><img src="~/Content/images/@imageName" alt=""></div>
@@ -75,14 +77,11 @@
                         }
 
                     </div>
-                    <div class="product_pagination">
-                        <ul>
-                            <li class="active"><a href="#">01.</a></li>
-                            <li><a href="#">02.</a></li>
-                            <li><a href="#">03.</a></li>
-                        </ul>
-                    </div>
-
+                    @Html.PagedListPager(Model, page => Url.Action("Category",
+                               new { page, category = Request.QueryString["category"] }),
+                               new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded,
+                                   DisplayPageCountAndCurrentLocation = true,  ContainerDivClasses = new [] { "product_pagination" }
+                               })
                 </div>
             </div>
         </div>
