@@ -35,14 +35,6 @@ namespace KiddyAPI.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<tblCustomer>()
-                .Property(e => e.firstname)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tblCustomer>()
-                .Property(e => e.lastname)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tblCustomer>()
                 .HasMany(e => e.tblAddresses)
                 .WithOptional(e => e.tblCustomer)
                 .HasForeignKey(e => e.cusID);

@@ -24,7 +24,7 @@ namespace KiddyAPI.Models
         [StringLength(100)]
         public string password { get; set; }
 
-        public bool isActived { get; set; }
+        public bool? isActived { get; set; }
 
         [StringLength(50)]
         public string firstname { get; set; }

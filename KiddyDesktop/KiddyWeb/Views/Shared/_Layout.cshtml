@@ -12,8 +12,8 @@
     <link href="~/Content/plugins/OwlCarousel2-2.2.1/owl.carousel.css" rel="stylesheet" />
     <link href="~/Content/plugins/OwlCarousel2-2.2.1/owl.theme.default.css" rel="stylesheet" />
     <link href="~/Content/plugins/OwlCarousel2-2.2.1/animate.css" rel="stylesheet" />
-
     <link href="~/Content/styles/responsive.css" rel="stylesheet" />
+    
 </head>
 
 
@@ -21,12 +21,19 @@
     <script>
 
         function LoadNoCart() {
+           
             var toyData = localStorage.getItem("listOfToys");
             var toys = JSON.parse(toyData);
             var noCart = toys.length;
-            document.getElementById("numberProsInCart").innerHTML = "(" + noCart + ")";
-
+            if (noCart != null) {
+                document.getElementById("numberProsInCart").innerHTML = "(" + noCart + ")";
+            } else {
+                document.getElementById("numberProsInCart").innerHTML = "(" + 0 + ")";
+            }
         };
+<<<<<<< HEAD
+      
+=======
         function LoadCart() {
             alert("aaa");
             var toyData = localStorage.getItem("listOfToys");
@@ -38,6 +45,7 @@
             xhttp.setRequestHeader("Content-type", "application/json");
             xhttp.send("listOfToys=" + toyData);
         }
+>>>>>>> 5c203ceead163c8c742753132ef02e857df09254
 
     </script>
     <div class="super_container">
@@ -91,7 +99,7 @@
 
                                     </div>
                                     <div class="shopping_cart">
-                                        <a href="#" onclick="LoadCart()">
+                                        <a href="http://localhost:57422/tblToys/Cart" id="shoppingCart">
                                             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                  viewBox="0 0 489 489" style="enable-background:new 0 0 489 489;" xml:space="preserve">
                                             <g>
@@ -101,6 +109,8 @@
 													H122.2c-25.4,0-46-16.8-46.4-37.5l26.8-302.3h45.2v41c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h139.3v41
 													c0,7.5,6,13.5,13.5,13.5s13.5-6,13.5-13.5v-41h45.2l26.9,302.3C412.8,445.2,392.1,462,366.8,462z" />
 
+<<<<<<< HEAD
+=======
 
 
 
@@ -131,6 +141,7 @@
 
 
 
+>>>>>>> 5c203ceead163c8c742753132ef02e857df09254
 											</g>
 										</svg>
                                             <div>Cart <span id="numberProsInCart">(0)</span></div>

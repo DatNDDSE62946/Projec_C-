@@ -24,6 +24,7 @@ namespace KiddyDesktop
         private IEnumerable<CustomerDTO> listCustomer;
         private IEnumerable<ToyDTO> listToyFeedback;
         private IEnumerable<FeedbackDTO> listFeedback;
+        private IEnumerable<OrderDTO> listOrders;
         private string empImgString;
         private int ordIDConfirm;
         private CustomerDTO currCustomer;
@@ -52,6 +53,17 @@ namespace KiddyDesktop
         {
             frmLogin login = new frmLogin();
             login.Show();
+        }
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            loadToys();
+            loadEmployees();
+            LoadOrders();
+            SetUpEmployeeData();
+            LoadCustomerData();
+            SetUpConfirmOrder();
+            
+
         }
 
 
@@ -402,15 +414,7 @@ namespace KiddyDesktop
 
         }
 
-        private void frmMain_Load(object sender, EventArgs e)
-        {
-            loadToys();
-            loadEmployees();
-            SetUpEmployeeData();
-            LoadCustomerData();
-            SetUpConfirmOrder();
-
-        }
+      
 
 
         //Add Employee button
@@ -479,21 +483,25 @@ namespace KiddyDesktop
             
         }
 
-        private async void LoadCustomerOrders(string cusID)
+        private void LoadCustomerOrders(string cusID)
         {
-            HttpResponseMessage response = await client.GetAsync(BASE_URL + "Orders/OrdersByCusID?cusID=" + cusID);
-            IEnumerable<OrderDTO> listOrders = null;
-            if (response.IsSuccessStatusCode)
-            {
-                string strResponse = response.Content.ReadAsStringAsync().Result;
-                listOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
-            }
-            gvOrders.DataSource = listOrders;
+            IEnumerable<OrderDTO> listCustomerOrders = listOrders.Where(ord => ord.cusID == cusID).ToList();
+            gvOrders.DataSource = listCustomerOrders;
             gvOrders.Columns["cusID"].Visible = false;
             gvOrders.Columns["emlID"].Visible = false;
             gvOrders.Columns["address"].Visible = false;
             gvOrders.Columns["payment"].Visible = false;
             gvOrders.Columns["ID"].Visible = false;
+        }
+
+        private async void LoadOrders()
+        {
+            HttpResponseMessage responseMessage = await client.GetAsync(BASE_URL + "Orders");
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
+                listOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
+            }
         }
 
         private async void ViewOrderDetail(int orderIDRef)

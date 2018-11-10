@@ -30,7 +30,11 @@ namespace KiddyAPI.Models
 
         [StringLength(100)]
         public string address { get; set; }
+<<<<<<< HEAD
+
+=======
         
+>>>>>>> 5c203ceead163c8c742753132ef02e857df09254
         public int status { get; set; }
 
         public virtual tblCustomer tblCustomer { get; set; }

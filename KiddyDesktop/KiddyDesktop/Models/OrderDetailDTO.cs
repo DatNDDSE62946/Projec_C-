@@ -14,5 +14,7 @@ namespace KiddyDesktop.Models
         public int? toyID { get; set; }
 
         public int? quantity { get; set; }
+
+        public string name { get; set; }
     }
 }
