@@ -44,6 +44,7 @@ namespace KiddyWeb.Controllers
                 return View();
             }
         }
+
         [HttpPost]
         public async Task<ActionResult> Register([Bind(Include = "username, firstname, lastname, password")]CustomerDTO dto)
         {
@@ -80,21 +81,67 @@ namespace KiddyWeb.Controllers
         [HttpPost]
         public async Task<ActionResult> ChangePassword(string oldpassword, string newpassword)
         {
-            string username = Session["USER"].ToString();
-            CustomerDTO customer = new CustomerDTO { username = username, password = oldpassword };
-            HttpResponseMessage response = await client.PostAsJsonAsync(baseURL + "CheckLogin", customer);
-            string resString = response.Content.ReadAsStringAsync().Result;
-            CustomerDTO dto = JsonConvert.DeserializeObject<CustomerDTO>(resString);
-            if(dto != null)
+            if(Session["USER"] != null)
             {
-                dto.password = newpassword;
-                response = await client.PutAsJsonAsync(baseURL + "ChangePassword", dto);
-                response.EnsureSuccessStatusCode();
-                ViewBag.Success = "Change Password Success!";
+                string username = Session["USER"].ToString();
+                CustomerDTO customer = new CustomerDTO { username = username, password = oldpassword };
+                HttpResponseMessage response = await client.PostAsJsonAsync(baseURL + "CheckLogin", customer);
+                string resString = response.Content.ReadAsStringAsync().Result;
+                CustomerDTO dto = JsonConvert.DeserializeObject<CustomerDTO>(resString);
+                if (dto != null)
+                {
+                    dto.password = newpassword;
+                    response = await client.PutAsJsonAsync(baseURL + "ChangePassword", dto);
+                    response.EnsureSuccessStatusCode();
+                    ViewBag.Success = "Change Password Success!";
+                }
+                else
+                {
+                    ViewBag.Invalid = "Old password is wrong! Please try again!";
+                }
+                return View();
             } else
             {
-                ViewBag.Invalid = "Old password is wrong! Please try again!";
+                return RedirectToAction("Login");
             }
+            
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> TransactionHistory()
+        {
+            if(Session["USER"] != null)
+            {
+                string username = Session["USER"].ToString();
+                IEnumerable<OrderDTO> list = null;
+                if (username != null)
+                {
+                    HttpResponseMessage response = await client.GetAsync("http://localhost:50815/api/Orders/OrdersByCusID?cusID=" + username);
+                    string strResponse = response.Content.ReadAsStringAsync().Result;
+                    list = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
+                }
+                return View(list);
+            } else
+            {
+                return RedirectToAction("Login");
+            }
+            
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> TransactionHistoryDetail([Bind(Include = "id, date, payment, status")]OrderDTO dto)
+        {
+            IEnumerable<OrderDetailDTO> list = null;
+            HttpResponseMessage response = await client.GetAsync("http://localhost:50815/api/OrderDetails/OrderDetailsByOrderID?orderID=" + dto.id);
+            string strResponse = response.Content.ReadAsStringAsync().Result;
+            list = JsonConvert.DeserializeObject<IEnumerable<OrderDetailDTO>>(strResponse);
+            ViewBag.Order = dto;
+            return View(list);
+        }
+
+        [HttpGet]
+        public ActionResult ProductFeedback(int id, string name)
+        {
             return View();
         }
 

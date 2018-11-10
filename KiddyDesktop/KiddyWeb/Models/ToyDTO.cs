@@ -14,8 +14,11 @@ namespace KiddyWeb.Models
         public string category { get; set; }
         public string description { get; set; }
         public int? quantity { get; set; }
+<<<<<<< HEAD
         public bool? isActived { get; set; }
 
         public string createdBy { get; set; }
+=======
+>>>>>>> 5c203ceead163c8c742753132ef02e857df09254
     }
 }

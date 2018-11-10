@@ -15,6 +15,14 @@ namespace KiddyAPI.Models
 
         public int? quantity { get; set; }
 
+<<<<<<< HEAD
         public string name { get; set; }
+=======
+        public double? price { get; set; }
+
+        public string name { get; set; }
+
+        public bool? isFeedback { get; set; }
+>>>>>>> 5c203ceead163c8c742753132ef02e857df09254
     }
 }

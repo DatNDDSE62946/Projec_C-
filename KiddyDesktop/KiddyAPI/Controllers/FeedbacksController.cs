@@ -95,20 +95,26 @@ namespace KiddyAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        //// POST: api/Feedbacks
-        //[ResponseType(typeof(tblFeedback))]
-        //public IHttpActionResult PosttblFeedback(tblFeedback tblFeedback)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        // POST: api/Feedbacks
+        [ResponseType(typeof(FeedbackDTO))]
+        public IHttpActionResult PosttblFeedback(FeedbackDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            tblFeedback feedback = new tblFeedback
+            {
+                toyID = dto.toyID,
+                content = dto.content,
+                cusID = dto.cusID,
+                status = 0
+            };
+            db.tblFeedbacks.Add(feedback);
+            db.SaveChanges();
 
-        //    db.tblFeedbacks.Add(tblFeedback);
-        //    db.SaveChanges();
-
-        //    return CreatedAtRoute("DefaultApi", new { id = tblFeedback.id }, tblFeedback);
-        //}
+            return CreatedAtRoute("DefaultApi", new { id = dto.id }, dto);
+        }
 
         //// DELETE: api/Feedbacks/5
         //[ResponseType(typeof(tblFeedback))]

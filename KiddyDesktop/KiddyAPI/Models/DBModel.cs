@@ -105,10 +105,6 @@ namespace KiddyAPI.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<tblOrder>()
-                .Property(e => e.datetime)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<tblOrder>()
                 .Property(e => e.emlID)
                 .IsUnicode(false);
 

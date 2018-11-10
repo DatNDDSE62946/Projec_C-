@@ -60,5 +60,13 @@ namespace KiddyDesktop
             Login(dto);
 
         }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                button1_Click(this, new EventArgs());
+            }
+        }
     }
 }

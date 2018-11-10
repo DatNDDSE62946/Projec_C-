@@ -375,6 +375,9 @@
     <Content Include="Views\tblCustomers\Register.cshtml" />
     <Content Include="Views\tblToys\Search.cshtml" />
     <Content Include="Views\tblToys\Cart.cshtml" />
+    <Content Include="Views\tblCustomers\TransactionHistory.cshtml" />
+    <Content Include="Views\tblCustomers\TransactionHistoryDetail.cshtml" />
+    <Content Include="Views\tblCustomers\ProductFeedback.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

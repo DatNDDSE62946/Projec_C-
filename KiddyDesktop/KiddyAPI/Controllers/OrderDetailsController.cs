@@ -45,49 +45,55 @@ namespace KiddyAPI.Controllers
         [ResponseType(typeof(OrderDetailDTO))]
         public IEnumerable<OrderDetailDTO> GetOrderDetailsByOrderID(int orderID)
         {
-            return db.tblOrderDetails.Where(ordDetail => ordDetail.orderID == orderID).Select(ordDetail => new OrderDetailDTO
-            {
-                id = ordDetail.id,
-                toyID = ordDetail.toyID,
-                orderID = ordDetail.orderID,
-                quantity = ordDetail.quantity
-            });
+            IEnumerable<OrderDetailDTO> list = db.tblOrderDetails
+                .Where(ordDetail => ordDetail.orderID == orderID)
+                .Select(ordDetail => new OrderDetailDTO
+                {
+                    id = ordDetail.id,
+                    toyID = ordDetail.toyID,
+                    orderID = ordDetail.orderID,
+                    quantity = ordDetail.quantity,
+                    price = ordDetail.price,
+                    name = ordDetail.name,
+                    isFeedback = ordDetail.isFeedback
+                }).ToList();
+            return list;
         }
 
         // PUT: api/OrderDetails/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblOrderDetail(int id, tblOrderDetail tblOrderDetail)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PuttblOrderDetail(int id, tblOrderDetail tblOrderDetail)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            if (id != tblOrderDetail.id)
-            {
-                return BadRequest();
-            }
+        //    if (id != tblOrderDetail.id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            db.Entry(tblOrderDetail).State = EntityState.Modified;
+        //    db.Entry(tblOrderDetail).State = EntityState.Modified;
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!tblOrderDetailExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!tblOrderDetailExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return StatusCode(HttpStatusCode.NoContent);
-        }
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
         // POST: api/OrderDetails
         [ResponseType(typeof(tblOrderDetail))]

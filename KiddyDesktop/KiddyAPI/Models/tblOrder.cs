@@ -19,9 +19,8 @@ namespace KiddyAPI.Models
 
         [StringLength(50)]
         public string cusID { get; set; }
-
-        [StringLength(50)]
-        public string datetime { get; set; }
+        
+        public DateTime date { get; set; }
 
         [StringLength(50)]
         public string emlID { get; set; }
@@ -31,7 +30,11 @@ namespace KiddyAPI.Models
 
         [StringLength(100)]
         public string address { get; set; }
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> 5c203ceead163c8c742753132ef02e857df09254
         public int status { get; set; }
 
         public virtual tblCustomer tblCustomer { get; set; }

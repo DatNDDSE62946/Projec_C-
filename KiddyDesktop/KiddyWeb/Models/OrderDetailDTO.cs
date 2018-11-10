@@ -14,5 +14,11 @@ namespace KiddyWeb.Models
         public int toyID { get; set; }
 
         public int quantity { get; set; }
+
+        public double? price { get; set; }
+
+        public string name { get; set; }
+
+        public bool? isFeedback { get; set; }
     }
 }

@@ -80,13 +80,14 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(153, 13);
             this.txtPassword.TabIndex = 3;
-            this.txtPassword.Text = "123456";
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(356, 202);
+            this.btnLogin.Image = ((System.Drawing.Image)(resources.GetObject("btnLogin.Image")));
+            this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogin.Location = new System.Drawing.Point(380, 204);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(153, 23);
+            this.btnLogin.Size = new System.Drawing.Size(97, 23);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -95,10 +96,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Monotype Corsiva", 30F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(282, 46);
+            this.label3.Font = new System.Drawing.Font("Segoe Script", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(303, 48);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(252, 49);
+            this.label3.Size = new System.Drawing.Size(221, 38);
             this.label3.TabIndex = 5;
             this.label3.Text = "Employee Login";
             // 
@@ -126,7 +127,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(22, 16);
+            this.pictureBox2.Location = new System.Drawing.Point(22, 29);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(233, 242);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -144,12 +145,14 @@
             // 
             // txtUsername
             // 
+            this.txtUsername.AcceptsTab = true;
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtUsername.Location = new System.Drawing.Point(353, 118);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(155, 13);
             this.txtUsername.TabIndex = 9;
             this.txtUsername.Text = "datlp";
+            this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
             // 
             // label6
             // 

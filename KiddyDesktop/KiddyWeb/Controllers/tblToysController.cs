@@ -91,7 +91,7 @@ namespace KiddyWeb.Controllers
             return View(dto);
         }
 
-        public async Task<ActionResult> Category(string category)
+        public async Task<ActionResult> Category(string category, int? page)
         {
             IEnumerable<ToyDTO> list = null;
             if (category == null)
@@ -109,7 +109,7 @@ namespace KiddyWeb.Controllers
                  list = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strCategory);
             }
             
-            return View(list);
+            return View(list.ToPagedList(page ?? 1, 4));
         }
 
         public ActionResult Logout()
