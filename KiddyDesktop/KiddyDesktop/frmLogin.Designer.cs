@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,8 +42,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtUsername = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.error = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.error)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -80,6 +83,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(153, 13);
             this.txtPassword.TabIndex = 3;
+            this.txtPassword.Text = "123456";
             // 
             // btnLogin
             // 
@@ -153,6 +157,7 @@
             this.txtUsername.TabIndex = 9;
             this.txtUsername.Text = "datlp";
             this.txtUsername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtUsername_KeyDown);
+            this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
             // 
             // label6
             // 
@@ -162,6 +167,11 @@
             this.label6.Size = new System.Drawing.Size(157, 13);
             this.label6.TabIndex = 10;
             this.label6.Text = "_________________________";
+            this.label6.Validating += new System.ComponentModel.CancelEventHandler(this.label6_Validating);
+            // 
+            // error
+            // 
+            this.error.ContainerControl = this;
             // 
             // frmLogin
             // 
@@ -187,6 +197,7 @@
             this.Text = "Login";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.error)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,6 +217,7 @@
         private System.Windows.Forms.TextBox txtUsername;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ErrorProvider error;
     }
 }
 

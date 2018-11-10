@@ -35,7 +35,7 @@ namespace KiddyDesktop
             HttpResponseMessage response = await client.PostAsJsonAsync(BASE_URL + "CheckLogin", dto);
             string strResponse = response.Content.ReadAsStringAsync().Result;
             result = JsonConvert.DeserializeObject<EmployeeDTO>(strResponse);
-            if(result == null)
+            if(result.username == null)
             {
                 MessageBox.Show("Invalid username password!");
             }
@@ -51,6 +51,7 @@ namespace KiddyDesktop
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             EmployeeDTO dto = new EmployeeDTO
             {
                 username = txtUsername.Text,
@@ -66,6 +67,32 @@ namespace KiddyDesktop
             if(e.KeyCode == Keys.Enter)
             {
                 button1_Click(this, new EventArgs());
+            }
+        }
+
+        private void txtUsername_Validating(object sender, CancelEventArgs e)
+        {
+            if(txtUsername.Text == "")
+            {
+                error.SetError(txtUsername, "Username cannot be blank!");
+
+            }
+            else
+            {
+                error.SetError(txtUsername, "");
+            }
+        }
+
+        private void label6_Validating(object sender, CancelEventArgs e)
+        {
+            if (txtPassword.Text == "")
+            {
+                error.SetError(txtPassword, "Username cannot be blank!");
+
+            }
+            else
+            {
+                error.SetError(txtPassword, "");
             }
         }
     }

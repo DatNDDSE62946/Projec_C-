@@ -25,6 +25,7 @@ namespace KiddyDesktop
         private IEnumerable<ToyDTO> listToyFeedback;
         private IEnumerable<FeedbackDTO> listFeedback;
         private IEnumerable<OrderDTO> listOrders;
+        private IEnumerable<OrderDetailDTO> listOfOrderDetails;
         private string empImgString;
         private int ordIDConfirm;
         private CustomerDTO currCustomer;
@@ -54,14 +55,13 @@ namespace KiddyDesktop
             frmLogin login = new frmLogin();
             login.Show();
         }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             loadToys();
             loadEmployees();
             LoadOrders();
             SetUpEmployeeData();
-            LoadCustomerData();
-            SetUpConfirmOrder();
             
 
         }
@@ -465,6 +465,11 @@ namespace KiddyDesktop
 
         #region Customer_functions
         //<----------------------------Customer function----------------------------------->
+        private void tabCustomer_Enter(object sender, EventArgs e)
+        {
+            LoadCustomerData();
+            LoadOrderDetails();
+        }
         private async void LoadCustomerData()
         {
             HttpResponseMessage response = await client.GetAsync(BASE_URL + "Customers");
@@ -482,16 +487,33 @@ namespace KiddyDesktop
             }).ToList();
             
         }
-
-        private void LoadCustomerOrders(string cusID)
+        private void AddOrdersDataBinding(IEnumerable<OrderDTO> listOrdersByCusID)
         {
-            IEnumerable<OrderDTO> listCustomerOrders = listOrders.Where(ord => ord.cusID == cusID).ToList();
-            gvOrders.DataSource = listCustomerOrders;
+            txtPayment.DataBindings.Add("Text", listOrdersByCusID, "payment");
+            txtAddress.DataBindings.Add("Text", listOrdersByCusID, "address");
+        }
+        private void ClearOrdersDataBinding()
+        {
+            txtPayment.DataBindings.Clear();
+            txtAddress.DataBindings.Clear();
+        }
+
+        private void LoadOrdersByCustomerID(string cusID)
+        {
+           
+            IEnumerable<OrderDTO> listOrdersByCusID = listOrders.Where(ord => ord.cusID == cusID).ToList();
+            gvOrders.DataSource = listOrdersByCusID;
+            gvOrders.Columns["date"].DefaultCellStyle.Format = "dd-MM-yyyy";
+            gvOrders.Columns["payment"].Visible = false;
+            gvOrders.Columns["address"].Visible = false;
             gvOrders.Columns["cusID"].Visible = false;
             gvOrders.Columns["emlID"].Visible = false;
-            gvOrders.Columns["address"].Visible = false;
-            gvOrders.Columns["payment"].Visible = false;
-            gvOrders.Columns["ID"].Visible = false;
+            gvOrders.Columns["status"].Visible = false;
+            ClearOrdersDataBinding();
+            AddOrdersDataBinding(listOrdersByCusID);
+
+
+
         }
 
         private async void LoadOrders()
@@ -503,31 +525,23 @@ namespace KiddyDesktop
                 listOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
             }
         }
-
-        private async void ViewOrderDetail(int orderIDRef)
+        private async void LoadOrderDetails()
         {
-            IEnumerable<OrderDetailDTO> listOfOrderDetails = null;
-            HttpResponseMessage response= await client.GetAsync(BASE_URL + "OrderDetails/OrderDetailsByOrderID?orderID=" + orderIDRef);
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "OrderDetails");
             if (response.IsSuccessStatusCode)
             {
                 string strResponse = response.Content.ReadAsStringAsync().Result;
                 listOfOrderDetails = JsonConvert.DeserializeObject<IEnumerable<OrderDetailDTO>>(strResponse);
             }
-                
-            gvOrderDetail.ColumnCount = 2;
-            gvOrderDetail.Columns[0].Name = "Toy";
-            gvOrderDetail.Columns[1].Name = "Quantity";
-            gvOrderDetail.Rows.Clear();
-               
-            foreach (OrderDetailDTO orderDetail in listOfOrderDetails)
-            {
-                ArrayList row = new ArrayList();
-                string toyName = listToys.Single(toy => toy.id == orderDetail.toyID).name;
-                row.Add(toyName);
-                row.Add(orderDetail.quantity);
-                gvOrderDetail.Rows.Add(row.ToArray());
-            }
-            
+        }
+        private  void ViewOrderDetail(int orderID)
+        {
+            IEnumerable<OrderDetailDTO> listDetails = listOfOrderDetails.Where(ordDetail => ordDetail.orderID == orderID).ToList();
+            gvOrderDetail.DataSource = listDetails;
+            gvOrderDetail.Columns["id"].Visible = false;
+            gvOrderDetail.Columns["toyID"].Visible = false;
+            gvOrderDetail.Columns["orderID"].Visible = false;
+
             
         }
 
@@ -566,8 +580,9 @@ namespace KiddyDesktop
         private void gvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             gvOrderDetail.DataSource = null;
+            gvOrders.DataSource = null;
             string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
-            LoadCustomerOrders(cusID);
+            LoadOrdersByCustomerID(cusID);
             
 
         }
@@ -593,51 +608,47 @@ namespace KiddyDesktop
         #endregion
 
         #region Order&Feedback_functions
-        private async void SetUpConfirmOrder()
+        private void AddConfirmOrdersDataBinding(IEnumerable<OrderDTO> listOrdersByCusID)
         {
-            gvConfirmOrder.Rows.Clear();
-            gvConfirmOrder.ColumnCount = 4;
-            gvConfirmOrder.Columns[0].Name = "Customer";
-            gvConfirmOrder.Columns[1].Name = "Date";
-            gvConfirmOrder.Columns[2].Name = "Address";
-            gvConfirmOrder.Columns[3].Name = "id";
-            HttpResponseMessage responseMessage = await client.GetAsync(BASE_URL + "Orders");
-            string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
-            if (responseMessage.IsSuccessStatusCode)
+            txtConfirmPayment.DataBindings.Add("Text", listOrdersByCusID, "payment");
+            txtConfirmAddress.DataBindings.Add("Text", listOrdersByCusID, "address");
+        }
+        private void ClearConfirmOrdersDataBinding()
+        {
+            txtConfirmPayment.DataBindings.Clear();
+            txtConfirmAddress.DataBindings.Clear();
+        }
+
+        private void SetUpConfirmOrder()
+        {
+            LoadOrders();
+            IEnumerable<OrderDTO> list = listOrders.Where(ord => ord.status == 0).ToList();
+            if(list != null)
             {
-                IEnumerable<OrderDTO> listOfOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
-                foreach (OrderDTO ord in listOfOrders)
-                {
-                    ArrayList row = new ArrayList();
-                    //string cusName = data.tblCustomers.Single(cus => cus.username.Equals(ord.cusID)).firstname + " " + data.tblCustomers.Single(cus => cus.username.Equals(ord.cusID)).lastname;
-                    row.Add(ord.cusID);
-                    row.Add(ord.datetime);
-                    row.Add(ord.address);
-                    row.Add(ord.id);
-                    gvConfirmOrder.Rows.Add(row.ToArray());
-                }
-                gvConfirmOrder.Columns["id"].Visible = false;
+                gvConfirmOrder.DataSource = list;
+                gvConfirmOrder.Columns["date"].DefaultCellStyle.Format = "dd-MM-yyyy";
+                gvConfirmOrder.Columns["cusID"].Visible = false;
+                gvConfirmOrder.Columns["emlID"].Visible = false;
+                gvConfirmOrder.Columns["payment"].Visible = false;
+                gvConfirmOrder.Columns["status"].Visible = false;
+                gvConfirmOrder.Columns["address"].Visible = false;
+                ClearConfirmOrdersDataBinding();
+                AddConfirmOrdersDataBinding(list);
+
             }
+
+            
+            
             
         }
         private void ViewOrderDetail2(int orderIDRef)
         {
-            gvOrderDetail2.ColumnCount = 2;
-            gvOrderDetail2.Columns[0].Name = "Toy";
-            gvOrderDetail2.Columns[1].Name = "Quantity";
-            gvOrderDetail2.Rows.Clear();
-            List<tblOrderDetail> listOfOrderDetails = data.tblOrderDetails.Where(ord => ord.orderID == orderIDRef).ToList();
-            int i = 0;
-            foreach (tblOrderDetail orderDetail in listOfOrderDetails)
+            gvOrderDetail2.DataSource = listOfOrderDetails.Select(ordDetail => new
             {
-                string toyName = data.tblToys.Single(toy => toy.id == orderDetail.toyID).name;
-                if (toyName == "") { break; };
-                ArrayList row = new ArrayList();      
-                row.Add(toyName);
-                row.Add(orderDetail.quantity);
-                gvOrderDetail2.Rows.Add(row.ToArray());
-                i++;
-            }
+                Name = ordDetail.name,
+                Quantity = ordDetail.quantity,
+                orderID = ordDetail.orderID
+            }).Where(ordDetail => ordDetail.orderID == orderIDRef).ToList();
             
         }
         private void ConfirmOrder()
@@ -671,7 +682,7 @@ namespace KiddyDesktop
 
         private void gvConfirmOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells[3].Value.ToString());
+            ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells["id"].Value.ToString());
             ViewOrderDetail2(ordIDConfirm);
         }
 
@@ -1055,6 +1066,8 @@ namespace KiddyDesktop
         {
             loadToyFeedback();
             loadFeedback();
+            SetUpConfirmOrder();
+            LoadOrderDetails();
         }
 
         private async void loadToyFeedback()
@@ -1244,6 +1257,8 @@ namespace KiddyDesktop
         {
             TabControl.SelectedIndex = 4;
         }
+
+        
     }
 }
 

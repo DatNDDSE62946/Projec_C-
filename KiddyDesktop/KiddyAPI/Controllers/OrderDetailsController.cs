@@ -22,7 +22,7 @@ namespace KiddyAPI.Controllers
             return db.tblOrderDetails.Select(ordDetail => new OrderDetailDTO
             {
                 id = ordDetail.id,
-                toyID = ordDetail.toyID,
+                name = ordDetail.name,
                 orderID = ordDetail.orderID,
                 quantity = ordDetail.quantity
             });
