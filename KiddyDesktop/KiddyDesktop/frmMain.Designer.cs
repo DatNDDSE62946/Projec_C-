@@ -41,6 +41,7 @@
             this.btnWelcomeProduct = new System.Windows.Forms.Button();
             this.tabProduct = new System.Windows.Forms.TabPage();
             this.btnClearPro = new System.Windows.Forms.Button();
+            this.imgButtonList = new System.Windows.Forms.ImageList(this.components);
             this.btnDeletePro = new System.Windows.Forms.Button();
             this.btnSavePro = new System.Windows.Forms.Button();
             this.btnAddPro = new System.Windows.Forms.Button();
@@ -127,7 +128,12 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.imgButtonList = new System.Windows.Forms.ImageList(this.components);
+            this.txtConfirmPayment = new System.Windows.Forms.TextBox();
+            this.txtConfirmAddress = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtPayment = new System.Windows.Forms.TextBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
             this.TabControl.SuspendLayout();
             this.tabWelcome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -190,7 +196,7 @@
             this.tabWelcome.Location = new System.Drawing.Point(4, 47);
             this.tabWelcome.Name = "tabWelcome";
             this.tabWelcome.Padding = new System.Windows.Forms.Padding(3);
-            this.tabWelcome.Size = new System.Drawing.Size(1010, 435);
+            this.tabWelcome.Size = new System.Drawing.Size(997, 435);
             this.tabWelcome.TabIndex = 4;
             this.tabWelcome.Text = "Welcome to Kiddy";
             this.tabWelcome.UseVisualStyleBackColor = true;
@@ -332,6 +338,18 @@
             this.btnClearPro.TabIndex = 8;
             this.btnClearPro.UseVisualStyleBackColor = true;
             this.btnClearPro.Click += new System.EventHandler(this.btnClearPro_Click);
+            // 
+            // imgButtonList
+            // 
+            this.imgButtonList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgButtonList.ImageStream")));
+            this.imgButtonList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgButtonList.Images.SetKeyName(0, "add.png");
+            this.imgButtonList.Images.SetKeyName(1, "check.png");
+            this.imgButtonList.Images.SetKeyName(2, "cross.png");
+            this.imgButtonList.Images.SetKeyName(3, "clear.png");
+            this.imgButtonList.Images.SetKeyName(4, "update.png");
+            this.imgButtonList.Images.SetKeyName(5, "refresh.png");
+            this.imgButtonList.Images.SetKeyName(6, "picture.png");
             // 
             // btnDeletePro
             // 
@@ -960,6 +978,10 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.label22);
+            this.groupBox5.Controls.Add(this.label12);
+            this.groupBox5.Controls.Add(this.txtConfirmAddress);
+            this.groupBox5.Controls.Add(this.txtConfirmPayment);
             this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.btnRejectOrder);
             this.groupBox5.Controls.Add(this.btnConfirmOrder);
@@ -984,9 +1006,9 @@
             // btnRejectOrder
             // 
             this.btnRejectOrder.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRejectOrder.Location = new System.Drawing.Point(284, 103);
+            this.btnRejectOrder.Location = new System.Drawing.Point(396, 103);
             this.btnRejectOrder.Name = "btnRejectOrder";
-            this.btnRejectOrder.Size = new System.Drawing.Size(201, 67);
+            this.btnRejectOrder.Size = new System.Drawing.Size(89, 67);
             this.btnRejectOrder.TabIndex = 3;
             this.btnRejectOrder.Text = "Reject";
             this.btnRejectOrder.UseVisualStyleBackColor = true;
@@ -995,9 +1017,9 @@
             // btnConfirmOrder
             // 
             this.btnConfirmOrder.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmOrder.Location = new System.Drawing.Point(284, 20);
+            this.btnConfirmOrder.Location = new System.Drawing.Point(396, 20);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
-            this.btnConfirmOrder.Size = new System.Drawing.Size(201, 67);
+            this.btnConfirmOrder.Size = new System.Drawing.Size(89, 67);
             this.btnConfirmOrder.TabIndex = 2;
             this.btnConfirmOrder.Text = "Confirm";
             this.btnConfirmOrder.UseVisualStyleBackColor = true;
@@ -1022,7 +1044,7 @@
             this.gvConfirmOrder.Location = new System.Drawing.Point(7, 20);
             this.gvConfirmOrder.Name = "gvConfirmOrder";
             this.gvConfirmOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvConfirmOrder.Size = new System.Drawing.Size(261, 150);
+            this.gvConfirmOrder.Size = new System.Drawing.Size(160, 150);
             this.gvConfirmOrder.TabIndex = 0;
             this.gvConfirmOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvConfirmOrder_CellContentClick);
             // 
@@ -1041,6 +1063,8 @@
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.txtAddress);
+            this.groupBox8.Controls.Add(this.txtPayment);
             this.groupBox8.Controls.Add(this.label19);
             this.groupBox8.Controls.Add(this.gvOrderDetail);
             this.groupBox8.Controls.Add(this.label18);
@@ -1084,7 +1108,7 @@
             this.gvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrders.Location = new System.Drawing.Point(6, 45);
             this.gvOrders.Name = "gvOrders";
-            this.gvOrders.Size = new System.Drawing.Size(256, 366);
+            this.gvOrders.Size = new System.Drawing.Size(256, 191);
             this.gvOrders.TabIndex = 0;
             this.gvOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvOrders_CellContentClick);
             // 
@@ -1239,17 +1263,53 @@
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             this.btnMinimize.MouseHover += new System.EventHandler(this.btnMinimize_MouseHover);
             // 
-            // imgButtonList
+            // txtConfirmPayment
             // 
-            this.imgButtonList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgButtonList.ImageStream")));
-            this.imgButtonList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imgButtonList.Images.SetKeyName(0, "add.png");
-            this.imgButtonList.Images.SetKeyName(1, "check.png");
-            this.imgButtonList.Images.SetKeyName(2, "cross.png");
-            this.imgButtonList.Images.SetKeyName(3, "clear.png");
-            this.imgButtonList.Images.SetKeyName(4, "update.png");
-            this.imgButtonList.Images.SetKeyName(5, "refresh.png");
-            this.imgButtonList.Images.SetKeyName(6, "picture.png");
+            this.txtConfirmPayment.Location = new System.Drawing.Point(192, 35);
+            this.txtConfirmPayment.Name = "txtConfirmPayment";
+            this.txtConfirmPayment.Size = new System.Drawing.Size(174, 20);
+            this.txtConfirmPayment.TabIndex = 5;
+            // 
+            // txtConfirmAddress
+            // 
+            this.txtConfirmAddress.Location = new System.Drawing.Point(192, 73);
+            this.txtConfirmAddress.Multiline = true;
+            this.txtConfirmAddress.Name = "txtConfirmAddress";
+            this.txtConfirmAddress.Size = new System.Drawing.Size(174, 97);
+            this.txtConfirmAddress.TabIndex = 6;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(192, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(48, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Payment";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(192, 58);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(45, 13);
+            this.label22.TabIndex = 8;
+            this.label22.Text = "Address";
+            // 
+            // txtPayment
+            // 
+            this.txtPayment.Location = new System.Drawing.Point(50, 260);
+            this.txtPayment.Name = "txtPayment";
+            this.txtPayment.Size = new System.Drawing.Size(199, 20);
+            this.txtPayment.TabIndex = 4;
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(50, 308);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(199, 85);
+            this.txtAddress.TabIndex = 5;
             // 
             // frmMain
             // 
@@ -1415,5 +1475,11 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.ImageList imgButtonList;
+        private System.Windows.Forms.TextBox txtConfirmAddress;
+        private System.Windows.Forms.TextBox txtConfirmPayment;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtPayment;
     }
 }

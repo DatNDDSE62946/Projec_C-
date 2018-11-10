@@ -20,7 +20,7 @@ namespace KiddyDesktop.Models
 
         public string payment { get; set; }
 
-        public string status { get; set; }
+        public int status { get; set; }
 
         public string address { get; set; }
     }

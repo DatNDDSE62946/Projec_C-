@@ -25,6 +25,7 @@ namespace KiddyDesktop
         private IEnumerable<ToyDTO> listToyFeedback;
         private IEnumerable<FeedbackDTO> listFeedback;
         private IEnumerable<OrderDTO> listOrders;
+        private IEnumerable<OrderDetailDTO> listOfOrderDetails;
         private string empImgString;
         private int ordIDConfirm;
         private CustomerDTO currCustomer;
@@ -54,15 +55,14 @@ namespace KiddyDesktop
             frmLogin login = new frmLogin();
             login.Show();
         }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
             loadToys();
             loadEmployees();
             LoadOrders();
             SetUpEmployeeData();
-            LoadCustomerData();
-            SetUpConfirmOrder();
-            
+
 
         }
 
@@ -136,7 +136,7 @@ namespace KiddyDesktop
                 txtUsername.Focus();
                 result = true;
             }
-            if(empImgString == null)
+            if (empImgString == null)
             {
                 result = true;
                 btnUploadImage.Focus();
@@ -187,7 +187,7 @@ namespace KiddyDesktop
                 string strResponse = response.Content.ReadAsStringAsync().Result;
                 listEmployees = JsonConvert.DeserializeObject<IEnumerable<EmployeeDTO>>(strResponse);
                 LoadEmployeeData(listEmployees);
-               
+
             }
             ClearDataBindingForEmployee();
             bindingSource1.DataSource = listEmployees;
@@ -259,7 +259,7 @@ namespace KiddyDesktop
 
         private void SetUpEmployeeData()
         {
-           
+
             dtDOB.Format = DateTimePickerFormat.Custom;
             dtDOB.CustomFormat = "yyyy-MMM-dd";
             btnEmployeeSave.Enabled = false;
@@ -267,8 +267,8 @@ namespace KiddyDesktop
             {
                 TabControl.TabPages.Remove(tabEmployee);
             }
-            
-           
+
+
         }
 
         public Image byteArrayToImage(byte[] byteArrayIn)
@@ -287,102 +287,102 @@ namespace KiddyDesktop
 
         private void SaveEmployee()
         {
-                if (!CheckEmployeeTabBlank())
+            if (!CheckEmployeeTabBlank())
+            {
+                if (!CheckEmployeeExistedUsername(txtUsername.Text))
                 {
-                    if (!CheckEmployeeExistedUsername(txtUsername.Text))
+                    if (CheckValidDate(dtDOB.Text))
                     {
-                        if (CheckValidDate(dtDOB.Text))
+                        DateTime myDate = DateTime.Parse(dtDOB.Text);
+                        string mydob = string.Format("{0}-{1}-{2}", myDate.Year, myDate.Month, myDate.Day);
+                        string myGender = "female";
+                        if (rdMale.Checked == true)
                         {
-                            DateTime myDate = DateTime.Parse(dtDOB.Text);
-                            string mydob = string.Format("{0}-{1}-{2}", myDate.Year, myDate.Month, myDate.Day);
-                            string myGender = "female";
-                            if (rdMale.Checked == true)
-                            {
-                                myGender = "male";
-                            }
-                            Image img = Image.FromFile(empImgString);
-                            byte[] imgByte = imageToByteArray(img);
-                            EmployeeDTO addEmp = new EmployeeDTO();
-                            addEmp.username = txtUsername.Text;
-                            addEmp.password = "1";
-                            addEmp.dob = mydob;
-                            addEmp.gender = myGender;
-                            addEmp.role = "Employee";
-                            addEmp.isActived = true;
-                            addEmp.firstname = txtFirstName.Text;
-                            addEmp.lastname = txtLastName.Text;
-                            addEmp.image = imgByte;
-                            AddEmployeeToDB(addEmp);
-                         
-                            
+                            myGender = "male";
                         }
-                        else
-                        {
-                            MessageBox.Show("Invalid date");
-                        }
+                        Image img = Image.FromFile(empImgString);
+                        byte[] imgByte = imageToByteArray(img);
+                        EmployeeDTO addEmp = new EmployeeDTO();
+                        addEmp.username = txtUsername.Text;
+                        addEmp.password = "1";
+                        addEmp.dob = mydob;
+                        addEmp.gender = myGender;
+                        addEmp.role = "Employee";
+                        addEmp.isActived = true;
+                        addEmp.firstname = txtFirstName.Text;
+                        addEmp.lastname = txtLastName.Text;
+                        addEmp.image = imgByte;
+                        AddEmployeeToDB(addEmp);
+
+
                     }
                     else
                     {
-                        MessageBox.Show("Username has already existed!");
+                        MessageBox.Show("Invalid date");
                     }
                 }
-           
+                else
+                {
+                    MessageBox.Show("Username has already existed!");
+                }
+            }
 
-}
+
+        }
 
         private void EditEmployee()
         {
-            
-                if (!CheckEmployeeTabBlank())
-                {
-                    if (CheckEmployeeExistedUsername(txtUsername.Text))
-                    {
-                        if (CheckValidDate(dtDOB.Text))
-                        {
-                            DateTime myDate = DateTime.Parse(dtDOB.Text);
 
-                            string mydob = string.Format("{0}-{1}-{2}", myDate.Year, myDate.Month, myDate.Day);
-                            string myGender = "female";
-                            if (rdMale.Checked == true)
-                            {
-                                myGender = "male";
-                            }
-                            Image image = Image.FromFile(empImgString);
-                            byte[] imagebyte = imageToByteArray(image);
-                            EmployeeDTO editEmp = new EmployeeDTO();
-                            editEmp.username = txtUsername.Text;
-                            editEmp.firstname = txtFirstName.Text;
-                            editEmp.lastname = txtLastName.Text;
-                            editEmp.dob = mydob;
-                            editEmp.gender = myGender;
-                            editEmp.image = imagebyte;
-                            EditEmployeeToDB(editEmp);
-                          
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Username is not existed!");
-                    }
-
-                }
-            
-                   }
-
-        private void DeleteEmployee()
-        {
-            string username = txtUsername.Text;
-          
+            if (!CheckEmployeeTabBlank())
+            {
                 if (CheckEmployeeExistedUsername(txtUsername.Text))
                 {
-                DeleteEmployee(txtUsername.Text);
-                    SetEmployeeTabBlank();
+                    if (CheckValidDate(dtDOB.Text))
+                    {
+                        DateTime myDate = DateTime.Parse(dtDOB.Text);
+
+                        string mydob = string.Format("{0}-{1}-{2}", myDate.Year, myDate.Month, myDate.Day);
+                        string myGender = "female";
+                        if (rdMale.Checked == true)
+                        {
+                            myGender = "male";
+                        }
+                        Image image = Image.FromFile(empImgString);
+                        byte[] imagebyte = imageToByteArray(image);
+                        EmployeeDTO editEmp = new EmployeeDTO();
+                        editEmp.username = txtUsername.Text;
+                        editEmp.firstname = txtFirstName.Text;
+                        editEmp.lastname = txtLastName.Text;
+                        editEmp.dob = mydob;
+                        editEmp.gender = myGender;
+                        editEmp.image = imagebyte;
+                        EditEmployeeToDB(editEmp);
+
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Username is not existed!");
                 }
-            
+
+            }
+
+        }
+
+        private void DeleteEmployee()
+        {
+            string username = txtUsername.Text;
+
+            if (CheckEmployeeExistedUsername(txtUsername.Text))
+            {
+                DeleteEmployee(txtUsername.Text);
+                SetEmployeeTabBlank();
+            }
+            else
+            {
+                MessageBox.Show("Username is not existed!");
+            }
+
         }
 
         private void ClearDataBindingForEmployee()
@@ -414,7 +414,7 @@ namespace KiddyDesktop
 
         }
 
-      
+
 
 
         //Add Employee button
@@ -465,6 +465,11 @@ namespace KiddyDesktop
 
         #region Customer_functions
         //<----------------------------Customer function----------------------------------->
+        private void tabCustomer_Enter(object sender, EventArgs e)
+        {
+            LoadCustomerData();
+            LoadOrderDetails();
+        }
         private async void LoadCustomerData()
         {
             HttpResponseMessage response = await client.GetAsync(BASE_URL + "Customers");
@@ -472,7 +477,7 @@ namespace KiddyDesktop
             {
                 string strResponse = response.Content.ReadAsStringAsync().Result;
                 listCustomer = JsonConvert.DeserializeObject<IEnumerable<CustomerDTO>>(strResponse);
-                
+
             }
             gvCustomer.DataSource = listCustomer.Select(cus => new
             {
@@ -480,18 +485,35 @@ namespace KiddyDesktop
                 name = cus.firstname + " " + cus.lastname
 
             }).ToList();
-            
+
+        }
+        private void AddOrdersDataBinding(IEnumerable<OrderDTO> listOrdersByCusID)
+        {
+            txtPayment.DataBindings.Add("Text", listOrdersByCusID, "payment");
+            txtAddress.DataBindings.Add("Text", listOrdersByCusID, "address");
+        }
+        private void ClearOrdersDataBinding()
+        {
+            txtPayment.DataBindings.Clear();
+            txtAddress.DataBindings.Clear();
         }
 
-        private void LoadCustomerOrders(string cusID)
+        private void LoadOrdersByCustomerID(string cusID)
         {
-            IEnumerable<OrderDTO> listCustomerOrders = listOrders.Where(ord => ord.cusID == cusID).ToList();
-            gvOrders.DataSource = listCustomerOrders;
+
+            IEnumerable<OrderDTO> listOrdersByCusID = listOrders.Where(ord => ord.cusID == cusID).ToList();
+            gvOrders.DataSource = listOrdersByCusID;
+            gvOrders.Columns["date"].DefaultCellStyle.Format = "dd-MM-yyyy";
+            gvOrders.Columns["payment"].Visible = false;
+            gvOrders.Columns["address"].Visible = false;
             gvOrders.Columns["cusID"].Visible = false;
             gvOrders.Columns["emlID"].Visible = false;
-            gvOrders.Columns["address"].Visible = false;
-            gvOrders.Columns["payment"].Visible = false;
-            gvOrders.Columns["ID"].Visible = false;
+            gvOrders.Columns["status"].Visible = false;
+            ClearOrdersDataBinding();
+            AddOrdersDataBinding(listOrdersByCusID);
+
+
+
         }
 
         private async void LoadOrders()
@@ -503,32 +525,24 @@ namespace KiddyDesktop
                 listOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
             }
         }
-
-        private async void ViewOrderDetail(int orderIDRef)
+        private async void LoadOrderDetails()
         {
-            IEnumerable<OrderDetailDTO> listOfOrderDetails = null;
-            HttpResponseMessage response= await client.GetAsync(BASE_URL + "OrderDetails/OrderDetailsByOrderID?orderID=" + orderIDRef);
+            HttpResponseMessage response = await client.GetAsync(BASE_URL + "OrderDetails");
             if (response.IsSuccessStatusCode)
             {
                 string strResponse = response.Content.ReadAsStringAsync().Result;
                 listOfOrderDetails = JsonConvert.DeserializeObject<IEnumerable<OrderDetailDTO>>(strResponse);
             }
-                
-            gvOrderDetail.ColumnCount = 2;
-            gvOrderDetail.Columns[0].Name = "Toy";
-            gvOrderDetail.Columns[1].Name = "Quantity";
-            gvOrderDetail.Rows.Clear();
-               
-            foreach (OrderDetailDTO orderDetail in listOfOrderDetails)
-            {
-                ArrayList row = new ArrayList();
-                string toyName = listToys.Single(toy => toy.id == orderDetail.toyID).name;
-                row.Add(toyName);
-                row.Add(orderDetail.quantity);
-                gvOrderDetail.Rows.Add(row.ToArray());
-            }
-            
-            
+        }
+        private void ViewOrderDetail(int orderID)
+        {
+            IEnumerable<OrderDetailDTO> listDetails = listOfOrderDetails.Where(ordDetail => ordDetail.orderID == orderID).ToList();
+            gvOrderDetail.DataSource = listDetails;
+            gvOrderDetail.Columns["id"].Visible = false;
+            gvOrderDetail.Columns["toyID"].Visible = false;
+            gvOrderDetail.Columns["orderID"].Visible = false;
+
+
         }
 
         private async void BlockCustomer(string id)
@@ -552,23 +566,24 @@ namespace KiddyDesktop
                 MessageBox.Show(e.Message);
             }
         }
-        
+
 
         private void btnBlock_Click(object sender, EventArgs e)
         {
             string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
             BlockCustomer(cusID);
             LoadCustomerData();
-           
+
 
         }
 
         private void gvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             gvOrderDetail.DataSource = null;
+            gvOrders.DataSource = null;
             string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
-            LoadCustomerOrders(cusID);
-            
+            LoadOrdersByCustomerID(cusID);
+
 
         }
 
@@ -580,7 +595,7 @@ namespace KiddyDesktop
 
         private void textBox12_TextChanged(object sender, EventArgs e)
         {
-            gvCustomer.DataSource = listCustomer.Where(cus =>  (cus.firstname + " " + cus.lastname).Contains(txtCustomerSearch.Text)).Select(cus => new
+            gvCustomer.DataSource = listCustomer.Where(cus => (cus.firstname + " " + cus.lastname).Contains(txtCustomerSearch.Text)).Select(cus => new
             {
                 username = cus.username,
                 name = cus.firstname + " " + cus.lastname
@@ -593,52 +608,48 @@ namespace KiddyDesktop
         #endregion
 
         #region Order&Feedback_functions
-        private async void SetUpConfirmOrder()
+        private void AddConfirmOrdersDataBinding(IEnumerable<OrderDTO> listOrdersByCusID)
         {
-            gvConfirmOrder.Rows.Clear();
-            gvConfirmOrder.ColumnCount = 4;
-            gvConfirmOrder.Columns[0].Name = "Customer";
-            gvConfirmOrder.Columns[1].Name = "Date";
-            gvConfirmOrder.Columns[2].Name = "Address";
-            gvConfirmOrder.Columns[3].Name = "id";
-            HttpResponseMessage responseMessage = await client.GetAsync(BASE_URL + "Orders");
-            string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
-            if (responseMessage.IsSuccessStatusCode)
+            txtConfirmPayment.DataBindings.Add("Text", listOrdersByCusID, "payment");
+            txtConfirmAddress.DataBindings.Add("Text", listOrdersByCusID, "address");
+        }
+        private void ClearConfirmOrdersDataBinding()
+        {
+            txtConfirmPayment.DataBindings.Clear();
+            txtConfirmAddress.DataBindings.Clear();
+        }
+
+        private void SetUpConfirmOrder()
+        {
+            LoadOrders();
+            IEnumerable<OrderDTO> list = listOrders.Where(ord => ord.status == 0).ToList();
+            if (list != null)
             {
-                IEnumerable<OrderDTO> listOfOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
-                foreach (OrderDTO ord in listOfOrders)
-                {
-                    ArrayList row = new ArrayList();
-                    //string cusName = data.tblCustomers.Single(cus => cus.username.Equals(ord.cusID)).firstname + " " + data.tblCustomers.Single(cus => cus.username.Equals(ord.cusID)).lastname;
-                    row.Add(ord.cusID);
-                    row.Add(ord.datetime);
-                    row.Add(ord.address);
-                    row.Add(ord.id);
-                    gvConfirmOrder.Rows.Add(row.ToArray());
-                }
-                gvConfirmOrder.Columns["id"].Visible = false;
+                gvConfirmOrder.DataSource = list;
+                gvConfirmOrder.Columns["date"].DefaultCellStyle.Format = "dd-MM-yyyy";
+                gvConfirmOrder.Columns["cusID"].Visible = false;
+                gvConfirmOrder.Columns["emlID"].Visible = false;
+                gvConfirmOrder.Columns["payment"].Visible = false;
+                gvConfirmOrder.Columns["status"].Visible = false;
+                gvConfirmOrder.Columns["address"].Visible = false;
+                ClearConfirmOrdersDataBinding();
+                AddConfirmOrdersDataBinding(list);
+
             }
-            
+
+
+
+
         }
         private void ViewOrderDetail2(int orderIDRef)
         {
-            gvOrderDetail2.ColumnCount = 2;
-            gvOrderDetail2.Columns[0].Name = "Toy";
-            gvOrderDetail2.Columns[1].Name = "Quantity";
-            gvOrderDetail2.Rows.Clear();
-            List<tblOrderDetail> listOfOrderDetails = data.tblOrderDetails.Where(ord => ord.orderID == orderIDRef).ToList();
-            int i = 0;
-            foreach (tblOrderDetail orderDetail in listOfOrderDetails)
+            gvOrderDetail2.DataSource = listOfOrderDetails.Select(ordDetail => new
             {
-                string toyName = data.tblToys.Single(toy => toy.id == orderDetail.toyID).name;
-                if (toyName == "") { break; };
-                ArrayList row = new ArrayList();      
-                row.Add(toyName);
-                row.Add(orderDetail.quantity);
-                gvOrderDetail2.Rows.Add(row.ToArray());
-                i++;
-            }
-            
+                Name = ordDetail.name,
+                Quantity = ordDetail.quantity,
+                orderID = ordDetail.orderID
+            }).Where(ordDetail => ordDetail.orderID == orderIDRef).ToList();
+
         }
         private void ConfirmOrder()
         {
@@ -666,12 +677,12 @@ namespace KiddyDesktop
             CPasswordform.Show();
         }
 
-     
-      
+
+
 
         private void gvConfirmOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells[3].Value.ToString());
+            ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells["id"].Value.ToString());
             ViewOrderDetail2(ordIDConfirm);
         }
 
@@ -694,7 +705,7 @@ namespace KiddyDesktop
             fileChooser.Title = "Please select a photo";
             fileChooser.Filter = "JPG|*.jpg|PNG|*.png|GIF|*gif";
             fileChooser.Multiselect = false;
-            if(fileChooser.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            if (fileChooser.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 this.PBEmployee.ImageLocation = fileChooser.FileName;
                 empImgString = fileChooser.FileName;
@@ -704,7 +715,7 @@ namespace KiddyDesktop
 
         private void btnUploadImage_Validating(object sender, CancelEventArgs e)
         {
-            if(empImgString == null && PBEmployee.Image == null)
+            if (empImgString == null && PBEmployee.Image == null)
             {
                 imageValidate.SetError(btnUploadImage, "Please choose employee image");
                 btnUploadImage.Focus();
@@ -714,12 +725,12 @@ namespace KiddyDesktop
                 imageValidate.SetError(btnUploadImage, "");
             }
         }
-       
+
         #region Toy_Functions
         private async void loadToys()
         {
             HttpResponseMessage response = await client.GetAsync(BASE_URL + "Toys");
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 string strResponse = response.Content.ReadAsStringAsync().Result;
                 listToys = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
@@ -732,7 +743,8 @@ namespace KiddyDesktop
                 dgvProducts.Columns["category"].Visible = false;
                 clearDataBindingForProduct();
                 addDataBindingForProduct();
-            } else
+            }
+            else
             {
                 MessageBox.Show("Load product failed! Please check your connection!");
             }
@@ -744,11 +756,12 @@ namespace KiddyDesktop
             try
             {
                 response.EnsureSuccessStatusCode();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
 
         private async void updateToy(ToyDTO dto)
@@ -789,7 +802,7 @@ namespace KiddyDesktop
             cbProCategory.SelectedIndex = 0;
             pbProImage.Image = null;
         }
-        
+
 
         private void addDataBindingForProduct()
         {
@@ -824,41 +837,44 @@ namespace KiddyDesktop
             proName = txtProName.Text.Trim();
             proCategory = (string)cbProCategory.SelectedItem;
             proDescription = txtProDescription.Text.Trim();
-            if(proName.Length == 0 || proCategory.Length == 0 || proDescription.Length == 0)
+            if (proName.Length == 0 || proCategory.Length == 0 || proDescription.Length == 0)
             {
                 check = false;
             }
             try
             {
                 proPrice = float.Parse(txtProPrice.Text.Trim());
-                if(proPrice <= 0)
+                if (proPrice <= 0)
                 {
                     check = false;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 check = false;
             }
             try
             {
                 proQuantity = int.Parse(txtProQuantity.Text.Trim());
-                if(proQuantity <= 0)
+                if (proQuantity <= 0)
                 {
                     check = false;
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 check = false;
             }
             if (pbProImage.Image == null)
             {
                 check = false;
-            } else
+            }
+            else
             {
                 image = imageToByteArray(pbProImage.Image);
             }
-            
-            if(check)
+
+            if (check)
             {
                 ToyDTO dto = new ToyDTO
                 {
@@ -874,11 +890,12 @@ namespace KiddyDesktop
                 MessageBox.Show("Add a toy success!");
                 btnClearPro_Click(sender, e);
                 loadToys();
-            } else
+            }
+            else
             {
                 MessageBox.Show("Your input is invalid! Please try again!");
             }
-            
+
         }
 
         private void dgvProducts_MouseClick(object sender, MouseEventArgs e)
@@ -1038,7 +1055,7 @@ namespace KiddyDesktop
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
         {
-            EmployeeDTO currEmp = (EmployeeDTO) bindingSource1.Current ;
+            EmployeeDTO currEmp = (EmployeeDTO)bindingSource1.Current;
 
             if (currEmp.gender.Equals("male"))
             {
@@ -1055,6 +1072,8 @@ namespace KiddyDesktop
         {
             loadToyFeedback();
             loadFeedback();
+            SetUpConfirmOrder();
+            LoadOrderDetails();
         }
 
         private async void loadToyFeedback()
@@ -1139,11 +1158,14 @@ namespace KiddyDesktop
                 if (listToyFeedback.Count() == 0)
                 {
                     MessageBox.Show("There are no feedback to confirm!");
-                } else
+                }
+                else
                 {
                     MessageBox.Show("Please choose a feedback to confirm!");
                 }
-            } else {
+            }
+            else
+            {
                 int currentRowIndex = dgvFeedback.CurrentRow.Index;
                 int feedbackID = (int)dgvFeedback.Rows[currentRowIndex].Cells["id"].Value;
                 FeedbackDTO dto = new FeedbackDTO { id = feedbackID, status = 1 };
@@ -1244,6 +1266,8 @@ namespace KiddyDesktop
         {
             TabControl.SelectedIndex = 4;
         }
+
+
     }
 }
 
