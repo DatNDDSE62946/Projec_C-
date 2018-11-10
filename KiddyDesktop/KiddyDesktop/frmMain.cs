@@ -60,7 +60,6 @@ namespace KiddyDesktop
         {
             loadToys();
             loadEmployees();
-            LoadOrders();
             SetUpEmployeeData();
 
 
@@ -468,6 +467,7 @@ namespace KiddyDesktop
         private void tabCustomer_Enter(object sender, EventArgs e)
         {
             LoadCustomerData();
+            LoadOrders();
             LoadOrderDetails();
         }
         private async void LoadCustomerData()
@@ -523,6 +523,7 @@ namespace KiddyDesktop
             {
                 string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
                 listOrders = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
+                SetUpConfirmOrder();
             }
         }
         private async void LoadOrderDetails()
@@ -607,7 +608,15 @@ namespace KiddyDesktop
         //</----------------------------end------------------------------------------------> 
         #endregion
 
-        #region Order&Feedback_functions
+        #region Order&Feedback_function
+        private void tabOrderFeedback_Enter(object sender, EventArgs e)
+        {
+            loadToyFeedback();
+            loadFeedback();
+            LoadOrders();
+           
+            LoadOrderDetails();
+        }
         private void AddConfirmOrdersDataBinding(IEnumerable<OrderDTO> listOrdersByCusID)
         {
             txtConfirmPayment.DataBindings.Add("Text", listOrdersByCusID, "payment");
@@ -621,7 +630,6 @@ namespace KiddyDesktop
 
         private void SetUpConfirmOrder()
         {
-            LoadOrders();
             IEnumerable<OrderDTO> list = listOrders.Where(ord => ord.status == 0).ToList();
             if (list != null)
             {
@@ -651,21 +659,29 @@ namespace KiddyDesktop
             }).Where(ordDetail => ordDetail.orderID == orderIDRef).ToList();
 
         }
-        private void ConfirmOrder()
+        private async void ConfirmOrder()
         {
-            tblOrder ord = data.tblOrders.Single(order => order.id == ordIDConfirm);
-            ord.payment = "success";
-            data.SaveChanges();
-            SetUpConfirmOrder();
-            gvOrderDetail2.Rows.Clear();
+            OrderDTO dto = listOrders.Single(ord => ord.id == ordIDConfirm);
+            dto.status = 1;
+            if(ordIDConfirm != -1)
+            {
+                HttpResponseMessage responseMessage = await client.PutAsJsonAsync(BASE_URL + "Orders/" + dto.id, dto);
+                try
+                {
+                    responseMessage.EnsureSuccessStatusCode();
+                 
+
+                }
+                catch (Exception)
+                {
+
+                    MessageBox.Show("Confirm fail!");
+                }
+            }
         }
         private void RejectOrder()
         {
-            tblOrder ord = data.tblOrders.Single(order => order.id == ordIDConfirm);
-            ord.payment = "fail";
-            data.SaveChanges();
-            SetUpConfirmOrder();
-            gvOrderDetail2.Rows.Clear();
+           
         }
 
         #endregion
@@ -1068,13 +1084,7 @@ namespace KiddyDesktop
         }
 
         #region Feedback_Functions
-        private void tabOrderFeedback_Enter(object sender, EventArgs e)
-        {
-            loadToyFeedback();
-            loadFeedback();
-            SetUpConfirmOrder();
-            LoadOrderDetails();
-        }
+    
 
         private async void loadToyFeedback()
         {
@@ -1267,7 +1277,10 @@ namespace KiddyDesktop
             TabControl.SelectedIndex = 4;
         }
 
+        private void tabCustomer_Enter_1(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

@@ -35,7 +35,7 @@ namespace KiddyDesktop
             HttpResponseMessage response = await client.PostAsJsonAsync(BASE_URL + "CheckLogin", dto);
             string strResponse = response.Content.ReadAsStringAsync().Result;
             result = JsonConvert.DeserializeObject<EmployeeDTO>(strResponse);
-            if(result == null)
+            if(result.username == null)
             {
                 MessageBox.Show("Invalid username password!");
             }

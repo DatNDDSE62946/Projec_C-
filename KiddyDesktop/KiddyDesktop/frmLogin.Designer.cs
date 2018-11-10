@@ -80,6 +80,7 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(153, 13);
             this.txtPassword.TabIndex = 3;
+            this.txtPassword.Text = "123456";
             // 
             // btnLogin
             // 
