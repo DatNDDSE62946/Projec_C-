@@ -954,6 +954,7 @@
             // 
             // gvCustomer
             // 
+            this.gvCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvCustomer.Location = new System.Drawing.Point(6, 45);
             this.gvCustomer.Name = "gvCustomer";

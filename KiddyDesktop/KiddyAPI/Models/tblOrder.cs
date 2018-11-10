@@ -32,8 +32,7 @@ namespace KiddyAPI.Models
         [StringLength(100)]
         public string address { get; set; }
 
-        [StringLength(50)]
-        public string status { get; set; }
+        public int status { get; set; }
 
         public virtual tblCustomer tblCustomer { get; set; }
 

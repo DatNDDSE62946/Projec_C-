@@ -55,12 +55,15 @@
                         </div>
                         <script>
                             var cart = [];
-                            var Toy = function (id, quantity) {
-                                this.id = id
+                            var Toy = function (id, name, price, quantity) {
+                                this.id = id;
+                                this.name = name;
+                                this.price = price;
                                 this.quantity = quantity
 
                             };
                             function AddToCart() {
+                                alert("aaa");
                                 var cartData = localStorage.getItem("listOfToys");
                                 if (cartData != null) {
                                     cart = JSON.parse(cartData);
@@ -68,29 +71,36 @@
                                 var id = @Model.id;
                                 var quantity = parseInt(document.getElementById("quantity_input").value);
                                 var name = "@Model.name";
-                                var check = false;
-                                for (var i in cart) {
-                                    if (cart[i].id === id) {
-                                        cart[i].quantity += quantity;
-                                        check = true;
+                                var price = @Model.price;
+                                var quantityDB = @Model.quantity;
+                                alert(quantity);
+                                if (quantity < @Model.quantity) {
+                                    var check = false;
+                                    for (var i in cart) {
+                                        if (cart[i].id === id) {
+                                            cart[i].quantity += quantity;
+                                            check = true;
+                                        }
+                                    };
+                                    alert(check);
+                                    if (!check) {
+                                        var toy = new Toy(id, name, price, quantity);
+                                        cart.push(toy);
                                     }
-                                };
-                                if (!check) {
-                                    var toy = new Toy(id, quantity);
-                                    cart.push(toy);
+
+                                    console.log(cart);
+                                    SaveCart();
+                                    document.getElementById("numberProsInCart").innerHTML = "(" + cart.length + ")";
+                                    alert("Add " + quantity + "-" + name + " success!");
+                                } else {
+                                    alert("Out of Stock!");
                                 }
-
-                                console.log(cart);
-                                SaveCart();
-                                document.getElementById("numberProsInCart").innerHTML = "("+ cart.length + ")";
-                                alert("Add " + quantity + "-" + name + " success!");
+                               
                             }
-
-
-
                             function SaveCart() {
                                 localStorage.setItem("listOfToys", JSON.stringify(cart));
                             }
+                          
 
                         </script>
 

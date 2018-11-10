@@ -78,6 +78,7 @@ namespace KiddyAPI.Controllers
                     price = toy.price,
                     image = toy.image,
                     description = toy.desciption,
+                    quantity = toy.quantity,
                     category = toy.category
                 };
             }
@@ -251,6 +252,23 @@ namespace KiddyAPI.Controllers
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = toy.id }, toy);
+        }
+        [HttpPost]
+        [Route("api/Toys/listToys")]
+        [ResponseType(typeof(IEnumerable<ToyDTO>))]
+        public IEnumerable<ToyDTO> listToys(IEnumerable<ToyDTO> listToys)
+        {
+            foreach(ToyDTO toy in listToys)
+            {
+                tblToy temp = db.tblToys.Single(tempToy => tempToy.id == toy.id);
+                toy.image = temp.image;
+                toy.name = temp.name;
+                toy.price = temp.price;
+                toy.category = temp.category;
+                toy.description = temp.desciption;
+            }
+
+            return listToys;
         }
 
 

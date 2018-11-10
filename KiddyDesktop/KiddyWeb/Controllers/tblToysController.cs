@@ -125,10 +125,23 @@ namespace KiddyWeb.Controllers
             IEnumerable<ToyDTO> list = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
             return View(list.ToPagedList(page ?? 1, 4));
         }
-        public async Task<ActionResult> Cart()
+        [HttpGet]
+        public ActionResult Cart()
         {
-            HttpResponseMessage responseMessage = await client.GetAsync(baseURL);
+
             return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> Cart(IEnumerable<ToyDTO> listObject)
+        {
+            IEnumerable<ToyDTO> listToys = null;
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(baseURL + "Toys/listToys", listObject);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
+                listToys = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
+            }
+            return View(listToys);
         }
     }
 }
