@@ -34,11 +34,13 @@ namespace KiddyWeb.Controllers
             HttpResponseMessage response = await client.PostAsJsonAsync(baseURL + "CheckLogin", customer);
             string resString = response.Content.ReadAsStringAsync().Result;
             CustomerDTO dto = JsonConvert.DeserializeObject<CustomerDTO>(resString);
-            if(dto != null) {
+            if (dto != null)
+            {
                 Session["USER"] = dto.username;
                 Session["LASTNAME"] = dto.lastname;
                 return RedirectToAction("Index", "tblToys");
-            } else
+            }
+            else
             {
                 ViewBag.Invalid = "Invalid email or password!";
                 return View();
@@ -53,7 +55,7 @@ namespace KiddyWeb.Controllers
             {
                 string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
                 CustomerDTO customer = JsonConvert.DeserializeObject<CustomerDTO>(strResponse);
-                if(customer != null)
+                if (customer != null)
                 {
                     ViewBag.Success = "Register successfully!";
                 }
@@ -62,7 +64,7 @@ namespace KiddyWeb.Controllers
                     ViewBag.Fail = "Register fail!";
                 }
             }
-            
+
             return View();
         }
 
@@ -81,7 +83,7 @@ namespace KiddyWeb.Controllers
         [HttpPost]
         public async Task<ActionResult> ChangePassword(string oldpassword, string newpassword)
         {
-            if(Session["USER"] != null)
+            if (Session["USER"] != null)
             {
                 string username = Session["USER"].ToString();
                 CustomerDTO customer = new CustomerDTO { username = username, password = oldpassword };
@@ -100,17 +102,18 @@ namespace KiddyWeb.Controllers
                     ViewBag.Invalid = "Old password is wrong! Please try again!";
                 }
                 return View();
-            } else
+            }
+            else
             {
                 return RedirectToAction("Login");
             }
-            
+
         }
 
         [HttpGet]
         public async Task<ActionResult> TransactionHistory()
         {
-            if(Session["USER"] != null)
+            if (Session["USER"] != null)
             {
                 string username = Session["USER"].ToString();
                 IEnumerable<OrderDTO> list = null;
@@ -121,11 +124,12 @@ namespace KiddyWeb.Controllers
                     list = JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(strResponse);
                 }
                 return View(list);
-            } else
+            }
+            else
             {
                 return RedirectToAction("Login");
             }
-            
+
         }
 
         [HttpPost]
@@ -140,9 +144,26 @@ namespace KiddyWeb.Controllers
         }
 
         [HttpGet]
-        public ActionResult ProductFeedback(int id, string name)
+        public ActionResult ProductFeedback(int toyID, string name, int orderID)
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Feedback([Bind(Include = "content, toyID")]FeedbackDTO dto, int orderID)
+        {
+            if (Session["USER"] != null)
+            {
+                dto.cusID = Session["USER"].ToString();
+                HttpResponseMessage response = await client.PostAsJsonAsync("http://localhost:50815/api/Feedbacks?orderID=" + orderID, dto);
+                response.EnsureSuccessStatusCode();
+
+                return RedirectToAction("Details", "tblToys", new { id = dto.toyID });
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
 
         // POST: tblCustomers/Create

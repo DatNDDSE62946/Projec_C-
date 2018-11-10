@@ -95,9 +95,9 @@ namespace KiddyAPI.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Feedbacks
+        // POST: api/Feedbacks?orderID=1
         [ResponseType(typeof(FeedbackDTO))]
-        public IHttpActionResult PosttblFeedback(FeedbackDTO dto)
+        public IHttpActionResult PosttblFeedback(int orderID, FeedbackDTO dto)
         {
             if (!ModelState.IsValid)
             {
@@ -111,6 +111,8 @@ namespace KiddyAPI.Controllers
                 status = 0
             };
             db.tblFeedbacks.Add(feedback);
+            tblOrderDetail ordDetail = db.tblOrderDetails.FirstOrDefault(detail => detail.id == orderID && detail.toyID == dto.toyID);
+            ordDetail.isFeedback = true;
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = dto.id }, dto);

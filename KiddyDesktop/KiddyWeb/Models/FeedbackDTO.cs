@@ -10,5 +10,7 @@ namespace KiddyWeb.Models
         public int id { get; set; }
         public string content { get; set; }
         public string cusName { get; set; }
+        public string cusID { get; set; }
+        public int? toyID { get; set; }
     }
 }

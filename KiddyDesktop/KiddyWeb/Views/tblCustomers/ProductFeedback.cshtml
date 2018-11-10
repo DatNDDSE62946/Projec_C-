@@ -18,7 +18,7 @@
                 <div class="col-lg-6">
                     <div class="details_image">
                         @{
-                            string imageName = "toy_" + Request.QueryString["id"] + ".jpg";
+                            string imageName = "toy_" + Request.QueryString["toyID"] + ".jpg";
                         }
                         <div class="details_image_large"><img src="~/Content/images/@imageName" alt=""></div>
 
@@ -44,8 +44,9 @@
                                         <div class="newsletter_content text-center">
                                             <h4>Tell us what do you think about this product</h4>
                                             <div class="newsletter_form_container">
-                                                <form action="#" id="newsletter_form" class="newsletter_form">
-                                                    <input type="hidden" name="toyID" value="@Request.QueryString["id"]" />
+                                                <form action="Feedback" id="newsletter_form" class="newsletter_form" method="post">
+                                                    <input type="hidden" name="toyID" value="@Request.QueryString["toyID"]"/>
+                                                    <input type="hidden" name="orderID" value="@Request.QueryString["orderID"]"/>
                                                     <textarea type="text" class="form-control" required="required" rows="5" name="content"></textarea>
                                                     <button class="newsletter_button trans_200"><span>Send</span></button>
                                                 </form>

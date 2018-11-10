@@ -32,8 +32,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.TabControl = new System.Windows.Forms.TabControl();
             this.tabWelcome = new System.Windows.Forms.TabPage();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnWelcomeOrder = new System.Windows.Forms.Button();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.imgList = new System.Windows.Forms.ImageList(this.components);
             this.btnWelcomeCustomer = new System.Windows.Forms.Button();
             this.btnWelcomeEmployee = new System.Windows.Forms.Button();
             this.btnWelcomeProduct = new System.Windows.Forms.Button();
@@ -90,8 +92,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.txtFeedback = new System.Windows.Forms.TextBox();
             this.dgvFeedback = new System.Windows.Forms.DataGridView();
             this.btnDeleteFeedback = new System.Windows.Forms.Button();
@@ -124,13 +124,13 @@
             this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.errProduct = new System.Windows.Forms.ErrorProvider(this.components);
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.imgButtonList = new System.Windows.Forms.ImageList(this.components);
             this.TabControl.SuspendLayout();
             this.tabWelcome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -161,7 +161,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -172,11 +171,11 @@
             this.TabControl.Controls.Add(this.tabOrderFeedback);
             this.TabControl.Controls.Add(this.tabCustomer);
             this.TabControl.Cursor = System.Windows.Forms.Cursors.Default;
-            this.TabControl.ImageList = this.imageList1;
+            this.TabControl.ImageList = this.imgList;
             this.TabControl.Location = new System.Drawing.Point(12, 77);
             this.TabControl.Name = "TabControl";
             this.TabControl.SelectedIndex = 0;
-            this.TabControl.Size = new System.Drawing.Size(1018, 486);
+            this.TabControl.Size = new System.Drawing.Size(1005, 486);
             this.TabControl.TabIndex = 0;
             // 
             // tabWelcome
@@ -196,6 +195,27 @@
             this.tabWelcome.Text = "Welcome to Kiddy";
             this.tabWelcome.UseVisualStyleBackColor = true;
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Segoe Script", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(176, 395);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(135, 33);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Kiddy.com";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(50, 27);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(392, 365);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
+            // 
             // btnWelcomeOrder
             // 
             this.btnWelcomeOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
@@ -205,7 +225,7 @@
             this.btnWelcomeOrder.ForeColor = System.Drawing.Color.Black;
             this.btnWelcomeOrder.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnWelcomeOrder.ImageIndex = 2;
-            this.btnWelcomeOrder.ImageList = this.imageList1;
+            this.btnWelcomeOrder.ImageList = this.imgList;
             this.btnWelcomeOrder.Location = new System.Drawing.Point(519, 225);
             this.btnWelcomeOrder.Name = "btnWelcomeOrder";
             this.btnWelcomeOrder.Size = new System.Drawing.Size(172, 167);
@@ -214,26 +234,27 @@
             this.btnWelcomeOrder.UseVisualStyleBackColor = false;
             this.btnWelcomeOrder.Click += new System.EventHandler(this.btnWelcomeOrder_Click);
             // 
-            // imageList1
+            // imgList
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "puzzle.png");
-            this.imageList1.Images.SetKeyName(1, "blocks.png");
-            this.imageList1.Images.SetKeyName(2, "employees.png");
-            this.imageList1.Images.SetKeyName(3, "man.png");
-            this.imageList1.Images.SetKeyName(4, "man (2).png");
+            this.imgList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgList.ImageStream")));
+            this.imgList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgList.Images.SetKeyName(0, "puzzle.png");
+            this.imgList.Images.SetKeyName(1, "blocks.png");
+            this.imgList.Images.SetKeyName(2, "employees.png");
+            this.imgList.Images.SetKeyName(3, "man.png");
+            this.imgList.Images.SetKeyName(4, "man (2).png");
+            this.imgList.Images.SetKeyName(5, "add.png");
             // 
             // btnWelcomeCustomer
             // 
-            this.btnWelcomeCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.btnWelcomeCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnWelcomeCustomer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnWelcomeCustomer.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnWelcomeCustomer.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWelcomeCustomer.ForeColor = System.Drawing.Color.Black;
             this.btnWelcomeCustomer.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnWelcomeCustomer.ImageIndex = 4;
-            this.btnWelcomeCustomer.ImageList = this.imageList1;
+            this.btnWelcomeCustomer.ImageList = this.imgList;
             this.btnWelcomeCustomer.Location = new System.Drawing.Point(736, 225);
             this.btnWelcomeCustomer.Name = "btnWelcomeCustomer";
             this.btnWelcomeCustomer.Size = new System.Drawing.Size(172, 167);
@@ -252,7 +273,7 @@
             this.btnWelcomeEmployee.ForeColor = System.Drawing.Color.Black;
             this.btnWelcomeEmployee.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnWelcomeEmployee.ImageIndex = 3;
-            this.btnWelcomeEmployee.ImageList = this.imageList1;
+            this.btnWelcomeEmployee.ImageList = this.imgList;
             this.btnWelcomeEmployee.Location = new System.Drawing.Point(736, 27);
             this.btnWelcomeEmployee.Name = "btnWelcomeEmployee";
             this.btnWelcomeEmployee.Size = new System.Drawing.Size(172, 167);
@@ -263,14 +284,14 @@
             // 
             // btnWelcomeProduct
             // 
-            this.btnWelcomeProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.btnWelcomeProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.btnWelcomeProduct.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnWelcomeProduct.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.btnWelcomeProduct.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWelcomeProduct.ForeColor = System.Drawing.Color.Black;
             this.btnWelcomeProduct.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnWelcomeProduct.ImageIndex = 0;
-            this.btnWelcomeProduct.ImageList = this.imageList1;
+            this.btnWelcomeProduct.ImageList = this.imgList;
             this.btnWelcomeProduct.Location = new System.Drawing.Point(519, 27);
             this.btnWelcomeProduct.Name = "btnWelcomeProduct";
             this.btnWelcomeProduct.Size = new System.Drawing.Size(172, 167);
@@ -293,48 +314,64 @@
             this.tabProduct.Location = new System.Drawing.Point(4, 47);
             this.tabProduct.Name = "tabProduct";
             this.tabProduct.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProduct.Size = new System.Drawing.Size(1010, 435);
+            this.tabProduct.Size = new System.Drawing.Size(997, 435);
             this.tabProduct.TabIndex = 0;
             this.tabProduct.Text = "Product";
             this.tabProduct.UseVisualStyleBackColor = true;
             // 
             // btnClearPro
             // 
-            this.btnClearPro.Location = new System.Drawing.Point(893, 21);
+            this.btnClearPro.FlatAppearance.BorderSize = 0;
+            this.btnClearPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearPro.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearPro.ImageKey = "clear.png";
+            this.btnClearPro.ImageList = this.imgButtonList;
+            this.btnClearPro.Location = new System.Drawing.Point(883, 21);
             this.btnClearPro.Name = "btnClearPro";
-            this.btnClearPro.Size = new System.Drawing.Size(60, 50);
+            this.btnClearPro.Size = new System.Drawing.Size(79, 84);
             this.btnClearPro.TabIndex = 8;
-            this.btnClearPro.Text = "Clear";
             this.btnClearPro.UseVisualStyleBackColor = true;
             this.btnClearPro.Click += new System.EventHandler(this.btnClearPro_Click);
             // 
             // btnDeletePro
             // 
-            this.btnDeletePro.Location = new System.Drawing.Point(801, 18);
+            this.btnDeletePro.FlatAppearance.BorderSize = 0;
+            this.btnDeletePro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeletePro.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeletePro.ImageKey = "cross.png";
+            this.btnDeletePro.ImageList = this.imgButtonList;
+            this.btnDeletePro.Location = new System.Drawing.Point(791, 18);
             this.btnDeletePro.Name = "btnDeletePro";
-            this.btnDeletePro.Size = new System.Drawing.Size(60, 50);
+            this.btnDeletePro.Size = new System.Drawing.Size(79, 84);
             this.btnDeletePro.TabIndex = 7;
-            this.btnDeletePro.Text = "Delete";
             this.btnDeletePro.UseVisualStyleBackColor = true;
             this.btnDeletePro.Click += new System.EventHandler(this.btnDeletePro_Click);
             // 
             // btnSavePro
             // 
-            this.btnSavePro.Location = new System.Drawing.Point(703, 18);
+            this.btnSavePro.FlatAppearance.BorderSize = 0;
+            this.btnSavePro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSavePro.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSavePro.ImageKey = "check.png";
+            this.btnSavePro.ImageList = this.imgButtonList;
+            this.btnSavePro.Location = new System.Drawing.Point(693, 18);
             this.btnSavePro.Name = "btnSavePro";
-            this.btnSavePro.Size = new System.Drawing.Size(60, 50);
+            this.btnSavePro.Size = new System.Drawing.Size(79, 84);
             this.btnSavePro.TabIndex = 6;
-            this.btnSavePro.Text = "Save";
             this.btnSavePro.UseVisualStyleBackColor = true;
             this.btnSavePro.Click += new System.EventHandler(this.btnSavePro_Click);
             // 
             // btnAddPro
             // 
+            this.btnAddPro.FlatAppearance.BorderSize = 0;
+            this.btnAddPro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPro.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddPro.ImageKey = "add.png";
+            this.btnAddPro.ImageList = this.imgButtonList;
             this.btnAddPro.Location = new System.Drawing.Point(608, 18);
             this.btnAddPro.Name = "btnAddPro";
-            this.btnAddPro.Size = new System.Drawing.Size(60, 50);
+            this.btnAddPro.Size = new System.Drawing.Size(79, 75);
             this.btnAddPro.TabIndex = 5;
-            this.btnAddPro.Text = "Add";
             this.btnAddPro.UseVisualStyleBackColor = true;
             this.btnAddPro.Click += new System.EventHandler(this.btnAddPro_Click);
             // 
@@ -446,11 +483,15 @@
             // 
             // btnUploadProImage
             // 
-            this.btnUploadProImage.Location = new System.Drawing.Point(380, 187);
+            this.btnUploadProImage.FlatAppearance.BorderSize = 0;
+            this.btnUploadProImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUploadProImage.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadProImage.ImageIndex = 6;
+            this.btnUploadProImage.ImageList = this.imgButtonList;
+            this.btnUploadProImage.Location = new System.Drawing.Point(434, 182);
             this.btnUploadProImage.Name = "btnUploadProImage";
-            this.btnUploadProImage.Size = new System.Drawing.Size(168, 31);
+            this.btnUploadProImage.Size = new System.Drawing.Size(77, 51);
             this.btnUploadProImage.TabIndex = 12;
-            this.btnUploadProImage.Text = "Upload Image";
             this.btnUploadProImage.UseVisualStyleBackColor = true;
             this.btnUploadProImage.Click += new System.EventHandler(this.btnUploadProImage_Click);
             this.btnUploadProImage.Validating += new System.ComponentModel.CancelEventHandler(this.btnUploadProImage_Validating);
@@ -549,48 +590,64 @@
             this.tabEmployee.Location = new System.Drawing.Point(4, 47);
             this.tabEmployee.Name = "tabEmployee";
             this.tabEmployee.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEmployee.Size = new System.Drawing.Size(1010, 435);
+            this.tabEmployee.Size = new System.Drawing.Size(997, 435);
             this.tabEmployee.TabIndex = 1;
             this.tabEmployee.Text = "Employee";
             this.tabEmployee.UseVisualStyleBackColor = true;
             // 
             // btnEmployeeEdit
             // 
-            this.btnEmployeeEdit.Location = new System.Drawing.Point(745, 284);
+            this.btnEmployeeEdit.FlatAppearance.BorderSize = 0;
+            this.btnEmployeeEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeEdit.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeEdit.ImageKey = "check.png";
+            this.btnEmployeeEdit.ImageList = this.imgButtonList;
+            this.btnEmployeeEdit.Location = new System.Drawing.Point(658, 310);
             this.btnEmployeeEdit.Name = "btnEmployeeEdit";
-            this.btnEmployeeEdit.Size = new System.Drawing.Size(75, 56);
+            this.btnEmployeeEdit.Size = new System.Drawing.Size(62, 56);
             this.btnEmployeeEdit.TabIndex = 7;
-            this.btnEmployeeEdit.Text = "Edit";
             this.btnEmployeeEdit.UseVisualStyleBackColor = true;
             this.btnEmployeeEdit.Click += new System.EventHandler(this.btnEmployeeEdit_Click);
             // 
             // btnEmployeeDelete
             // 
-            this.btnEmployeeDelete.Location = new System.Drawing.Point(860, 284);
+            this.btnEmployeeDelete.FlatAppearance.BorderSize = 0;
+            this.btnEmployeeDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeDelete.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeDelete.ImageKey = "cross.png";
+            this.btnEmployeeDelete.ImageList = this.imgButtonList;
+            this.btnEmployeeDelete.Location = new System.Drawing.Point(773, 310);
             this.btnEmployeeDelete.Name = "btnEmployeeDelete";
-            this.btnEmployeeDelete.Size = new System.Drawing.Size(75, 56);
+            this.btnEmployeeDelete.Size = new System.Drawing.Size(62, 56);
             this.btnEmployeeDelete.TabIndex = 6;
-            this.btnEmployeeDelete.Text = "Delete";
             this.btnEmployeeDelete.UseVisualStyleBackColor = true;
             this.btnEmployeeDelete.Click += new System.EventHandler(this.btnEmployeeDelete_Click);
             // 
             // btnEmployeeSave
             // 
-            this.btnEmployeeSave.Location = new System.Drawing.Point(628, 284);
+            this.btnEmployeeSave.FlatAppearance.BorderSize = 0;
+            this.btnEmployeeSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeSave.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeSave.ImageKey = "add.png";
+            this.btnEmployeeSave.ImageList = this.imgButtonList;
+            this.btnEmployeeSave.Location = new System.Drawing.Point(541, 310);
             this.btnEmployeeSave.Name = "btnEmployeeSave";
-            this.btnEmployeeSave.Size = new System.Drawing.Size(75, 56);
+            this.btnEmployeeSave.Size = new System.Drawing.Size(62, 56);
             this.btnEmployeeSave.TabIndex = 5;
-            this.btnEmployeeSave.Text = "Save";
             this.btnEmployeeSave.UseVisualStyleBackColor = true;
             this.btnEmployeeSave.Click += new System.EventHandler(this.btnEmployeeSave_Click);
             // 
             // btnEmployeeAdd
             // 
-            this.btnEmployeeAdd.Location = new System.Drawing.Point(514, 285);
+            this.btnEmployeeAdd.FlatAppearance.BorderSize = 0;
+            this.btnEmployeeAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeAdd.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeAdd.ImageKey = "clear.png";
+            this.btnEmployeeAdd.ImageList = this.imgButtonList;
+            this.btnEmployeeAdd.Location = new System.Drawing.Point(892, 310);
             this.btnEmployeeAdd.Name = "btnEmployeeAdd";
-            this.btnEmployeeAdd.Size = new System.Drawing.Size(75, 56);
+            this.btnEmployeeAdd.Size = new System.Drawing.Size(62, 56);
             this.btnEmployeeAdd.TabIndex = 4;
-            this.btnEmployeeAdd.Text = "Add";
             this.btnEmployeeAdd.UseVisualStyleBackColor = true;
             this.btnEmployeeAdd.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -668,11 +725,15 @@
             // 
             // btnUploadImage
             // 
+            this.btnUploadImage.FlatAppearance.BorderSize = 0;
+            this.btnUploadImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUploadImage.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadImage.ImageKey = "picture.png";
+            this.btnUploadImage.ImageList = this.imgButtonList;
             this.btnUploadImage.Location = new System.Drawing.Point(310, 177);
             this.btnUploadImage.Name = "btnUploadImage";
-            this.btnUploadImage.Size = new System.Drawing.Size(155, 23);
+            this.btnUploadImage.Size = new System.Drawing.Size(155, 38);
             this.btnUploadImage.TabIndex = 11;
-            this.btnUploadImage.Text = "Upload Image";
             this.btnUploadImage.UseVisualStyleBackColor = true;
             this.btnUploadImage.Click += new System.EventHandler(this.btnUploadImage_Click);
             this.btnUploadImage.Validating += new System.ComponentModel.CancelEventHandler(this.btnUploadImage_Validating);
@@ -786,7 +847,7 @@
             this.tabOrderFeedback.Location = new System.Drawing.Point(4, 47);
             this.tabOrderFeedback.Name = "tabOrderFeedback";
             this.tabOrderFeedback.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOrderFeedback.Size = new System.Drawing.Size(1010, 435);
+            this.tabOrderFeedback.Size = new System.Drawing.Size(997, 435);
             this.tabOrderFeedback.TabIndex = 2;
             this.tabOrderFeedback.Text = "Order & Feedback";
             this.tabOrderFeedback.UseVisualStyleBackColor = true;
@@ -798,8 +859,6 @@
             this.groupBox6.Controls.Add(this.label15);
             this.groupBox6.Controls.Add(this.textBox11);
             this.groupBox6.Controls.Add(this.label13);
-            this.groupBox6.Controls.Add(this.comboBox1);
-            this.groupBox6.Controls.Add(this.label12);
             this.groupBox6.Controls.Add(this.txtFeedback);
             this.groupBox6.Controls.Add(this.dgvFeedback);
             this.groupBox6.Controls.Add(this.btnDeleteFeedback);
@@ -846,26 +905,6 @@
             this.label13.TabIndex = 11;
             this.label13.Text = "Search Name";
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "All Feedback",
-            "Unchecked Feedback"});
-            this.comboBox1.Location = new System.Drawing.Point(333, 40);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(146, 21);
-            this.comboBox1.TabIndex = 10;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(269, 43);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 13);
-            this.label12.TabIndex = 9;
-            this.label12.Text = "Sort By";
-            // 
             // txtFeedback
             // 
             this.txtFeedback.Location = new System.Drawing.Point(19, 272);
@@ -887,6 +926,7 @@
             // 
             // btnDeleteFeedback
             // 
+            this.btnDeleteFeedback.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteFeedback.Location = new System.Drawing.Point(301, 345);
             this.btnDeleteFeedback.Name = "btnDeleteFeedback";
             this.btnDeleteFeedback.Size = new System.Drawing.Size(178, 67);
@@ -897,6 +937,7 @@
             // 
             // btnConfirmFeedback
             // 
+            this.btnConfirmFeedback.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmFeedback.Location = new System.Drawing.Point(301, 272);
             this.btnConfirmFeedback.Name = "btnConfirmFeedback";
             this.btnConfirmFeedback.Size = new System.Drawing.Size(178, 67);
@@ -942,6 +983,7 @@
             // 
             // btnRejectOrder
             // 
+            this.btnRejectOrder.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRejectOrder.Location = new System.Drawing.Point(284, 103);
             this.btnRejectOrder.Name = "btnRejectOrder";
             this.btnRejectOrder.Size = new System.Drawing.Size(201, 67);
@@ -952,6 +994,7 @@
             // 
             // btnConfirmOrder
             // 
+            this.btnConfirmOrder.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmOrder.Location = new System.Drawing.Point(284, 20);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
             this.btnConfirmOrder.Size = new System.Drawing.Size(201, 67);
@@ -991,7 +1034,7 @@
             this.tabCustomer.Location = new System.Drawing.Point(4, 47);
             this.tabCustomer.Name = "tabCustomer";
             this.tabCustomer.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCustomer.Size = new System.Drawing.Size(1010, 435);
+            this.tabCustomer.Size = new System.Drawing.Size(997, 435);
             this.tabCustomer.TabIndex = 3;
             this.tabCustomer.Text = "Customer";
             this.tabCustomer.UseVisualStyleBackColor = true;
@@ -1060,6 +1103,7 @@
             // 
             // btnBlock
             // 
+            this.btnBlock.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBlock.Location = new System.Drawing.Point(156, 364);
             this.btnBlock.Name = "btnBlock";
             this.btnBlock.Size = new System.Drawing.Size(57, 47);
@@ -1169,17 +1213,6 @@
             this.errProduct.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errProduct.ContainerControl = this;
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Segoe Script", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(176, 395);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(135, 33);
-            this.linkLabel1.TabIndex = 9;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Kiddy.com";
-            // 
             // btnExit
             // 
             this.btnExit.FlatAppearance.BorderSize = 0;
@@ -1206,15 +1239,17 @@
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             this.btnMinimize.MouseHover += new System.EventHandler(this.btnMinimize_MouseHover);
             // 
-            // pictureBox2
+            // imgButtonList
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(50, 27);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(392, 365);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
+            this.imgButtonList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgButtonList.ImageStream")));
+            this.imgButtonList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgButtonList.Images.SetKeyName(0, "add.png");
+            this.imgButtonList.Images.SetKeyName(1, "check.png");
+            this.imgButtonList.Images.SetKeyName(2, "cross.png");
+            this.imgButtonList.Images.SetKeyName(3, "clear.png");
+            this.imgButtonList.Images.SetKeyName(4, "update.png");
+            this.imgButtonList.Images.SetKeyName(5, "refresh.png");
+            this.imgButtonList.Images.SetKeyName(6, "picture.png");
             // 
             // frmMain
             // 
@@ -1237,6 +1272,7 @@
             this.TabControl.ResumeLayout(false);
             this.tabWelcome.ResumeLayout(false);
             this.tabWelcome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabProduct.ResumeLayout(false);
             this.tabProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
@@ -1275,7 +1311,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1334,8 +1369,6 @@
         private System.Windows.Forms.Button btnConfirmOrder;
         private System.Windows.Forms.DataGridView gvOrderDetail2;
         private System.Windows.Forms.DataGridView gvConfirmOrder;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtFeedback;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
@@ -1370,7 +1403,7 @@
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ErrorProvider errProduct;
         private System.Windows.Forms.TabPage tabWelcome;
-        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ImageList imgList;
         private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnWelcomeProduct;
@@ -1381,5 +1414,6 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ImageList imgButtonList;
     }
 }

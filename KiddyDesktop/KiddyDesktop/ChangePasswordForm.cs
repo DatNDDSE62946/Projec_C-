@@ -45,5 +45,15 @@ namespace KiddyDesktop
                 MessageBox.Show("Your password is not correct!");
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

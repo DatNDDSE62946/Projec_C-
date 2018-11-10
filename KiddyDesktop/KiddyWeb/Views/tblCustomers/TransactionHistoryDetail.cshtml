@@ -111,10 +111,13 @@
                                         <h4>@orderDetail.name</h4>
                                         @if (ViewBag.Order.status == 1 && orderDetail.isFeedback == false)
                                         {
-                                        <form action="ProductFeedback">
-                                            <input type="hidden" name="id" value="@orderDetail.toyID"/>
+                                        <form action="ProductFeedback" target="_blank">
+                                            <input type="hidden" name="toyID" value="@orderDetail.toyID"/>
                                             <input type="hidden" name="name" value="@orderDetail.name"/>
-                                            <button class="btn btn-outline-warning" type="submit">Feedback</button>
+                                            <input type="hidden" name="orderID" value="@orderDetail.id"/>
+                                            <button class="btn btn-outline-warning" type="submit">
+                                                Feedback
+                                            </button>
                                         </form>
                                             
                                         }
