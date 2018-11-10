@@ -19,14 +19,18 @@ namespace KiddyAPI.Controllers
         // GET: api/Orders
         public IEnumerable<OrderDTO> GettblOrders()
         {
-            return db.tblOrders.Select(ord => new OrderDTO
+            IEnumerable<OrderDTO> listOrders = db.tblOrders.Select(ord => new OrderDTO
             {
-                id= ord.id,
+                id = ord.id,
                 date = ord.date,
                 cusID = ord.cusID,
                 address = ord.address,
-                status = ord.status
+                status = ord.status,
+                payment = ord.payment,
+                emlID = ord.emlID
+                
             }).ToList();
+            return listOrders;
         }
 
         // GET: api/Orders/5

@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.TabControl = new System.Windows.Forms.TabControl();
             this.tabWelcome = new System.Windows.Forms.TabPage();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnWelcomeOrder = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.btnWelcomeCustomer = new System.Windows.Forms.Button();
@@ -98,6 +100,10 @@
             this.btnConfirmFeedback = new System.Windows.Forms.Button();
             this.dgvProFeedback = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.txtConfirmAddress = new System.Windows.Forms.TextBox();
+            this.txtConfirmPayment = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.btnRejectOrder = new System.Windows.Forms.Button();
             this.btnConfirmOrder = new System.Windows.Forms.Button();
@@ -105,6 +111,10 @@
             this.gvConfirmOrder = new System.Windows.Forms.DataGridView();
             this.tabCustomer = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtPayment = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.Payment = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.gvOrderDetail = new System.Windows.Forms.DataGridView();
             this.label18 = new System.Windows.Forms.Label();
@@ -124,13 +134,12 @@
             this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.errProduct = new System.Windows.Forms.ErrorProvider(this.components);
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.TabControl.SuspendLayout();
             this.tabWelcome.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -161,7 +170,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // TabControl
@@ -195,6 +203,27 @@
             this.tabWelcome.TabIndex = 4;
             this.tabWelcome.Text = "Welcome to Kiddy";
             this.tabWelcome.UseVisualStyleBackColor = true;
+            // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Font = new System.Drawing.Font("Segoe Script", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel1.Location = new System.Drawing.Point(176, 395);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(135, 33);
+            this.linkLabel1.TabIndex = 9;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Kiddy.com";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(50, 27);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(392, 365);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
             // 
             // btnWelcomeOrder
             // 
@@ -919,6 +948,10 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.txtConfirmAddress);
+            this.groupBox5.Controls.Add(this.txtConfirmPayment);
+            this.groupBox5.Controls.Add(this.label22);
+            this.groupBox5.Controls.Add(this.label24);
             this.groupBox5.Controls.Add(this.label14);
             this.groupBox5.Controls.Add(this.btnRejectOrder);
             this.groupBox5.Controls.Add(this.btnConfirmOrder);
@@ -931,10 +964,45 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Confirm Order";
             // 
+            // txtConfirmAddress
+            // 
+            this.txtConfirmAddress.Location = new System.Drawing.Point(249, 46);
+            this.txtConfirmAddress.Multiline = true;
+            this.txtConfirmAddress.Name = "txtConfirmAddress";
+            this.txtConfirmAddress.ReadOnly = true;
+            this.txtConfirmAddress.Size = new System.Drawing.Size(236, 92);
+            this.txtConfirmAddress.TabIndex = 11;
+            // 
+            // txtConfirmPayment
+            // 
+            this.txtConfirmPayment.Location = new System.Drawing.Point(248, 20);
+            this.txtConfirmPayment.Name = "txtConfirmPayment";
+            this.txtConfirmPayment.ReadOnly = true;
+            this.txtConfirmPayment.Size = new System.Drawing.Size(236, 20);
+            this.txtConfirmPayment.TabIndex = 10;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(187, 54);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(45, 13);
+            this.label22.TabIndex = 9;
+            this.label22.Text = "Address";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(187, 20);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(48, 13);
+            this.label24.TabIndex = 8;
+            this.label24.Text = "Payment";
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(7, 194);
+            this.label14.Location = new System.Drawing.Point(6, 231);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(63, 13);
             this.label14.TabIndex = 4;
@@ -942,9 +1010,9 @@
             // 
             // btnRejectOrder
             // 
-            this.btnRejectOrder.Location = new System.Drawing.Point(284, 103);
+            this.btnRejectOrder.Location = new System.Drawing.Point(375, 144);
             this.btnRejectOrder.Name = "btnRejectOrder";
-            this.btnRejectOrder.Size = new System.Drawing.Size(201, 67);
+            this.btnRejectOrder.Size = new System.Drawing.Size(72, 67);
             this.btnRejectOrder.TabIndex = 3;
             this.btnRejectOrder.Text = "Reject";
             this.btnRejectOrder.UseVisualStyleBackColor = true;
@@ -952,9 +1020,9 @@
             // 
             // btnConfirmOrder
             // 
-            this.btnConfirmOrder.Location = new System.Drawing.Point(284, 20);
+            this.btnConfirmOrder.Location = new System.Drawing.Point(281, 144);
             this.btnConfirmOrder.Name = "btnConfirmOrder";
-            this.btnConfirmOrder.Size = new System.Drawing.Size(201, 67);
+            this.btnConfirmOrder.Size = new System.Drawing.Size(72, 67);
             this.btnConfirmOrder.TabIndex = 2;
             this.btnConfirmOrder.Text = "Confirm";
             this.btnConfirmOrder.UseVisualStyleBackColor = true;
@@ -965,10 +1033,10 @@
             this.gvOrderDetail2.AllowUserToAddRows = false;
             this.gvOrderDetail2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvOrderDetail2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvOrderDetail2.Location = new System.Drawing.Point(7, 213);
+            this.gvOrderDetail2.Location = new System.Drawing.Point(7, 247);
             this.gvOrderDetail2.Name = "gvOrderDetail2";
             this.gvOrderDetail2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvOrderDetail2.Size = new System.Drawing.Size(478, 209);
+            this.gvOrderDetail2.Size = new System.Drawing.Size(478, 175);
             this.gvOrderDetail2.TabIndex = 1;
             // 
             // gvConfirmOrder
@@ -979,7 +1047,7 @@
             this.gvConfirmOrder.Location = new System.Drawing.Point(7, 20);
             this.gvConfirmOrder.Name = "gvConfirmOrder";
             this.gvConfirmOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvConfirmOrder.Size = new System.Drawing.Size(261, 150);
+            this.gvConfirmOrder.Size = new System.Drawing.Size(173, 191);
             this.gvConfirmOrder.TabIndex = 0;
             this.gvConfirmOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvConfirmOrder_CellContentClick);
             // 
@@ -995,9 +1063,14 @@
             this.tabCustomer.TabIndex = 3;
             this.tabCustomer.Text = "Customer";
             this.tabCustomer.UseVisualStyleBackColor = true;
+            this.tabCustomer.Enter += new System.EventHandler(this.tabCustomer_Enter);
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.txtAddress);
+            this.groupBox8.Controls.Add(this.txtPayment);
+            this.groupBox8.Controls.Add(this.label23);
+            this.groupBox8.Controls.Add(this.Payment);
             this.groupBox8.Controls.Add(this.label19);
             this.groupBox8.Controls.Add(this.gvOrderDetail);
             this.groupBox8.Controls.Add(this.label18);
@@ -1008,6 +1081,41 @@
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Customer\'s Order History";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(71, 315);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ReadOnly = true;
+            this.txtAddress.Size = new System.Drawing.Size(192, 95);
+            this.txtAddress.TabIndex = 7;
+            // 
+            // txtPayment
+            // 
+            this.txtPayment.Location = new System.Drawing.Point(70, 289);
+            this.txtPayment.Name = "txtPayment";
+            this.txtPayment.ReadOnly = true;
+            this.txtPayment.Size = new System.Drawing.Size(192, 20);
+            this.txtPayment.TabIndex = 6;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(9, 323);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(45, 13);
+            this.label23.TabIndex = 5;
+            this.label23.Text = "Address";
+            // 
+            // Payment
+            // 
+            this.Payment.AutoSize = true;
+            this.Payment.Location = new System.Drawing.Point(9, 289);
+            this.Payment.Name = "Payment";
+            this.Payment.Size = new System.Drawing.Size(48, 13);
+            this.Payment.TabIndex = 4;
+            this.Payment.Text = "Payment";
             // 
             // label19
             // 
@@ -1021,6 +1129,7 @@
             // gvOrderDetail
             // 
             this.gvOrderDetail.AllowUserToAddRows = false;
+            this.gvOrderDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrderDetail.Location = new System.Drawing.Point(269, 45);
             this.gvOrderDetail.Name = "gvOrderDetail";
@@ -1038,10 +1147,11 @@
             // 
             // gvOrders
             // 
+            this.gvOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrders.Location = new System.Drawing.Point(6, 45);
             this.gvOrders.Name = "gvOrders";
-            this.gvOrders.Size = new System.Drawing.Size(256, 366);
+            this.gvOrders.Size = new System.Drawing.Size(256, 238);
             this.gvOrders.TabIndex = 0;
             this.gvOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvOrders_CellContentClick);
             // 
@@ -1169,17 +1279,6 @@
             this.errProduct.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.errProduct.ContainerControl = this;
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Segoe Script", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(176, 395);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(135, 33);
-            this.linkLabel1.TabIndex = 9;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Kiddy.com";
-            // 
             // btnExit
             // 
             this.btnExit.FlatAppearance.BorderSize = 0;
@@ -1206,16 +1305,6 @@
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             this.btnMinimize.MouseHover += new System.EventHandler(this.btnMinimize_MouseHover);
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(50, 27);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(392, 365);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 5;
-            this.pictureBox2.TabStop = false;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1237,6 +1326,7 @@
             this.TabControl.ResumeLayout(false);
             this.tabWelcome.ResumeLayout(false);
             this.tabWelcome.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tabProduct.ResumeLayout(false);
             this.tabProduct.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
@@ -1275,7 +1365,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1381,5 +1470,13 @@
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.TextBox txtConfirmAddress;
+        private System.Windows.Forms.TextBox txtConfirmPayment;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtAddress;
+        private System.Windows.Forms.TextBox txtPayment;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label Payment;
     }
 }
