@@ -2,23 +2,133 @@
 @{
     ViewBag.Page = "Cart";
 }
-
+<link href="~/Content/styles/cart.css" rel="stylesheet" />
+<link href="~/Content/styles/cart_responsive.css" rel="stylesheet" />
+<script src="~/Content/js/cart.js"></script>
 <script type="text/javascript"
         src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 </script>
-
 <script>
     function ClearCart() {
+
         localStorage.clear();
+        location.href = "http://localhost:57422/tblToys/Cart";
     }
+    function UpdateCart(toyid) {
+        var updateQuantity = document.getElementsByClassName("quantity_input_" + toyid)[0].value
+        alert(toyid + "-" + updateQuantity);
+        var toyData = localStorage.getItem("listOfToys");
+        var toys = JSON.parse(toyData);
+        for (var i = 0; i < toys.length; i++) {
+            if (toys[i].id == toyid) {
+                toys[i].quantity = parseInt(updateQuantity);
+            }
+        }
+        localStorage.clear();
+        localStorage.setItem("listOfToys", JSON.stringify(toys));
+    };
+    function LoadCart() {
+        var form = document.getElementById("cart-submit");
+        var toyData = localStorage.getItem("listOfToys");
+        var input = document.getElementById("listObject");
+        input.value = toyData;
+        form.submit();
+    };
+
+    function InputToys() {
+        var toyData = localStorage.getItem("listOfToys");
+        var toys = JSON.parse(toyData);
+        var text = "Update ";
+        for (var i = 0; i < toys.length; i++) {
+            text += + toys[i].quantity + "-" + toys[i].name + ', ';
+        }
+        document.getElementById("UpdateToys").innerHTML = text;
+    }
+    function LoadProduct() {
+        var form = document.getElementById("cart-checkout");
+        var toyData = localStorage.getItem("listOfToys");
+        var input = document.getElementById("listObject2");
+        input.value = toyData;
+        form.submit();
+    };
+
+
 </script>
 
 <div class="super_container">
+    <!---Submit Cart-->
+    <form id="cart-checkout" action="/tblToys/Checkout" method="post">
+        <input type="hidden" name="listObject" id="listObject2" />
 
+    </form>
+    <!---Submit Cart-->
     <form id="cart-submit" action="/tblToys/Cart" method="post">
         <input type="hidden" name="listObject" id="listObject" />
 
     </form>
+
+    <!--Update Cart Modal-->
+    <div class="modal fade" id="myModal2">
+        <div class="col-sm-10 form-group-lg">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content" style="width:600px; height:300px;">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="color:black;">
+                        <h4 class="modal-title">Update Cart</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body" style="color:black;">
+                        <p id="UpdateToys" style="color:black;"></p>
+                    </div>
+
+                    <!-- Modal footer -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">No</button>
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal" onclick="LoadCart()">Yes</button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Clear Cart Modal-->
+    <div class="modal fade" id="myModal">
+        <div class="col-sm-10 form-group-lg">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content" style="width:600px; height:200px;">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header" style="color:black;">
+                        <h4 class="modal-title">Clear Cart</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body" style="color:black;">
+                        <p style="text-align:center;">Are you sure to clear your cart?</p>
+                    </div>
+
+                    <!-- Modal footer -->
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-success" data-dismiss="modal" onclick="ClearCart()">Yes</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!-- Home -->
     <div class="home">
         <div class="home_container">
@@ -47,155 +157,164 @@
 
     <div class="cart_info">
         <div class="container">
-            <div class="row">
-                <div class="col">
-                    <!-- Column Titles -->
-                    <div class="cart_info_columns clearfix">
-                        <div class="cart_info_col cart_info_col_product">Product</div>
-                        <div class="cart_info_col cart_info_col_price">Price</div>
-                        <div class="cart_info_col cart_info_col_quantity">Quantity</div>
-                        <div class="cart_info_col cart_info_col_total">Total</div>
+
+
+            @if (Model == null)
+            {
+                <div class="row row_cart_buttons">
+                    <div class="col">
+                        <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start" style="margin-left:450px;">
+                            <div class="button continue_shopping_button"><a href="http://localhost:57422/tblToys/Index">Continue shopping</a></div>
+                        </div>
                     </div>
                 </div>
-            </div>
+            }
+            @{ double? subtotal = 0;}
 
-            <div class="row cart_items_row" id="toyInfo">
-                <div class="col">
+            @if (Model != null)
+            {
+                <div class="row">
+                    <div class="col">
+                        <!-- Column Titles -->
+                        <div class="cart_info_columns clearfix">
+                            <div class="cart_info_col cart_info_col_product">Product</div>
+                            <div class="cart_info_col cart_info_col_price">Price</div>
+                            <div class="cart_info_col cart_info_col_quantity">Quantity</div>
+                            <div class="cart_info_col cart_info_col_total">Total</div>
+                        </div>
+                    </div>
+                </div>
 
-                    @if (Model != null)
-                    {
-                        <div class="row cart_items_row" id="toyInfo">
-                            <div class="col">
-                                @foreach (var toy in Model)
-                                {
-                                    <!-- Cart Item -->
-                                    <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
-                                        <!-- Name -->
-                                        <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
-                                            <div class="cart_item_image">
-                                                @{
-                                                    string toyImg = "toy_" + toy.id + ".jpg";
-                                                }
-                                                <div><img src="~/Content/images/@toyImg" alt=""></div>
-                                            </div>
-                                            <div class="cart_item_name_container">
-                                                <div class="cart_item_name"><a href="#">@toy.name</a></div>
-                                                <div class="cart_item_edit"><a href="#">Edit Product</a></div>
-                                            </div>
-                                        </div>
-                                        <!-- Price -->
-                                        <div class="cart_item_price">$@toy.price</div>
-                                        <!-- Quantity -->
-                                        <div class="cart_item_quantity">
-                                            <div class="product_quantity_container">
-                                                <div class="product_quantity clearfix">
-                                                    <span>Qty</span>
-                                                    <input id="quantity_input" type="text" pattern="[0-9]*" value="@toy.quantity">
-                                                    <div class="quantity_buttons">
-                                                        <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
-                                                        <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Total -->
-                                        @{ double? total = toy.price * toy.quantity;}
-                                        <div class="cart_item_total">@total$</div>
+                <div class="row cart_items_row" id="toyInfo">
+                    <div class="col">
+                        @foreach (var toy in Model)
+                        {
+                            <!-- Cart Item -->
+                            <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
+                                <!-- Name -->
+                                <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_item_image">
+                                        @{
+                                            string toyImg = "toy_" + toy.id + ".jpg";
+                                        }
+                                        <div><img src="~/Content/images/@toyImg" alt=""></div>
                                     </div>
+                                    <div class="cart_item_name_container">
+                                        <div class="cart_item_name"><a href="http://localhost:57422/tblToys/Details/@toy.id">@toy.name</a></div>
+                                        <div class="cart_item_edit"><a onclick="UpdateCart(@toy.id)">Edit Product</a></div>
+                                    </div>
+                                </div>
+                                <!-- Price -->
+                                <div class="cart_item_price">$@toy.price</div>
+                                <!-- Quantity -->
+                                <div class="cart_item_quantity">
+                                    <div class="product_quantity_container">
+                                        <div class="product_quantity clearfix">
+                                            <span>Qty</span>
+                                            <input id="quantity_input" class="quantity_input_@toy.id" type="text" pattern="[0-9]*" value="@toy.quantity">
+                                            <div class="quantity_buttons">
+                                                <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
+                                                <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fa fa-chevron-down" aria-hidden="true"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Total -->
+                                @{
+                                    double? total = toy.price * toy.quantity;
+                                    subtotal += total;
                                 }
+                                <div class="cart_item_total">$@total</div>
+                            </div>
+                        }
 
-                            </div>
-                        </div>
-                    }
-                    <div class="row row_cart_buttons">
-                        <div class="col">
-                            <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
-                                <div class="button continue_shopping_button"><a href="http://localhost:57422/tblToys/Index">Continue shopping</a></div>
-                                <div class="cart_buttons_right ml-lg-auto">
-                                    <div class="button clear_cart_button"><a href="http://localhost:57422/tblToys/Cart" onclick="ClearCart()">Clear cart</a></div>
-                                    <div class="button update_cart_button"><a href="#">Update cart</a></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                    <div class="row row_extra">
-                        <div class="col-lg-4">
+                </div>
 
-                            <!-- Delivery -->
-                            <div class="delivery">
-                                <div class="section_title">Shipping method</div>
-                                <div class="section_subtitle">Select the one you want</div>
-                                <div class="delivery_options">
-                                    <label class="delivery_option clearfix">
-                                        Next day delivery
-                                        <input type="radio" name="radio">
-                                        <span class="checkmark"></span>
-                                        <span class="delivery_price">$4.99</span>
-                                    </label>
-                                    <label class="delivery_option clearfix">
-                                        Standard delivery
-                                        <input type="radio" name="radio">
-                                        <span class="checkmark"></span>
-                                        <span class="delivery_price">$1.99</span>
-                                    </label>
-                                    <label class="delivery_option clearfix">
-                                        Personal pickup
-                                        <input type="radio" checked="checked" name="radio">
-                                        <span class="checkmark"></span>
-                                        <span class="delivery_price">Free</span>
-                                    </label>
-                                </div>
-                            </div>
 
-                            <!-- Coupon Code -->
-                            <div class="coupon">
-                                <div class="section_title">Coupon code</div>
-                                <div class="section_subtitle">Enter your coupon code</div>
-                                <div class="coupon_form_container">
-                                    <form action="#" id="coupon_form" class="coupon_form">
-                                        <input type="text" class="coupon_input" required="required">
-                                        <button class="button coupon_button"><span>Apply</span></button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-6 offset-lg-2">
-                            <div class="cart_total">
-                                <div class="section_title">Cart total</div>
-                                <div class="section_subtitle">Final info</div>
-                                <div class="cart_total_container">
-                                    <ul>
-                                        <li class="d-flex flex-row align-items-center justify-content-start">
-                                            <div class="cart_total_title">Subtotal</div>
-                                            <div class="cart_total_value ml-auto">$790.90</div>
-                                        </li>
-                                        <li class="d-flex flex-row align-items-center justify-content-start">
-                                            <div class="cart_total_title">Shipping</div>
-                                            <div class="cart_total_value ml-auto">Free</div>
-                                        </li>
-                                        <li class="d-flex flex-row align-items-center justify-content-start">
-                                            <div class="cart_total_title">Total</div>
-                                            <div class="cart_total_value ml-auto">$790.90</div>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="button checkout_button"><a href="#">Proceed to checkout</a></div>
+                <div class="row row_cart_buttons">
+                    <div class="col">
+                        <div class="cart_buttons d-flex flex-lg-row flex-column align-items-start justify-content-start">
+                            <div class="button continue_shopping_button"><a href="http://localhost:57422/tblToys/Index">Continue shopping</a></div>
+                            <div class="cart_buttons_right ml-lg-auto">
+                                <div class="button clear_cart_button"><a href="#" data-toggle="modal" data-target="#myModal">Clear cart</a></div>
+                                <div class="button update_cart_button"><a href="#" data-toggle="modal" data-target="#myModal2" onclick="InputToys()">Update cart</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            }
 
+            <div class="row row_extra">
+                <div class="col-lg-4">
 
+                    <!-- Delivery -->
+                    <div class="delivery">
+                        <div class="section_title">Shipping method</div>
+                        <div class="section_subtitle">Select the one you want</div>
+                        <div class="delivery_options">
+                            <label class="delivery_option clearfix">
+                                Next day delivery
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                                <span class="delivery_price">$4.99</span>
+                            </label>
+                            <label class="delivery_option clearfix">
+                                Standard delivery
+                                <input type="radio" name="radio">
+                                <span class="checkmark"></span>
+                                <span class="delivery_price">$1.99</span>
+                            </label>
+                            <label class="delivery_option clearfix">
+                                Personal pickup
+                                <input type="radio" checked="checked" name="radio">
+                                <span class="checkmark"></span>
+                                <span class="delivery_price">Free</span>
+                            </label>
+                        </div>
+                    </div>
 
-        </div>
-    </div>
-</div>
+                    <!-- Coupon Code -->
+                    <div class="coupon">
+                        <div class="section_title">Coupon code</div>
+                        <div class="section_subtitle">Enter your coupon code</div>
+                        <div class="coupon_form_container">
+                            <form action="#" id="coupon_form" class="coupon_form">
+                                <input type="text" class="coupon_input" required="required">
+                                <button class="button coupon_button"><span>Apply</span></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 offset-lg-2">
+                    <div class="cart_total">
+                        <div class="section_title">Cart total</div>
+                        <div class="section_subtitle">Final info</div>
+                        <div class="cart_total_container">
+                            <ul>
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_total_title">Subtotal</div>
+                                    <div class="cart_total_value ml-auto">$@subtotal</div>
+                                </li>
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_total_title">Shipping</div>
+                                    <div class="cart_total_value ml-auto">Free</div>
+                                </li>
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_total_title">Total</div>
+                                    <div class="cart_total_value ml-auto">$@subtotal</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="button checkout_button"><a style="cursor:pointer;" onclick="LoadProduct()">Proceed to checkout</a></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
+
+
+</div>
 

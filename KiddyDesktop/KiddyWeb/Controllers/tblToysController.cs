@@ -129,7 +129,7 @@ namespace KiddyWeb.Controllers
         public ActionResult Cart()
         {
 
-            return View();
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public async Task<ActionResult> Cart(string listObject)
@@ -142,6 +142,26 @@ namespace KiddyWeb.Controllers
                 string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
                 listToys = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
             }
+
+            return View(listToys);
+        }
+        [HttpGet]
+        public ActionResult Checkout()
+        {
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public async Task<ActionResult> Checkout(string listObject)
+        {
+            IEnumerable<ToyDTO> listToys = null;
+            IEnumerable<ToyDTO> listCart = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(listObject);
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(baseURL + "Toys/listToys", listCart);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
+                listToys = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(strResponse);
+            }
+
             return View(listToys);
         }
 
