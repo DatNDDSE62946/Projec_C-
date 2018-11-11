@@ -19,7 +19,6 @@ namespace KiddyDesktop
     {
         private EmployeeDTO emp;
         private frmLogin login;
-        private KiddyStore data = new KiddyStore();
         private IEnumerable<EmployeeDTO> listEmployees;
         private IEnumerable<ToyDTO> listToys;
         private IEnumerable<CustomerDTO> listCustomer;
@@ -27,6 +26,7 @@ namespace KiddyDesktop
         private IEnumerable<FeedbackDTO> listFeedback;
         private IEnumerable<OrderDTO> listOrders;
         private IEnumerable<OrderDetailDTO> listOfOrderDetails;
+
         private string empImgString;
         private static HttpClient client = new HttpClient();
         private static readonly string BASE_URL = "http://localhost:50815/api/";
@@ -65,6 +65,7 @@ namespace KiddyDesktop
 
         private void tabEmployee_Enter(object sender, EventArgs e)
         {
+            txtUsername.Enabled = false;
             loadEmployees();
             SetUpEmployeeData();
         }
@@ -127,15 +128,15 @@ namespace KiddyDesktop
             }
             if (txtFirstName.Text.Equals(""))
             {
-                txtUsername.Focus();
+                txtFirstName.Focus();
                 result = true;
             }
             if (txtLastName.Text.Equals(""))
             {
-                txtUsername.Focus();
+                txtLastName.Focus();
                 result = true;
             }
-            if (empImgString == null)
+            if (PBEmployee.Image == null)
             {
                 result = true;
                 btnUploadImage.Focus();
@@ -206,6 +207,7 @@ namespace KiddyDesktop
             try
             {
                 response.EnsureSuccessStatusCode();
+                loadEmployees();
                 MessageBox.Show("Add Employee Success!");
             }
             catch (Exception e)
@@ -222,6 +224,7 @@ namespace KiddyDesktop
             {
                 response.EnsureSuccessStatusCode();
                 MessageBox.Show("Edit employee success");
+                loadEmployees();
             }
             catch (Exception e)
             {
@@ -235,11 +238,12 @@ namespace KiddyDesktop
             try
             {
                 response.EnsureSuccessStatusCode();
-                MessageBox.Show("Delete employee success");
+                loadEmployees();
+                MessageBox.Show("Delete employee success!");
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show("Delete employee fail!");
             }
         }
 
@@ -273,25 +277,35 @@ namespace KiddyDesktop
                     if (CheckValidDate(dtDOB.Text))
                     {
                         DateTime myDate = DateTime.Parse(dtDOB.Text);
-                        string mydob = string.Format("{0}-{1}-{2}", myDate.Year, myDate.Month, myDate.Day);
-                        string myGender = "female";
-                        if (rdMale.Checked == true)
+                        DateTime currDate = DateTime.Now;
+                        int compare = DateTime.Compare(myDate, currDate);
+                        if(compare < 0)
                         {
-                            myGender = "male";
+                            string mydob = string.Format("{0}-{1}-{2}", myDate.Year, myDate.Month, myDate.Day);
+                            string myGender = "female";
+                            if (rdMale.Checked == true)
+                            {
+                                myGender = "male";
+                            }
+                            Image img = Image.FromFile(empImgString);
+                            byte[] imgByte = imageToByteArray(img);
+                            EmployeeDTO addEmp = new EmployeeDTO();
+                            addEmp.username = txtUsername.Text;
+                            addEmp.password = "1";
+                            addEmp.dob = mydob;
+                            addEmp.gender = myGender;
+                            addEmp.role = "Employee";
+                            addEmp.isActived = true;
+                            addEmp.firstname = txtFirstName.Text;
+                            addEmp.lastname = txtLastName.Text;
+                            addEmp.image = imgByte;
+                            AddEmployeeToDB(addEmp);
                         }
-                        Image img = Image.FromFile(empImgString);
-                        byte[] imgByte = imageToByteArray(img);
-                        EmployeeDTO addEmp = new EmployeeDTO();
-                        addEmp.username = txtUsername.Text;
-                        addEmp.password = "1";
-                        addEmp.dob = mydob;
-                        addEmp.gender = myGender;
-                        addEmp.role = "Employee";
-                        addEmp.isActived = true;
-                        addEmp.firstname = txtFirstName.Text;
-                        addEmp.lastname = txtLastName.Text;
-                        addEmp.image = imgByte;
-                        AddEmployeeToDB(addEmp);
+                        else
+                        {
+                            MessageBox.Show("DOB must be earlier than current day!");
+                        }
+                        
                     }
                     else
                     {
@@ -302,6 +316,10 @@ namespace KiddyDesktop
                 {
                     MessageBox.Show("Username has already existed!");
                 }
+            }
+            else
+            {
+                MessageBox.Show("Data cannot be null!");
             }
         }
 
@@ -314,24 +332,32 @@ namespace KiddyDesktop
                     if (CheckValidDate(dtDOB.Text))
                     {
                         DateTime myDate = DateTime.Parse(dtDOB.Text);
-
-                        string mydob = string.Format("{0}-{1}-{2}", myDate.Year, myDate.Month, myDate.Day);
-                        string myGender = "female";
-                        if (rdMale.Checked == true)
+                        DateTime currDate = DateTime.Now;
+                        int compare = DateTime.Compare(myDate, currDate);
+                        if (compare < 0)
                         {
-                            myGender = "male";
-                        }
-                        Image image = Image.FromFile(empImgString);
-                        byte[] imagebyte = imageToByteArray(image);
-                        EmployeeDTO editEmp = new EmployeeDTO();
-                        editEmp.username = txtUsername.Text;
-                        editEmp.firstname = txtFirstName.Text;
-                        editEmp.lastname = txtLastName.Text;
-                        editEmp.dob = mydob;
-                        editEmp.gender = myGender;
-                        editEmp.image = imagebyte;
-                        EditEmployeeToDB(editEmp);
+                            string mydob = string.Format("{0}-{1}-{2}", myDate.Year, myDate.Month, myDate.Day);
+                            string myGender = "female";
+                            if (rdMale.Checked == true)
+                            {
+                                myGender = "male";
+                            }
+                            Image image = PBEmployee.Image;
+                            byte[] imagebyte = imageToByteArray(image);
+                            EmployeeDTO editEmp = new EmployeeDTO();
+                            editEmp.username = txtUsername.Text;
+                            editEmp.firstname = txtFirstName.Text;
+                            editEmp.lastname = txtLastName.Text;
+                            editEmp.dob = mydob;
+                            editEmp.gender = myGender;
+                            editEmp.image = imagebyte;
+                            EditEmployeeToDB(editEmp);
 
+                        }
+                        else
+                        {
+                            MessageBox.Show("DOB must be earlier than current day!");
+                        }
                     }
                 }
                 else
@@ -377,14 +403,14 @@ namespace KiddyDesktop
             txtLastName.DataBindings.Add("Text", listEmployees, "lastname");
             dtDOB.DataBindings.Add("Text", listEmployees, "dob");
             PBEmployee.DataBindings.Add("Image", listEmployees, "image", true);
-            //Binding maleBinding = new Binding("Checked", listEmployees, "gender");
-            //maleBinding.Format += (s, args) => args.Value = ((string)args.Value) == "male";
-            //maleBinding.Parse += (s, args) => args.Value = (bool)args.Value ? "male" : "female";
-            //rdMale.DataBindings.Add(maleBinding);
-            //Binding femaleBinding = new Binding("Checked", listEmployees, "gender");
-            //femaleBinding.Format += (s, args) => args.Value = ((string)args.Value) == "female";
-            //femaleBinding.Parse += (s, args) => args.Value = (bool)args.Value ? "male" : "female";
-            //rdFemail.DataBindings.Add(femaleBinding);
+            Binding maleBinding = new Binding("Checked", listEmployees, "gender");
+            maleBinding.Format += (s, args) => args.Value = ((string)args.Value) == "male";
+            maleBinding.Parse += (s, args) => args.Value = (bool)args.Value ? "male" : "female";
+            rdMale.DataBindings.Add(maleBinding);
+            Binding femaleBinding = new Binding("Checked", listEmployees, "gender");
+            femaleBinding.Format += (s, args) => args.Value = ((string)args.Value) == "female";
+            femaleBinding.Parse += (s, args) => args.Value = (bool)args.Value ? "male" : "female";
+            rdFemail.DataBindings.Add(femaleBinding);
 
         }
 
@@ -393,32 +419,35 @@ namespace KiddyDesktop
         {
             SetEmployeeTabBlank();
             btnEmployeeSave.Enabled = true;
-            gvEmployee.ClearSelection();
+            ClearDataBindingForEmployee();
             empImgString = null;
             txtUsername.Enabled = true;
         }
 
-        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void gvEmployee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             txtUsername.Enabled = false;
+            ClearDataBindingForEmployee();
+            AddDataBindingForEmployee();
+            CheckEmployeeTabBlank();
         }
-        
+
+
         private void btnEmployeeSave_Click(object sender, EventArgs e)
         {
             SaveEmployee();
-            loadEmployees();
+            
         }
 
         private void btnEmployeeEdit_Click(object sender, EventArgs e)
         {
             EditEmployee();
-            loadEmployees();
+           
         }
 
         private void btnEmployeeDelete_Click(object sender, EventArgs e)
         {
             DeleteEmployee(txtUsername.Text);
-            loadEmployees();
         }
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
@@ -575,10 +604,11 @@ namespace KiddyDesktop
             LoadOrders();
             LoadOrderDetails();
         }
-        private void AddConfirmOrdersDataBinding(IEnumerable<OrderDTO> listOrdersByCusID)
+      
+        private void AddConfirmOrdersDataBinding(IEnumerable<OrderDTO> listConfirm)
         {
-            txtConfirmPayment.DataBindings.Add("Text", listOrdersByCusID, "payment");
-            txtConfirmAddress.DataBindings.Add("Text", listOrdersByCusID, "address");
+            txtConfirmPayment.DataBindings.Add("Text", listConfirm, "payment");
+            txtConfirmAddress.DataBindings.Add("Text", listConfirm, "address");
         }
         private void ClearConfirmOrdersDataBinding()
         {
@@ -605,6 +635,7 @@ namespace KiddyDesktop
         }
         private void ViewOrderDetail2(int orderIDRef)
         {
+            
             gvOrderDetail2.DataSource = listOfOrderDetails.Select(ordDetail => new
             {
                 Name = ordDetail.name,
@@ -623,12 +654,17 @@ namespace KiddyDesktop
                 try
                 {
                     responseMessage.EnsureSuccessStatusCode();
+                    ClearConfirmOrdersDataBinding();
+                    gvOrderDetail2.DataSource = null;
+                    LoadOrders();
+                    
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Confirm fail!");
                 }
             }
+
         }
 
         private async void RejectOrder(int ordIDConfirm)
@@ -641,6 +677,7 @@ namespace KiddyDesktop
                 try
                 {
                     responseMessage.EnsureSuccessStatusCode();
+                    LoadOrders();
                 }
                 catch (Exception)
                 {
@@ -657,7 +694,7 @@ namespace KiddyDesktop
             CPasswordform.Show();
         }
 
-        private void gvConfirmOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void gvConfirmOrder_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells["id"].Value.ToString());
             ViewOrderDetail2(ordIDConfirm);
@@ -789,10 +826,11 @@ namespace KiddyDesktop
             try
             {
                 response.EnsureSuccessStatusCode();
+                MessageBox.Show("Delete Successfully!");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show("Delete fail!");
             }
         }
 
@@ -1064,20 +1102,6 @@ namespace KiddyDesktop
             login.Show();
         }
 
-        private void bindingSource1_CurrentChanged(object sender, EventArgs e)
-        {
-            EmployeeDTO currEmp = (EmployeeDTO)bindingSource1.Current;
-
-            if (currEmp.gender.Equals("male"))
-            {
-                rdMale.Checked = true;
-            }
-            else
-            {
-                rdFemail.Checked = true;
-            }
-        }
-
         #region Feedback_Functions
 
 
@@ -1272,7 +1296,7 @@ namespace KiddyDesktop
             TabControl.SelectedIndex = 3;
         }
 
-        
+
     }
 }
 

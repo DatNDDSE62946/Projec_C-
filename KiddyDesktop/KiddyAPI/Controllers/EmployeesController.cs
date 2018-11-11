@@ -186,6 +186,35 @@ namespace KiddyAPI.Controllers
             return result;
         }
 
+        [HttpPost]
+        [Route("api/Employees/ChangePassword")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult ChangePassword(EmployeeDTO dto)
+        {
+            tblEmployee emp = db.tblEmployees.Single(em => em.username.Equals(dto.username));
+            if(emp == null)
+            {
+                return NotFound();
+            }
+            emp.password = dto.password;
+            db.Entry(emp).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            
+
+
+            return Ok();
+        }
+
+
+
 
         //Code tu sinh------------------------------------
         #region

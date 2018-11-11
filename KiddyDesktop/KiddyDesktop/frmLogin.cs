@@ -15,7 +15,6 @@ namespace KiddyDesktop
 {
     public partial class frmLogin : Form
     {
-        private KiddyStore data = new KiddyStore();
         private static HttpClient client = new HttpClient();
         private static readonly string BASE_URL = "http://localhost:50815/api/Employees/";
         public frmLogin()

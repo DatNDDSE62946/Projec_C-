@@ -129,7 +129,6 @@
             this.firstnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.lastnameValidate = new System.Windows.Forms.ErrorProvider(this.components);
             this.imageValidate = new System.Windows.Forms.ErrorProvider(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.errProduct = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
@@ -165,7 +164,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).BeginInit();
             this.SuspendLayout();
             // 
@@ -799,7 +797,7 @@
             this.gvConfirmOrder.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvConfirmOrder.Size = new System.Drawing.Size(160, 150);
             this.gvConfirmOrder.TabIndex = 0;
-            this.gvConfirmOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvConfirmOrder_CellContentClick);
+            this.gvConfirmOrder.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvConfirmOrder_CellClick);
             // 
             // tabCustomer
             // 
@@ -1069,7 +1067,7 @@
             this.gvEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvEmployee.Size = new System.Drawing.Size(482, 372);
             this.gvEmployee.TabIndex = 1;
-            this.gvEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            this.gvEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvEmployee_CellClick);
             // 
             // groupBox3
             // 
@@ -1290,10 +1288,6 @@
             this.imageValidate.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
             this.imageValidate.ContainerControl = this;
             // 
-            // bindingSource1
-            // 
-            this.bindingSource1.CurrentChanged += new System.EventHandler(this.bindingSource1_CurrentChanged);
-            // 
             // errProduct
             // 
             this.errProduct.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.NeverBlink;
@@ -1382,7 +1376,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lastnameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageValidate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errProduct)).EndInit();
             this.ResumeLayout(false);
 
@@ -1471,7 +1464,6 @@
         private System.Windows.Forms.ErrorProvider imageValidate;
         private System.Windows.Forms.ComboBox cbProCategory;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.ErrorProvider errProduct;
         private System.Windows.Forms.TabPage tabWelcome;
         private System.Windows.Forms.ImageList imgList;
