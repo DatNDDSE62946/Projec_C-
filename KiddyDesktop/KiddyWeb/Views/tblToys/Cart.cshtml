@@ -14,59 +14,59 @@
         var toys = JSON.parse(toyData);
 
 
-        //$.ajax('/tblToys/Cart',
-        //    { type: 'POST', data: { listObject: toys }, success: function () { alert("success"); } }
-        //)
+        $.ajax('/tblToys/Cart',
+            { type: 'POST', data: { listObject: toys }, success: function (html) { alert("success"); $("html").html(html); } }
+        )
 
 
-        for (var i = 0; i < toys.length; i++) {
+        //for (var i = 0; i < toys.length; i++) {
          
-            var toyName = document.createElement("a");
-            toyName.href = "http://localhost:57422/tblToys/Details/" + toys[i].id;
-            toyName.innerHTML = toys[i].name;
+        //    var toyName = document.createElement("a");
+        //    toyName.href = "http://localhost:57422/tblToys/Details/" + toys[i].id;
+        //    toyName.innerHTML = toys[i].name;
             
-            var innderDivName10 = document.createElement("div");
-            innderDivName10.className = "cart_item_name";
-            innerDivName10.appendChild(toyName);
-            alert(toys[i].name);
+        //    var innderDivName10 = document.createElement("div");
+        //    innderDivName10.className = "cart_item_name";
+        //    innerDivName10.appendChild(toyName);
+        //    alert(toys[i].name);
            
 
-            var innerDivName1 = document.createElement("div");
-            innerDivName1.className = "cart_item_name_container";
-            innerDivName1[0].appendChild(innderDivName10);
-            innerDivName1[1].appendChild();
+        //    var innerDivName1 = document.createElement("div");
+        //    innerDivName1.className = "cart_item_name_container";
+        //    innerDivName1[0].appendChild(innderDivName10);
+        //    innerDivName1[1].appendChild();
 
-            var toyImg = document.createElement("img");
-            toyImg.src = "~/Content/images/toy_" + toys[i].id + ".jpg";
+        //    var toyImg = document.createElement("img");
+        //    toyImg.src = "~/Content/images/toy_" + toys[i].id + ".jpg";
 
-            var innerDivName00 = document.createElement("div");
-            innerDivName00.appendChild(toyImg);
+        //    var innerDivName00 = document.createElement("div");
+        //    innerDivName00.appendChild(toyImg);
 
-            var innerDivName0 = document.createElement("div");
-            innerDivName0.className = "cart_item_image";
-            innerDivName0.appendChild(innerDivName00);
+        //    var innerDivName0 = document.createElement("div");
+        //    innerDivName0.className = "cart_item_image";
+        //    innerDivName0.appendChild(innerDivName00);
 
-            var innerDivName = document.createElement("div");
-            innerDivName.className = "cart_item_product d-flex flex-row align-items-center justify-content-start";
-            innerDivName[0].appendChild(innerDivName0);
+        //    var innerDivName = document.createElement("div");
+        //    innerDivName.className = "cart_item_product d-flex flex-row align-items-center justify-content-start";
+        //    innerDivName[0].appendChild(innerDivName0);
 
-            var innerDiv = document.createElement("div");
-            innerDiv.className = "cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start";
-            innerDiv[0].appendChild(innerDivName);
-            innerDiv[1].appendChild(innerDivPrice);
-            innerDiv[2].appendChild(innerDivQuantity);
-            innerDiv[3].appendChild(innerDivTotal);
+        //    var innerDiv = document.createElement("div");
+        //    innerDiv.className = "cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start";
+        //    innerDiv[0].appendChild(innerDivName);
+        //    innerDiv[1].appendChild(innerDivPrice);
+        //    innerDiv[2].appendChild(innerDivQuantity);
+        //    innerDiv[3].appendChild(innerDivTotal);
 
-            var idiv = document.createElement("div");
-            idiv.className = "col";
-            idiv.appendChild(innerDiv);
+        //    var idiv = document.createElement("div");
+        //    idiv.className = "col";
+        //    idiv.appendChild(innerDiv);
            
 
-            var div = document.getElementById("toyInfo");
-            div[i].appendChild(idiv);
-            document.body.appendChild(div);
+        //    var div = document.getElementById("toyInfo");
+        //    div[i].appendChild(idiv);
+        //    document.body.appendChild(div);
 
-        }
+        //}
 
     });
 
@@ -116,7 +116,6 @@
             </div>
             <div class="row cart_items_row" id="toyInfo">
                 <div class="col">
-
                     @*<!-- Cart Item -->
                     <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
                         <!-- Name -->
