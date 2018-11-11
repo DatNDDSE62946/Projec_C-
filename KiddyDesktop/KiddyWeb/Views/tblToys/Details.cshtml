@@ -63,7 +63,6 @@
 
                             };
                             function AddToCart() {
-                                alert("aaa");
                                 var cartData = localStorage.getItem("listOfToys");
                                 if (cartData != null) {
                                     cart = JSON.parse(cartData);
@@ -73,7 +72,6 @@
                                 var name = "@Model.name";
                                 var price = @Model.price;
                                 var quantityDB = @Model.quantity;
-                                alert(quantity);
                                 if (quantity < @Model.quantity) {
                                     var check = false;
                                     for (var i in cart) {
@@ -82,7 +80,6 @@
                                             check = true;
                                         }
                                     };
-                                    alert(check);
                                     if (!check) {
                                         var toy = new Toy(id, name, price, quantity);
                                         cart.push(toy);
