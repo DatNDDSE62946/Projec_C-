@@ -132,10 +132,11 @@ namespace KiddyWeb.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<ActionResult> Cart(IEnumerable<ToyDTO> listObject)
+        public async Task<ActionResult> Cart(string listObject)
         {
             IEnumerable<ToyDTO> listToys = null;
-            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(baseURL + "Toys/listToys", listObject);
+            IEnumerable<ToyDTO> listCart = JsonConvert.DeserializeObject<IEnumerable<ToyDTO>>(listObject);
+            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(baseURL + "Toys/listToys", listCart);
             if (responseMessage.IsSuccessStatusCode)
             {
                 string strResponse = responseMessage.Content.ReadAsStringAsync().Result;

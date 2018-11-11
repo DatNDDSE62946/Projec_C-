@@ -13,7 +13,7 @@ namespace KiddyDesktop.Models
         public string cusID { get; set; }
 
 
-        public string datetime { get; set; }
+        public DateTime date { get; set; }
 
 
         public string emlID { get; set; }

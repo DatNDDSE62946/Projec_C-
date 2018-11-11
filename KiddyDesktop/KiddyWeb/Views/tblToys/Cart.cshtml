@@ -7,9 +7,8 @@
 <script type="text/javascript"
         src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
 </script>
-<script>
-    $(document).ready(function () {
 
+<<<<<<< HEAD
         var toyData = localStorage.getItem("listOfToys");
         var toys = JSON.parse(toyData);
 
@@ -71,10 +70,12 @@
     });
 
 </script>
+=======
+>>>>>>> cafc303bef1d54d27367c3adb810099af05256b3
 
 <div class="super_container">
 
-
+    
     <!-- Home -->
     <div class="home">
         <div class="home_container">
@@ -110,13 +111,18 @@
                         <div class="cart_info_col cart_info_col_product">Product</div>
                         <div class="cart_info_col cart_info_col_price">Price</div>
                         <div class="cart_info_col cart_info_col_quantity">Quantity</div>
-                        <div class="cart_info_col cart_info_col_total">Total</div>
+                        <div class="cart_info_col cart_info_col_total">Total @Model.Count()</div>
                     </div>
                 </div>
             </div>
             <div class="row cart_items_row" id="toyInfo">
                 <div class="col">
+<<<<<<< HEAD
                     @*<!-- Cart Item -->
+=======
+
+                    <!-- Cart Item -->
+>>>>>>> cafc303bef1d54d27367c3adb810099af05256b3
                     <div class="cart_item d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start">
                         <!-- Name -->
                         <div class="cart_item_product d-flex flex-row align-items-center justify-content-start">
@@ -146,7 +152,7 @@
                         <!-- Total -->
                        
                         <div class="cart_item_total">1</div>
-                    </div>*@
+                    </div>
                 </div>
             </div>
             <div class="row row_cart_buttons">

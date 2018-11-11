@@ -158,7 +158,7 @@ namespace KiddyAPI.Controllers
         public EmployeeDTO CheckLogin(EmployeeDTO dto)
         {
             EmployeeDTO result = null;          
-                var emp = db.tblEmployees.Find(dto.username);
+                var emp = db.tblEmployees.Single(em => em.username.Equals(dto.username) && em.password.Equals(dto.password));
             if(emp != null)
             {
                 result = new EmployeeDTO
@@ -169,8 +169,6 @@ namespace KiddyAPI.Controllers
                    
                 };
             }
-                
-            
             return result;
         }
 

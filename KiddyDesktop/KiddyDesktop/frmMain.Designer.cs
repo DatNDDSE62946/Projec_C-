@@ -99,6 +99,10 @@
             this.btnConfirmFeedback = new System.Windows.Forms.Button();
             this.dgvProFeedback = new System.Windows.Forms.DataGridView();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtConfirmAddress = new System.Windows.Forms.TextBox();
+            this.txtConfirmPayment = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.btnRejectOrder = new System.Windows.Forms.Button();
             this.btnConfirmOrder = new System.Windows.Forms.Button();
@@ -106,6 +110,8 @@
             this.gvConfirmOrder = new System.Windows.Forms.DataGridView();
             this.tabCustomer = new System.Windows.Forms.TabPage();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtPayment = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.gvOrderDetail = new System.Windows.Forms.DataGridView();
             this.label18 = new System.Windows.Forms.Label();
@@ -128,12 +134,8 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.txtConfirmPayment = new System.Windows.Forms.TextBox();
-            this.txtConfirmAddress = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.txtPayment = new System.Windows.Forms.TextBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.TabControl.SuspendLayout();
             this.tabWelcome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -994,6 +996,39 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Confirm Order";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(192, 58);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(45, 13);
+            this.label22.TabIndex = 8;
+            this.label22.Text = "Address";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(192, 16);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(48, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Payment";
+            // 
+            // txtConfirmAddress
+            // 
+            this.txtConfirmAddress.Location = new System.Drawing.Point(192, 73);
+            this.txtConfirmAddress.Multiline = true;
+            this.txtConfirmAddress.Name = "txtConfirmAddress";
+            this.txtConfirmAddress.Size = new System.Drawing.Size(174, 97);
+            this.txtConfirmAddress.TabIndex = 6;
+            // 
+            // txtConfirmPayment
+            // 
+            this.txtConfirmPayment.Location = new System.Drawing.Point(192, 35);
+            this.txtConfirmPayment.Name = "txtConfirmPayment";
+            this.txtConfirmPayment.Size = new System.Drawing.Size(174, 20);
+            this.txtConfirmPayment.TabIndex = 5;
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -1060,9 +1095,12 @@
             this.tabCustomer.TabIndex = 3;
             this.tabCustomer.Text = "Customer";
             this.tabCustomer.UseVisualStyleBackColor = true;
+            this.tabCustomer.Enter += new System.EventHandler(this.tabCustomer_Enter);
             // 
             // groupBox8
             // 
+            this.groupBox8.Controls.Add(this.label24);
+            this.groupBox8.Controls.Add(this.label23);
             this.groupBox8.Controls.Add(this.txtAddress);
             this.groupBox8.Controls.Add(this.txtPayment);
             this.groupBox8.Controls.Add(this.label19);
@@ -1075,6 +1113,21 @@
             this.groupBox8.TabIndex = 1;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Customer\'s Order History";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Location = new System.Drawing.Point(64, 306);
+            this.txtAddress.Multiline = true;
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(199, 85);
+            this.txtAddress.TabIndex = 5;
+            // 
+            // txtPayment
+            // 
+            this.txtPayment.Location = new System.Drawing.Point(63, 260);
+            this.txtPayment.Name = "txtPayment";
+            this.txtPayment.Size = new System.Drawing.Size(199, 20);
+            this.txtPayment.TabIndex = 4;
             // 
             // label19
             // 
@@ -1263,53 +1316,23 @@
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             this.btnMinimize.MouseHover += new System.EventHandler(this.btnMinimize_MouseHover);
             // 
-            // txtConfirmPayment
+            // label23
             // 
-            this.txtConfirmPayment.Location = new System.Drawing.Point(192, 35);
-            this.txtConfirmPayment.Name = "txtConfirmPayment";
-            this.txtConfirmPayment.Size = new System.Drawing.Size(174, 20);
-            this.txtConfirmPayment.TabIndex = 5;
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(3, 263);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(48, 13);
+            this.label23.TabIndex = 6;
+            this.label23.Text = "Payment";
             // 
-            // txtConfirmAddress
+            // label24
             // 
-            this.txtConfirmAddress.Location = new System.Drawing.Point(192, 73);
-            this.txtConfirmAddress.Multiline = true;
-            this.txtConfirmAddress.Name = "txtConfirmAddress";
-            this.txtConfirmAddress.Size = new System.Drawing.Size(174, 97);
-            this.txtConfirmAddress.TabIndex = 6;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(192, 16);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(48, 13);
-            this.label12.TabIndex = 7;
-            this.label12.Text = "Payment";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(192, 58);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(45, 13);
-            this.label22.TabIndex = 8;
-            this.label22.Text = "Address";
-            // 
-            // txtPayment
-            // 
-            this.txtPayment.Location = new System.Drawing.Point(50, 260);
-            this.txtPayment.Name = "txtPayment";
-            this.txtPayment.Size = new System.Drawing.Size(199, 20);
-            this.txtPayment.TabIndex = 4;
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Location = new System.Drawing.Point(50, 308);
-            this.txtAddress.Multiline = true;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(199, 85);
-            this.txtAddress.TabIndex = 5;
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(3, 309);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(45, 13);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "Address";
             // 
             // frmMain
             // 
@@ -1481,5 +1504,7 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtAddress;
         private System.Windows.Forms.TextBox txtPayment;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
     }
 }

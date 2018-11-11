@@ -24,6 +24,7 @@ namespace KiddyAPI.Controllers
                 id = ordDetail.id,
                 toyID = ordDetail.toyID,
                 orderID = ordDetail.orderID,
+                name = ordDetail.name, 
                 quantity = ordDetail.quantity
             });
         }

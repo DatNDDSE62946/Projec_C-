@@ -25,7 +25,10 @@ namespace KiddyAPI.Controllers
                 date = ord.date,
                 cusID = ord.cusID,
                 address = ord.address,
+                payment = ord.payment,
+                emlID = ord.emlID,
                 status = ord.status
+                
             }).ToList();
         }
 
@@ -57,18 +60,27 @@ namespace KiddyAPI.Controllers
 
         // PUT: api/Orders/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PuttblOrder(int id, tblOrder tblOrder)
+        public IHttpActionResult PuttblOrder(int id, OrderDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != tblOrder.id)
+            if (id != dto.id)
             {
                 return BadRequest();
             }
-
+            tblOrder tblOrder = new tblOrder
+            {
+                id = dto.id,
+                cusID = dto.cusID,
+                emlID = dto.emlID,
+                payment = dto.payment,
+                address = dto.address,
+                date = dto.date,
+                status = dto.status
+            };
             db.Entry(tblOrder).State = EntityState.Modified;
 
             try
