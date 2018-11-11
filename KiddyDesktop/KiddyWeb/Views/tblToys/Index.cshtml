@@ -2,11 +2,8 @@
 @{ 
     ViewBag.Page = "Index";
 }
-<link href="~/Content/styles/main_styles.css" rel="stylesheet" />
-
 
 <div class="super_container">
-
 
 
     <!-- Home -->
@@ -118,7 +115,9 @@
                     </div>
                     <div class="avds_small_content">
                         <div class="avds_title">Smart Phones</div>
-                        <div class="avds_link"><a href="categories.html">See More</a></div>
+                        <div class="avds_link">
+                            @Html.ActionLink("See More", "Category", new { category = "BoardGame" })
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,7 +127,9 @@
                     <div class="avds_large_content">
                         <div class="avds_title">Professional Cameras</div>
                         <div class="avds_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam a ultricies metus. Sed nec molestie eros. Sed viver ra velit venenatis fermentum luctus.</div>
-                        <div class="avds_link avds_link_large"><a href="categories.html">See More</a></div>
+                        <div class="avds_link avds_link_large">
+                            @Html.ActionLink("See More", "Category", new { category = "Rubik" })
+                        </div>
                     </div>
                 </div>
             </div>

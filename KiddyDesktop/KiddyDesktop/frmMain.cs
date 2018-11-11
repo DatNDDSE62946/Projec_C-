@@ -18,6 +18,7 @@ namespace KiddyDesktop
     public partial class frmMain : Form
     {
         private EmployeeDTO emp;
+        private frmLogin login;
         private KiddyStore data = new KiddyStore();
         private IEnumerable<EmployeeDTO> listEmployees;
         private IEnumerable<ToyDTO> listToys;
@@ -27,8 +28,6 @@ namespace KiddyDesktop
         private IEnumerable<OrderDTO> listOrders;
         private IEnumerable<OrderDetailDTO> listOfOrderDetails;
         private string empImgString;
-        private int ordIDConfirm;
-        private CustomerDTO currCustomer;
         private static HttpClient client = new HttpClient();
         private static readonly string BASE_URL = "http://localhost:50815/api/";
 
@@ -44,30 +43,32 @@ namespace KiddyDesktop
             InitializeComponent();
         }
 
-        public frmMain(EmployeeDTO dto)
+        public frmMain(EmployeeDTO dto, frmLogin login)
         {
             InitializeComponent();
             emp = dto;
-        }
-
-        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            frmLogin login = new frmLogin();
-            login.Show();
+            this.login = login;
+            login.Hide();
+            this.Show();
         }
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            loadToys();
-            loadEmployees();
-            SetUpEmployeeData();
-
-
+            if (emp.role.Equals("Employee"))
+            {
+                TabControl.TabPages.Remove(tabEmployee);
+                btnWelcomeEmployee.Enabled = false;
+            }
         }
 
-
         #region Employee_functions
-        //<----------------------------Employee function----------------------------------->
+
+        private void tabEmployee_Enter(object sender, EventArgs e)
+        {
+            loadEmployees();
+            SetUpEmployeeData();
+        }
+
         private void txtUsername_Validating(object sender, CancelEventArgs e)
         {
             if (txtUsername.Text.Equals(""))
@@ -107,7 +108,6 @@ namespace KiddyDesktop
                 this.lastnameValidate.SetError(txtLastName, "");
             }
         }
-
 
         private void SetEmployeeTabBlank()
         {
@@ -153,10 +153,7 @@ namespace KiddyDesktop
             }
             catch (Exception)
             {
-
-
             }
-
             return result;
         }
 
@@ -171,31 +168,25 @@ namespace KiddyDesktop
             {
                 result = false;
             }
-
             return result;
-
         }
 
         private async void loadEmployees()
         {
-
             HttpResponseMessage response = await client.GetAsync(BASE_URL + "Employees");
             if (response.IsSuccessStatusCode)
             {
-
                 string strResponse = response.Content.ReadAsStringAsync().Result;
                 listEmployees = JsonConvert.DeserializeObject<IEnumerable<EmployeeDTO>>(strResponse);
                 LoadEmployeeData(listEmployees);
-
+                ClearDataBindingForEmployee();
+                AddDataBindingForEmployee();
             }
-            ClearDataBindingForEmployee();
-            bindingSource1.DataSource = listEmployees;
-            gvEmployee.DataSource = bindingSource1.DataSource;
-            AddDataBindingForEmployee();
         }
 
         private void LoadEmployeeData(IEnumerable<EmployeeDTO> list)
         {
+            gvEmployee.DataSource = null;
             gvEmployee.DataSource = list;
             gvEmployee.Columns["image"].Visible = false;
             gvEmployee.Columns["dob"].Visible = false;
@@ -234,11 +225,9 @@ namespace KiddyDesktop
             }
             catch (Exception e)
             {
-
                 MessageBox.Show(e.Message);
             }
         }
-
 
         private async void DeleteEmployee(string username)
         {
@@ -250,24 +239,15 @@ namespace KiddyDesktop
             }
             catch (Exception e)
             {
-
                 MessageBox.Show(e.Message);
             }
         }
 
-
         private void SetUpEmployeeData()
         {
-
             dtDOB.Format = DateTimePickerFormat.Custom;
             dtDOB.CustomFormat = "yyyy-MMM-dd";
             btnEmployeeSave.Enabled = false;
-            if (emp.role.Equals("Employee"))
-            {
-                TabControl.TabPages.Remove(tabEmployee);
-            }
-
-
         }
 
         public Image byteArrayToImage(byte[] byteArrayIn)
@@ -312,8 +292,6 @@ namespace KiddyDesktop
                         addEmp.lastname = txtLastName.Text;
                         addEmp.image = imgByte;
                         AddEmployeeToDB(addEmp);
-
-
                     }
                     else
                     {
@@ -325,13 +303,10 @@ namespace KiddyDesktop
                     MessageBox.Show("Username has already existed!");
                 }
             }
-
-
         }
 
         private void EditEmployee()
         {
-
             if (!CheckEmployeeTabBlank())
             {
                 if (CheckEmployeeExistedUsername(txtUsername.Text))
@@ -413,9 +388,6 @@ namespace KiddyDesktop
 
         }
 
-
-
-
         //Add Employee button
         private void button2_Click(object sender, EventArgs e)
         {
@@ -423,18 +395,14 @@ namespace KiddyDesktop
             btnEmployeeSave.Enabled = true;
             gvEmployee.ClearSelection();
             empImgString = null;
-            ordIDConfirm = -1;
             txtUsername.Enabled = true;
-
         }
 
         private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
             txtUsername.Enabled = false;
         }
-
-
+        
         private void btnEmployeeSave_Click(object sender, EventArgs e)
         {
             SaveEmployee();
@@ -457,7 +425,6 @@ namespace KiddyDesktop
             IEnumerable<EmployeeDTO> searchListEmployees = listEmployees.Where(em => (em.firstname + " " + em.lastname).Contains(txtSearch.Text)).ToList();
             LoadEmployeeData(searchListEmployees);
         }
-
 
         //<----------------------------end------------------------------------------------>     
         #endregion
@@ -500,7 +467,6 @@ namespace KiddyDesktop
 
         private void LoadOrdersByCustomerID(string cusID)
         {
-
             IEnumerable<OrderDTO> listOrdersByCusID = listOrders.Where(ord => ord.cusID == cusID).ToList();
             gvOrders.DataSource = listOrdersByCusID;
             gvOrders.Columns["date"].DefaultCellStyle.Format = "dd-MM-yyyy";
@@ -511,9 +477,6 @@ namespace KiddyDesktop
             gvOrders.Columns["status"].Visible = false;
             ClearOrdersDataBinding();
             AddOrdersDataBinding(listOrdersByCusID);
-
-
-
         }
 
         private async void LoadOrders()
@@ -538,60 +501,60 @@ namespace KiddyDesktop
         private void ViewOrderDetail(int orderID)
         {
             IEnumerable<OrderDetailDTO> listDetails = listOfOrderDetails.Where(ordDetail => ordDetail.orderID == orderID).ToList();
+            gvOrderDetail.DataSource = null;
             gvOrderDetail.DataSource = listDetails;
             gvOrderDetail.Columns["id"].Visible = false;
             gvOrderDetail.Columns["toyID"].Visible = false;
             gvOrderDetail.Columns["orderID"].Visible = false;
-
-
         }
 
-        private async void BlockCustomer(string id)
+        private async void BlockCustomer(string cusID)
         {
-            HttpResponseMessage responseMessage = await client.PostAsJsonAsync(BASE_URL + "Customers?id=" + id, "");
-            string strResponse = responseMessage.Content.ReadAsStringAsync().Result;
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                currCustomer = JsonConvert.DeserializeObject<CustomerDTO>(strResponse);
-            }
-            currCustomer.isActive = false;
-            HttpResponseMessage responseMessage2 = await client.PutAsJsonAsync(BASE_URL + "Customers?id=" + currCustomer.username, currCustomer);
+            CustomerDTO dto = new CustomerDTO { username = cusID };
+            HttpResponseMessage responseMessage2 = await client.PutAsJsonAsync(BASE_URL + "Customers/Block", dto);
             try
             {
                 responseMessage2.EnsureSuccessStatusCode();
                 MessageBox.Show("Block Customer success!");
+                listCustomer = listCustomer.Where(cus => cus.username != cusID).ToList();
+                gvCustomer.DataSource = listCustomer.Select(cus => new
+                {
+                    username = cus.username,
+                    name = cus.firstname + " " + cus.lastname
+
+                }).ToList();
             }
             catch (Exception e)
             {
-
                 MessageBox.Show(e.Message);
             }
         }
-
-
+        
         private void btnBlock_Click(object sender, EventArgs e)
         {
-            string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
-            BlockCustomer(cusID);
-            LoadCustomerData();
-
-
+            DataGridViewRow row = gvCustomer.CurrentRow;
+            if (row != null)
+            {
+                string cusID = row.Cells["username"].Value.ToString();
+                BlockCustomer(cusID);
+            } else
+            {
+                MessageBox.Show("Please choose a customer to block!");
+            }
         }
 
-        private void gvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void gvOrders_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int orderID = int.Parse(gvOrders.CurrentRow.Cells[0].Value.ToString());
+            ViewOrderDetail(orderID);
+        }
+
+        private void gvCustomer_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             gvOrderDetail.DataSource = null;
             gvOrders.DataSource = null;
             string cusID = gvCustomer.CurrentRow.Cells[0].Value.ToString();
             LoadOrdersByCustomerID(cusID);
-
-
-        }
-
-        private void gvOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int orderID = int.Parse(gvOrders.CurrentRow.Cells[0].Value.ToString());
-            ViewOrderDetail(orderID);
         }
 
         private void textBox12_TextChanged(object sender, EventArgs e)
@@ -600,12 +563,8 @@ namespace KiddyDesktop
             {
                 username = cus.username,
                 name = cus.firstname + " " + cus.lastname
-
             }).ToList();
         }
-
-
-        //</----------------------------end------------------------------------------------> 
         #endregion
 
         #region Order&Feedback_function
@@ -614,7 +573,6 @@ namespace KiddyDesktop
             loadToyFeedback();
             loadFeedback();
             LoadOrders();
-           
             LoadOrderDetails();
         }
         private void AddConfirmOrdersDataBinding(IEnumerable<OrderDTO> listOrdersByCusID)
@@ -644,10 +602,6 @@ namespace KiddyDesktop
                 AddConfirmOrdersDataBinding(list);
 
             }
-
-
-
-
         }
         private void ViewOrderDetail2(int orderIDRef)
         {
@@ -659,33 +613,43 @@ namespace KiddyDesktop
             }).Where(ordDetail => ordDetail.orderID == orderIDRef).ToList();
 
         }
-        private async void ConfirmOrder()
+        private async void ConfirmOrder(int ordIDConfirm)
         {
             OrderDTO dto = listOrders.Single(ord => ord.id == ordIDConfirm);
             dto.status = 1;
-            if(ordIDConfirm != -1)
+            if (ordIDConfirm != -1)
             {
                 HttpResponseMessage responseMessage = await client.PutAsJsonAsync(BASE_URL + "Orders/" + dto.id, dto);
                 try
                 {
                     responseMessage.EnsureSuccessStatusCode();
-                 
-
                 }
                 catch (Exception)
                 {
-
                     MessageBox.Show("Confirm fail!");
                 }
             }
         }
-        private void RejectOrder()
+
+        private async void RejectOrder(int ordIDConfirm)
         {
-           
+            OrderDTO dto = listOrders.Single(ord => ord.id == ordIDConfirm);
+            dto.status = -1;
+            if (ordIDConfirm != -1)
+            {
+                HttpResponseMessage responseMessage = await client.PutAsJsonAsync(BASE_URL + "Orders/" + dto.id, dto);
+                try
+                {
+                    responseMessage.EnsureSuccessStatusCode();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Confirm fail!");
+                }
+            }
         }
 
         #endregion
-
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
@@ -693,26 +657,46 @@ namespace KiddyDesktop
             CPasswordform.Show();
         }
 
-
-
-
         private void gvConfirmOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells["id"].Value.ToString());
+            int ordIDConfirm = int.Parse(gvConfirmOrder.Rows[e.RowIndex].Cells["id"].Value.ToString());
             ViewOrderDetail2(ordIDConfirm);
         }
 
+        //btnConfirmOrder
         private void button9_Click(object sender, EventArgs e)
         {
-            if (ordIDConfirm != -1)
+            DataGridViewRow row = gvConfirmOrder.CurrentRow;
+            if (row != null)
             {
-                ConfirmOrder();
+                int ordIDConfirm = int.Parse(gvConfirmOrder.Rows[row.Index].Cells["id"].Value.ToString());
+                if (ordIDConfirm != -1)
+                {
+                    ConfirmOrder(ordIDConfirm);
+                }
             }
+            else
+            {
+                MessageBox.Show("Please choose an order to confirm!");
+            }
+
         }
 
         private void btnRejectOrder_Click(object sender, EventArgs e)
         {
-            RejectOrder();
+            DataGridViewRow row = gvConfirmOrder.CurrentRow;
+            if (row != null)
+            {
+                int ordIDConfirm = int.Parse(gvConfirmOrder.Rows[row.Index].Cells["id"].Value.ToString());
+                if (ordIDConfirm != -1)
+                {
+                    RejectOrder(ordIDConfirm);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please choose an order to reject!");
+            }
         }
 
         private void btnUploadImage_Click(object sender, EventArgs e)
@@ -743,6 +727,12 @@ namespace KiddyDesktop
         }
 
         #region Toy_Functions
+
+        private void tabProduct_Enter(object sender, EventArgs e)
+        {
+            loadToys();
+        }
+
         private async void loadToys()
         {
             HttpResponseMessage response = await client.GetAsync(BASE_URL + "Toys");
@@ -865,7 +855,7 @@ namespace KiddyDesktop
                     check = false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 check = false;
             }
@@ -877,7 +867,7 @@ namespace KiddyDesktop
                     check = false;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 check = false;
             }
@@ -922,29 +912,33 @@ namespace KiddyDesktop
 
         private void btnSavePro_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtProID.Text);
-            string proName = txtProName.Text.Trim();
-            float proPrice = float.Parse(txtProPrice.Text.Trim());
-            int proQuantity = int.Parse(txtProQuantity.Text.Trim());
-            string proCategory = (string)cbProCategory.SelectedItem;
-            string proDescription = txtProDescription.Text.Trim();
-            byte[] image = imageToByteArray(pbProImage.Image);
-
-            ToyDTO dto = new ToyDTO
+            try
             {
-                id = id,
-                name = proName,
-                price = proPrice,
-                quantity = proQuantity,
-                category = proCategory,
-                description = proDescription,
-                image = image
-            };
-
-            updateToy(dto);
-            MessageBox.Show("Update toy id" + id + " success!");
-            btnClearPro_Click(sender, e);
-            loadToys();
+                int id = int.Parse(txtProID.Text);
+                string proName = txtProName.Text.Trim();
+                float proPrice = float.Parse(txtProPrice.Text.Trim());
+                int proQuantity = int.Parse(txtProQuantity.Text.Trim());
+                string proCategory = (string)cbProCategory.SelectedItem;
+                string proDescription = txtProDescription.Text.Trim();
+                byte[] image = imageToByteArray(pbProImage.Image);
+                ToyDTO dto = new ToyDTO
+                {
+                    id = id,
+                    name = proName,
+                    price = proPrice,
+                    quantity = proQuantity,
+                    category = proCategory,
+                    description = proDescription,
+                    image = image
+                };
+                updateToy(dto);
+                MessageBox.Show("Update toy id" + id + " success!");
+                btnClearPro_Click(sender, e);
+                loadToys();
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnDeletePro_Click(object sender, EventArgs e)
@@ -1019,7 +1013,7 @@ namespace KiddyDesktop
                 float price = float.Parse(txtProPrice.Text);
                 errProduct.SetError(txtProPrice, "");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 errProduct.SetError(txtProPrice, "Price must be a number!");
             }
@@ -1032,7 +1026,7 @@ namespace KiddyDesktop
                 int price = int.Parse(txtProQuantity.Text);
                 errProduct.SetError(txtProQuantity, "");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 errProduct.SetError(txtProQuantity, "Quantity must be a number!");
             }
@@ -1067,6 +1061,7 @@ namespace KiddyDesktop
         private void button8_Click(object sender, EventArgs e)
         {
             this.Close();
+            login.Show();
         }
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
@@ -1084,7 +1079,7 @@ namespace KiddyDesktop
         }
 
         #region Feedback_Functions
-    
+
 
         private async void loadToyFeedback()
         {
@@ -1264,23 +1259,20 @@ namespace KiddyDesktop
 
         private void btnWelcomeEmployee_Click(object sender, EventArgs e)
         {
-            TabControl.SelectedIndex = 2;
+            TabControl.SelectedIndex = 4;
         }
 
         private void btnWelcomeOrder_Click(object sender, EventArgs e)
         {
-            TabControl.SelectedIndex = 3;
+            TabControl.SelectedIndex = 2;
         }
 
         private void btnWelcomeCustomer_Click(object sender, EventArgs e)
         {
-            TabControl.SelectedIndex = 4;
+            TabControl.SelectedIndex = 3;
         }
 
-        private void tabCustomer_Enter_1(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
 

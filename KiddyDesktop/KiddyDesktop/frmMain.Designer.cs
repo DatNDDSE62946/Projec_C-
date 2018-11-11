@@ -64,6 +64,40 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.tabOrderFeedback = new System.Windows.Forms.TabPage();
+            this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.txtFeedback = new System.Windows.Forms.TextBox();
+            this.dgvFeedback = new System.Windows.Forms.DataGridView();
+            this.btnDeleteFeedback = new System.Windows.Forms.Button();
+            this.btnConfirmFeedback = new System.Windows.Forms.Button();
+            this.dgvProFeedback = new System.Windows.Forms.DataGridView();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtConfirmAddress = new System.Windows.Forms.TextBox();
+            this.txtConfirmPayment = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnRejectOrder = new System.Windows.Forms.Button();
+            this.btnConfirmOrder = new System.Windows.Forms.Button();
+            this.gvOrderDetail2 = new System.Windows.Forms.DataGridView();
+            this.gvConfirmOrder = new System.Windows.Forms.DataGridView();
+            this.tabCustomer = new System.Windows.Forms.TabPage();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtAddress = new System.Windows.Forms.TextBox();
+            this.txtPayment = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.gvOrderDetail = new System.Windows.Forms.DataGridView();
+            this.label18 = new System.Windows.Forms.Label();
+            this.gvOrders = new System.Windows.Forms.DataGridView();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.btnBlock = new System.Windows.Forms.Button();
+            this.txtCustomerSearch = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.gvCustomer = new System.Windows.Forms.DataGridView();
             this.tabEmployee = new System.Windows.Forms.TabPage();
             this.btnEmployeeEdit = new System.Windows.Forms.Button();
             this.btnEmployeeDelete = new System.Windows.Forms.Button();
@@ -87,40 +121,6 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.tabOrderFeedback = new System.Windows.Forms.TabPage();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtFeedback = new System.Windows.Forms.TextBox();
-            this.dgvFeedback = new System.Windows.Forms.DataGridView();
-            this.btnDeleteFeedback = new System.Windows.Forms.Button();
-            this.btnConfirmFeedback = new System.Windows.Forms.Button();
-            this.dgvProFeedback = new System.Windows.Forms.DataGridView();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.txtConfirmAddress = new System.Windows.Forms.TextBox();
-            this.txtConfirmPayment = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.btnRejectOrder = new System.Windows.Forms.Button();
-            this.btnConfirmOrder = new System.Windows.Forms.Button();
-            this.gvOrderDetail2 = new System.Windows.Forms.DataGridView();
-            this.gvConfirmOrder = new System.Windows.Forms.DataGridView();
-            this.tabCustomer = new System.Windows.Forms.TabPage();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.txtPayment = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
-            this.gvOrderDetail = new System.Windows.Forms.DataGridView();
-            this.label18 = new System.Windows.Forms.Label();
-            this.gvOrders = new System.Windows.Forms.DataGridView();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.btnBlock = new System.Windows.Forms.Button();
-            this.txtCustomerSearch = new System.Windows.Forms.TextBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.gvCustomer = new System.Windows.Forms.DataGridView();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnLogout = new System.Windows.Forms.Button();
             this.entityCommand1 = new System.Data.Entity.Core.EntityClient.EntityCommand();
@@ -134,8 +134,6 @@
             this.btnExit = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.TabControl.SuspendLayout();
             this.tabWelcome.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -144,11 +142,6 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProImage)).BeginInit();
-            this.tabEmployee.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvEmployee)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PBEmployee)).BeginInit();
             this.tabOrderFeedback.SuspendLayout();
             this.groupBox6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFeedback)).BeginInit();
@@ -162,6 +155,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvOrders)).BeginInit();
             this.groupBox7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomer)).BeginInit();
+            this.tabEmployee.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEmployee)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PBEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usernameValidate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).BeginInit();
@@ -175,9 +173,9 @@
             // 
             this.TabControl.Controls.Add(this.tabWelcome);
             this.TabControl.Controls.Add(this.tabProduct);
-            this.TabControl.Controls.Add(this.tabEmployee);
             this.TabControl.Controls.Add(this.tabOrderFeedback);
             this.TabControl.Controls.Add(this.tabCustomer);
+            this.TabControl.Controls.Add(this.tabEmployee);
             this.TabControl.Cursor = System.Windows.Forms.Cursors.Default;
             this.TabControl.ImageList = this.imgList;
             this.TabControl.Location = new System.Drawing.Point(12, 77);
@@ -326,6 +324,7 @@
             this.tabProduct.TabIndex = 0;
             this.tabProduct.Text = "Product";
             this.tabProduct.UseVisualStyleBackColor = true;
+            this.tabProduct.Enter += new System.EventHandler(this.tabProduct_Enter);
             // 
             // btnClearPro
             // 
@@ -596,269 +595,6 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "ID";
             // 
-            // tabEmployee
-            // 
-            this.tabEmployee.Controls.Add(this.btnEmployeeEdit);
-            this.tabEmployee.Controls.Add(this.btnEmployeeDelete);
-            this.tabEmployee.Controls.Add(this.btnEmployeeSave);
-            this.tabEmployee.Controls.Add(this.btnEmployeeAdd);
-            this.tabEmployee.Controls.Add(this.txtSearch);
-            this.tabEmployee.Controls.Add(this.label7);
-            this.tabEmployee.Controls.Add(this.gvEmployee);
-            this.tabEmployee.Controls.Add(this.groupBox3);
-            this.tabEmployee.ImageIndex = 3;
-            this.tabEmployee.Location = new System.Drawing.Point(4, 47);
-            this.tabEmployee.Name = "tabEmployee";
-            this.tabEmployee.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEmployee.Size = new System.Drawing.Size(997, 435);
-            this.tabEmployee.TabIndex = 1;
-            this.tabEmployee.Text = "Employee";
-            this.tabEmployee.UseVisualStyleBackColor = true;
-            // 
-            // btnEmployeeEdit
-            // 
-            this.btnEmployeeEdit.FlatAppearance.BorderSize = 0;
-            this.btnEmployeeEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmployeeEdit.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmployeeEdit.ImageKey = "check.png";
-            this.btnEmployeeEdit.ImageList = this.imgButtonList;
-            this.btnEmployeeEdit.Location = new System.Drawing.Point(658, 310);
-            this.btnEmployeeEdit.Name = "btnEmployeeEdit";
-            this.btnEmployeeEdit.Size = new System.Drawing.Size(62, 56);
-            this.btnEmployeeEdit.TabIndex = 7;
-            this.btnEmployeeEdit.UseVisualStyleBackColor = true;
-            this.btnEmployeeEdit.Click += new System.EventHandler(this.btnEmployeeEdit_Click);
-            // 
-            // btnEmployeeDelete
-            // 
-            this.btnEmployeeDelete.FlatAppearance.BorderSize = 0;
-            this.btnEmployeeDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmployeeDelete.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmployeeDelete.ImageKey = "cross.png";
-            this.btnEmployeeDelete.ImageList = this.imgButtonList;
-            this.btnEmployeeDelete.Location = new System.Drawing.Point(773, 310);
-            this.btnEmployeeDelete.Name = "btnEmployeeDelete";
-            this.btnEmployeeDelete.Size = new System.Drawing.Size(62, 56);
-            this.btnEmployeeDelete.TabIndex = 6;
-            this.btnEmployeeDelete.UseVisualStyleBackColor = true;
-            this.btnEmployeeDelete.Click += new System.EventHandler(this.btnEmployeeDelete_Click);
-            // 
-            // btnEmployeeSave
-            // 
-            this.btnEmployeeSave.FlatAppearance.BorderSize = 0;
-            this.btnEmployeeSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmployeeSave.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmployeeSave.ImageKey = "add.png";
-            this.btnEmployeeSave.ImageList = this.imgButtonList;
-            this.btnEmployeeSave.Location = new System.Drawing.Point(541, 310);
-            this.btnEmployeeSave.Name = "btnEmployeeSave";
-            this.btnEmployeeSave.Size = new System.Drawing.Size(62, 56);
-            this.btnEmployeeSave.TabIndex = 5;
-            this.btnEmployeeSave.UseVisualStyleBackColor = true;
-            this.btnEmployeeSave.Click += new System.EventHandler(this.btnEmployeeSave_Click);
-            // 
-            // btnEmployeeAdd
-            // 
-            this.btnEmployeeAdd.FlatAppearance.BorderSize = 0;
-            this.btnEmployeeAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEmployeeAdd.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmployeeAdd.ImageKey = "clear.png";
-            this.btnEmployeeAdd.ImageList = this.imgButtonList;
-            this.btnEmployeeAdd.Location = new System.Drawing.Point(892, 310);
-            this.btnEmployeeAdd.Name = "btnEmployeeAdd";
-            this.btnEmployeeAdd.Size = new System.Drawing.Size(62, 56);
-            this.btnEmployeeAdd.TabIndex = 4;
-            this.btnEmployeeAdd.UseVisualStyleBackColor = true;
-            this.btnEmployeeAdd.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // txtSearch
-            // 
-            this.txtSearch.Location = new System.Drawing.Point(105, 16);
-            this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(180, 20);
-            this.txtSearch.TabIndex = 3;
-            this.txtSearch.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 16);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 13);
-            this.label7.TabIndex = 2;
-            this.label7.Text = "Search Employee";
-            // 
-            // gvEmployee
-            // 
-            this.gvEmployee.AllowUserToAddRows = false;
-            this.gvEmployee.AllowUserToDeleteRows = false;
-            this.gvEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvEmployee.Location = new System.Drawing.Point(8, 57);
-            this.gvEmployee.MultiSelect = false;
-            this.gvEmployee.Name = "gvEmployee";
-            this.gvEmployee.ReadOnly = true;
-            this.gvEmployee.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            this.gvEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gvEmployee.Size = new System.Drawing.Size(482, 372);
-            this.gvEmployee.TabIndex = 1;
-            this.gvEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.txtLastName);
-            this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.btnUploadImage);
-            this.groupBox3.Controls.Add(this.rdFemail);
-            this.groupBox3.Controls.Add(this.rdMale);
-            this.groupBox3.Controls.Add(this.dtDOB);
-            this.groupBox3.Controls.Add(this.txtFirstName);
-            this.groupBox3.Controls.Add(this.groupBox4);
-            this.groupBox3.Controls.Add(this.txtUsername);
-            this.groupBox3.Controls.Add(this.label11);
-            this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Location = new System.Drawing.Point(514, 57);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(483, 221);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Employee Detail";
-            // 
-            // txtLastName
-            // 
-            this.txtLastName.Location = new System.Drawing.Point(93, 97);
-            this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(197, 20);
-            this.txtLastName.TabIndex = 8;
-            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtLastName_Validating);
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(16, 97);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(56, 13);
-            this.label20.TabIndex = 12;
-            this.label20.Text = "Last name";
-            // 
-            // btnUploadImage
-            // 
-            this.btnUploadImage.FlatAppearance.BorderSize = 0;
-            this.btnUploadImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUploadImage.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUploadImage.ImageKey = "picture.png";
-            this.btnUploadImage.ImageList = this.imgButtonList;
-            this.btnUploadImage.Location = new System.Drawing.Point(310, 177);
-            this.btnUploadImage.Name = "btnUploadImage";
-            this.btnUploadImage.Size = new System.Drawing.Size(155, 38);
-            this.btnUploadImage.TabIndex = 11;
-            this.btnUploadImage.UseVisualStyleBackColor = true;
-            this.btnUploadImage.Click += new System.EventHandler(this.btnUploadImage_Click);
-            this.btnUploadImage.Validating += new System.ComponentModel.CancelEventHandler(this.btnUploadImage_Validating);
-            // 
-            // rdFemail
-            // 
-            this.rdFemail.AutoSize = true;
-            this.rdFemail.Location = new System.Drawing.Point(231, 177);
-            this.rdFemail.Name = "rdFemail";
-            this.rdFemail.Size = new System.Drawing.Size(59, 17);
-            this.rdFemail.TabIndex = 10;
-            this.rdFemail.TabStop = true;
-            this.rdFemail.Text = "Female";
-            this.rdFemail.UseVisualStyleBackColor = true;
-            // 
-            // rdMale
-            // 
-            this.rdMale.AutoSize = true;
-            this.rdMale.Location = new System.Drawing.Point(93, 177);
-            this.rdMale.Name = "rdMale";
-            this.rdMale.Size = new System.Drawing.Size(48, 17);
-            this.rdMale.TabIndex = 9;
-            this.rdMale.TabStop = true;
-            this.rdMale.Text = "Male";
-            this.rdMale.UseVisualStyleBackColor = true;
-            // 
-            // dtDOB
-            // 
-            this.dtDOB.Checked = false;
-            this.dtDOB.Location = new System.Drawing.Point(93, 140);
-            this.dtDOB.Name = "dtDOB";
-            this.dtDOB.Size = new System.Drawing.Size(197, 20);
-            this.dtDOB.TabIndex = 9;
-            // 
-            // txtFirstName
-            // 
-            this.txtFirstName.Location = new System.Drawing.Point(93, 56);
-            this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(197, 20);
-            this.txtFirstName.TabIndex = 7;
-            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.txtFirstName_Validating);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.PBEmployee);
-            this.groupBox4.Location = new System.Drawing.Point(310, 19);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(155, 151);
-            this.groupBox4.TabIndex = 6;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Image";
-            // 
-            // PBEmployee
-            // 
-            this.PBEmployee.Location = new System.Drawing.Point(6, 13);
-            this.PBEmployee.Name = "PBEmployee";
-            this.PBEmployee.Size = new System.Drawing.Size(138, 132);
-            this.PBEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.PBEmployee.TabIndex = 0;
-            this.PBEmployee.TabStop = false;
-            // 
-            // txtUsername
-            // 
-            this.txtUsername.Location = new System.Drawing.Point(93, 19);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(197, 20);
-            this.txtUsername.TabIndex = 5;
-            this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(16, 177);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(42, 13);
-            this.label11.TabIndex = 3;
-            this.label11.Text = "Gender";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(16, 140);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(28, 13);
-            this.label10.TabIndex = 2;
-            this.label10.Text = "DoB";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(16, 59);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(55, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "First name";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 19);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(55, 13);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "Username";
-            // 
             // tabOrderFeedback
             // 
             this.tabOrderFeedback.Controls.Add(this.groupBox6);
@@ -877,8 +613,6 @@
             // 
             this.groupBox6.Controls.Add(this.label16);
             this.groupBox6.Controls.Add(this.label15);
-            this.groupBox6.Controls.Add(this.textBox11);
-            this.groupBox6.Controls.Add(this.label13);
             this.groupBox6.Controls.Add(this.txtFeedback);
             this.groupBox6.Controls.Add(this.dgvFeedback);
             this.groupBox6.Controls.Add(this.btnDeleteFeedback);
@@ -894,7 +628,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(272, 79);
+            this.label16.Location = new System.Drawing.Point(272, 15);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(55, 13);
             this.label16.TabIndex = 14;
@@ -903,31 +637,15 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(19, 80);
+            this.label15.Location = new System.Drawing.Point(19, 16);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(44, 13);
             this.label15.TabIndex = 13;
             this.label15.Text = "Product";
             // 
-            // textBox11
-            // 
-            this.textBox11.Location = new System.Drawing.Point(98, 43);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(157, 20);
-            this.textBox11.TabIndex = 12;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(19, 43);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(72, 13);
-            this.label13.TabIndex = 11;
-            this.label13.Text = "Search Name";
-            // 
             // txtFeedback
             // 
-            this.txtFeedback.Location = new System.Drawing.Point(19, 272);
+            this.txtFeedback.Location = new System.Drawing.Point(19, 249);
             this.txtFeedback.Multiline = true;
             this.txtFeedback.Name = "txtFeedback";
             this.txtFeedback.ReadOnly = true;
@@ -938,18 +656,18 @@
             // 
             this.dgvFeedback.AllowUserToAddRows = false;
             this.dgvFeedback.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFeedback.Location = new System.Drawing.Point(272, 99);
+            this.dgvFeedback.Location = new System.Drawing.Point(261, 35);
             this.dgvFeedback.Name = "dgvFeedback";
             this.dgvFeedback.ReadOnly = true;
-            this.dgvFeedback.Size = new System.Drawing.Size(207, 150);
+            this.dgvFeedback.Size = new System.Drawing.Size(211, 180);
             this.dgvFeedback.TabIndex = 7;
             // 
             // btnDeleteFeedback
             // 
             this.btnDeleteFeedback.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteFeedback.Location = new System.Drawing.Point(301, 345);
+            this.btnDeleteFeedback.Location = new System.Drawing.Point(301, 322);
             this.btnDeleteFeedback.Name = "btnDeleteFeedback";
-            this.btnDeleteFeedback.Size = new System.Drawing.Size(178, 67);
+            this.btnDeleteFeedback.Size = new System.Drawing.Size(171, 67);
             this.btnDeleteFeedback.TabIndex = 6;
             this.btnDeleteFeedback.Text = "Delete";
             this.btnDeleteFeedback.UseVisualStyleBackColor = true;
@@ -958,9 +676,9 @@
             // btnConfirmFeedback
             // 
             this.btnConfirmFeedback.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmFeedback.Location = new System.Drawing.Point(301, 272);
+            this.btnConfirmFeedback.Location = new System.Drawing.Point(301, 249);
             this.btnConfirmFeedback.Name = "btnConfirmFeedback";
-            this.btnConfirmFeedback.Size = new System.Drawing.Size(178, 67);
+            this.btnConfirmFeedback.Size = new System.Drawing.Size(171, 67);
             this.btnConfirmFeedback.TabIndex = 5;
             this.btnConfirmFeedback.Text = "Confirm";
             this.btnConfirmFeedback.UseVisualStyleBackColor = true;
@@ -971,10 +689,10 @@
             this.dgvProFeedback.AllowUserToAddRows = false;
             this.dgvProFeedback.AllowUserToDeleteRows = false;
             this.dgvProFeedback.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvProFeedback.Location = new System.Drawing.Point(19, 99);
+            this.dgvProFeedback.Location = new System.Drawing.Point(19, 35);
             this.dgvProFeedback.Name = "dgvProFeedback";
             this.dgvProFeedback.ReadOnly = true;
-            this.dgvProFeedback.Size = new System.Drawing.Size(236, 150);
+            this.dgvProFeedback.Size = new System.Drawing.Size(236, 180);
             this.dgvProFeedback.TabIndex = 4;
             this.dgvProFeedback.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProFeedback_CellClick);
             // 
@@ -1114,11 +832,30 @@
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Customer\'s Order History";
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(3, 309);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(45, 13);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "Address";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(3, 263);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(48, 13);
+            this.label23.TabIndex = 6;
+            this.label23.Text = "Payment";
+            // 
             // txtAddress
             // 
             this.txtAddress.Location = new System.Drawing.Point(64, 306);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
+            this.txtAddress.ReadOnly = true;
             this.txtAddress.Size = new System.Drawing.Size(199, 85);
             this.txtAddress.TabIndex = 5;
             // 
@@ -1126,6 +863,7 @@
             // 
             this.txtPayment.Location = new System.Drawing.Point(63, 260);
             this.txtPayment.Name = "txtPayment";
+            this.txtPayment.ReadOnly = true;
             this.txtPayment.Size = new System.Drawing.Size(199, 20);
             this.txtPayment.TabIndex = 4;
             // 
@@ -1141,9 +879,11 @@
             // gvOrderDetail
             // 
             this.gvOrderDetail.AllowUserToAddRows = false;
+            this.gvOrderDetail.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvOrderDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrderDetail.Location = new System.Drawing.Point(269, 45);
             this.gvOrderDetail.Name = "gvOrderDetail";
+            this.gvOrderDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvOrderDetail.Size = new System.Drawing.Size(325, 366);
             this.gvOrderDetail.TabIndex = 2;
             // 
@@ -1158,12 +898,17 @@
             // 
             // gvOrders
             // 
+            this.gvOrders.AllowUserToAddRows = false;
+            this.gvOrders.AllowUserToDeleteRows = false;
+            this.gvOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvOrders.Location = new System.Drawing.Point(6, 45);
             this.gvOrders.Name = "gvOrders";
+            this.gvOrders.ReadOnly = true;
+            this.gvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvOrders.Size = new System.Drawing.Size(256, 191);
             this.gvOrders.TabIndex = 0;
-            this.gvOrders.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvOrders_CellContentClick);
+            this.gvOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvOrders_CellClick);
             // 
             // groupBox7
             // 
@@ -1215,7 +960,271 @@
             this.gvCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvCustomer.Size = new System.Drawing.Size(369, 313);
             this.gvCustomer.TabIndex = 0;
-            this.gvCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvCustomer_CellContentClick);
+            this.gvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvCustomer_CellClick);
+            // 
+            // tabEmployee
+            // 
+            this.tabEmployee.Controls.Add(this.btnEmployeeEdit);
+            this.tabEmployee.Controls.Add(this.btnEmployeeDelete);
+            this.tabEmployee.Controls.Add(this.btnEmployeeSave);
+            this.tabEmployee.Controls.Add(this.btnEmployeeAdd);
+            this.tabEmployee.Controls.Add(this.txtSearch);
+            this.tabEmployee.Controls.Add(this.label7);
+            this.tabEmployee.Controls.Add(this.gvEmployee);
+            this.tabEmployee.Controls.Add(this.groupBox3);
+            this.tabEmployee.ImageIndex = 3;
+            this.tabEmployee.Location = new System.Drawing.Point(4, 47);
+            this.tabEmployee.Name = "tabEmployee";
+            this.tabEmployee.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEmployee.Size = new System.Drawing.Size(997, 435);
+            this.tabEmployee.TabIndex = 1;
+            this.tabEmployee.Text = "Employee";
+            this.tabEmployee.UseVisualStyleBackColor = true;
+            this.tabEmployee.Enter += new System.EventHandler(this.tabEmployee_Enter);
+            // 
+            // btnEmployeeEdit
+            // 
+            this.btnEmployeeEdit.FlatAppearance.BorderSize = 0;
+            this.btnEmployeeEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeEdit.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeEdit.ImageKey = "check.png";
+            this.btnEmployeeEdit.ImageList = this.imgButtonList;
+            this.btnEmployeeEdit.Location = new System.Drawing.Point(658, 310);
+            this.btnEmployeeEdit.Name = "btnEmployeeEdit";
+            this.btnEmployeeEdit.Size = new System.Drawing.Size(62, 56);
+            this.btnEmployeeEdit.TabIndex = 7;
+            this.btnEmployeeEdit.UseVisualStyleBackColor = true;
+            this.btnEmployeeEdit.Click += new System.EventHandler(this.btnEmployeeEdit_Click);
+            // 
+            // btnEmployeeDelete
+            // 
+            this.btnEmployeeDelete.FlatAppearance.BorderSize = 0;
+            this.btnEmployeeDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeDelete.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeDelete.ImageKey = "cross.png";
+            this.btnEmployeeDelete.ImageList = this.imgButtonList;
+            this.btnEmployeeDelete.Location = new System.Drawing.Point(773, 310);
+            this.btnEmployeeDelete.Name = "btnEmployeeDelete";
+            this.btnEmployeeDelete.Size = new System.Drawing.Size(62, 56);
+            this.btnEmployeeDelete.TabIndex = 6;
+            this.btnEmployeeDelete.UseVisualStyleBackColor = true;
+            this.btnEmployeeDelete.Click += new System.EventHandler(this.btnEmployeeDelete_Click);
+            // 
+            // btnEmployeeSave
+            // 
+            this.btnEmployeeSave.FlatAppearance.BorderSize = 0;
+            this.btnEmployeeSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeSave.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeSave.ImageKey = "add.png";
+            this.btnEmployeeSave.ImageList = this.imgButtonList;
+            this.btnEmployeeSave.Location = new System.Drawing.Point(541, 310);
+            this.btnEmployeeSave.Name = "btnEmployeeSave";
+            this.btnEmployeeSave.Size = new System.Drawing.Size(62, 56);
+            this.btnEmployeeSave.TabIndex = 5;
+            this.btnEmployeeSave.UseVisualStyleBackColor = true;
+            this.btnEmployeeSave.Click += new System.EventHandler(this.btnEmployeeSave_Click);
+            // 
+            // btnEmployeeAdd
+            // 
+            this.btnEmployeeAdd.FlatAppearance.BorderSize = 0;
+            this.btnEmployeeAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeAdd.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmployeeAdd.ImageKey = "clear.png";
+            this.btnEmployeeAdd.ImageList = this.imgButtonList;
+            this.btnEmployeeAdd.Location = new System.Drawing.Point(892, 310);
+            this.btnEmployeeAdd.Name = "btnEmployeeAdd";
+            this.btnEmployeeAdd.Size = new System.Drawing.Size(62, 56);
+            this.btnEmployeeAdd.TabIndex = 4;
+            this.btnEmployeeAdd.UseVisualStyleBackColor = true;
+            this.btnEmployeeAdd.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(105, 16);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(180, 20);
+            this.txtSearch.TabIndex = 3;
+            this.txtSearch.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 16);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(90, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Search Employee";
+            // 
+            // gvEmployee
+            // 
+            this.gvEmployee.AllowUserToAddRows = false;
+            this.gvEmployee.AllowUserToDeleteRows = false;
+            this.gvEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gvEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvEmployee.Location = new System.Drawing.Point(8, 57);
+            this.gvEmployee.MultiSelect = false;
+            this.gvEmployee.Name = "gvEmployee";
+            this.gvEmployee.ReadOnly = true;
+            this.gvEmployee.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.gvEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.gvEmployee.Size = new System.Drawing.Size(482, 372);
+            this.gvEmployee.TabIndex = 1;
+            this.gvEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.txtLastName);
+            this.groupBox3.Controls.Add(this.label20);
+            this.groupBox3.Controls.Add(this.btnUploadImage);
+            this.groupBox3.Controls.Add(this.rdFemail);
+            this.groupBox3.Controls.Add(this.rdMale);
+            this.groupBox3.Controls.Add(this.dtDOB);
+            this.groupBox3.Controls.Add(this.txtFirstName);
+            this.groupBox3.Controls.Add(this.groupBox4);
+            this.groupBox3.Controls.Add(this.txtUsername);
+            this.groupBox3.Controls.Add(this.label11);
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label8);
+            this.groupBox3.Location = new System.Drawing.Point(514, 57);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(483, 221);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Employee Detail";
+            // 
+            // txtLastName
+            // 
+            this.txtLastName.Location = new System.Drawing.Point(93, 97);
+            this.txtLastName.Name = "txtLastName";
+            this.txtLastName.Size = new System.Drawing.Size(197, 20);
+            this.txtLastName.TabIndex = 8;
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtLastName_Validating);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(16, 97);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(56, 13);
+            this.label20.TabIndex = 12;
+            this.label20.Text = "Last name";
+            // 
+            // btnUploadImage
+            // 
+            this.btnUploadImage.FlatAppearance.BorderSize = 0;
+            this.btnUploadImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUploadImage.Font = new System.Drawing.Font("Gabriola", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadImage.ImageKey = "picture.png";
+            this.btnUploadImage.ImageList = this.imgButtonList;
+            this.btnUploadImage.Location = new System.Drawing.Point(365, 170);
+            this.btnUploadImage.Name = "btnUploadImage";
+            this.btnUploadImage.Size = new System.Drawing.Size(56, 45);
+            this.btnUploadImage.TabIndex = 11;
+            this.btnUploadImage.UseVisualStyleBackColor = true;
+            this.btnUploadImage.Click += new System.EventHandler(this.btnUploadImage_Click);
+            this.btnUploadImage.Validating += new System.ComponentModel.CancelEventHandler(this.btnUploadImage_Validating);
+            // 
+            // rdFemail
+            // 
+            this.rdFemail.AutoSize = true;
+            this.rdFemail.Location = new System.Drawing.Point(231, 177);
+            this.rdFemail.Name = "rdFemail";
+            this.rdFemail.Size = new System.Drawing.Size(59, 17);
+            this.rdFemail.TabIndex = 10;
+            this.rdFemail.TabStop = true;
+            this.rdFemail.Text = "Female";
+            this.rdFemail.UseVisualStyleBackColor = true;
+            // 
+            // rdMale
+            // 
+            this.rdMale.AutoSize = true;
+            this.rdMale.Location = new System.Drawing.Point(93, 177);
+            this.rdMale.Name = "rdMale";
+            this.rdMale.Size = new System.Drawing.Size(48, 17);
+            this.rdMale.TabIndex = 9;
+            this.rdMale.TabStop = true;
+            this.rdMale.Text = "Male";
+            this.rdMale.UseVisualStyleBackColor = true;
+            // 
+            // dtDOB
+            // 
+            this.dtDOB.Checked = false;
+            this.dtDOB.Location = new System.Drawing.Point(93, 140);
+            this.dtDOB.Name = "dtDOB";
+            this.dtDOB.Size = new System.Drawing.Size(197, 20);
+            this.dtDOB.TabIndex = 9;
+            // 
+            // txtFirstName
+            // 
+            this.txtFirstName.Location = new System.Drawing.Point(93, 56);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(197, 20);
+            this.txtFirstName.TabIndex = 7;
+            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.txtFirstName_Validating);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.PBEmployee);
+            this.groupBox4.Location = new System.Drawing.Point(310, 19);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(155, 151);
+            this.groupBox4.TabIndex = 6;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Image";
+            // 
+            // PBEmployee
+            // 
+            this.PBEmployee.Location = new System.Drawing.Point(6, 13);
+            this.PBEmployee.Name = "PBEmployee";
+            this.PBEmployee.Size = new System.Drawing.Size(138, 132);
+            this.PBEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PBEmployee.TabIndex = 0;
+            this.PBEmployee.TabStop = false;
+            // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(93, 19);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(197, 20);
+            this.txtUsername.TabIndex = 5;
+            this.txtUsername.Validating += new System.ComponentModel.CancelEventHandler(this.txtUsername_Validating);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(16, 177);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(42, 13);
+            this.label11.TabIndex = 3;
+            this.label11.Text = "Gender";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(16, 140);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(28, 13);
+            this.label10.TabIndex = 2;
+            this.label10.Text = "DoB";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(16, 59);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(55, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "First name";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(16, 19);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(55, 13);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Username";
             // 
             // pictureBox1
             // 
@@ -1316,30 +1325,12 @@
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             this.btnMinimize.MouseHover += new System.EventHandler(this.btnMinimize_MouseHover);
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(3, 263);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(48, 13);
-            this.label23.TabIndex = 6;
-            this.label23.Text = "Payment";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(3, 309);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(45, 13);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "Address";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Honeydew;
-            this.ClientSize = new System.Drawing.Size(1042, 575);
+            this.ClientSize = new System.Drawing.Size(1042, 578);
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnChangePassword);
@@ -1350,7 +1341,6 @@
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kiddy Management";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMain_FormClosed);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.TabControl.ResumeLayout(false);
             this.tabWelcome.ResumeLayout(false);
@@ -1363,13 +1353,6 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbProImage)).EndInit();
-            this.tabEmployee.ResumeLayout(false);
-            this.tabEmployee.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gvEmployee)).EndInit();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PBEmployee)).EndInit();
             this.tabOrderFeedback.ResumeLayout(false);
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
@@ -1387,6 +1370,13 @@
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvCustomer)).EndInit();
+            this.tabEmployee.ResumeLayout(false);
+            this.tabEmployee.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvEmployee)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PBEmployee)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usernameValidate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.firstnameValidate)).EndInit();
@@ -1455,8 +1445,6 @@
         private System.Windows.Forms.TextBox txtFeedback;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TabPage tabCustomer;
         private System.Windows.Forms.GroupBox groupBox8;

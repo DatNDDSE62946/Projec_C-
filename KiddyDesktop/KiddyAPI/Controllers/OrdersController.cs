@@ -104,33 +104,23 @@ namespace KiddyAPI.Controllers
 
         // POST: api/Orders
         [ResponseType(typeof(tblOrder))]
-        public IHttpActionResult PosttblOrder(tblOrder tblOrder)
+        public IHttpActionResult PosttblOrder(OrderDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            db.tblOrders.Add(tblOrder);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = tblOrder.id }, tblOrder);
-        }
-
-        // DELETE: api/Orders/5
-        [ResponseType(typeof(tblOrder))]
-        public IHttpActionResult DeletetblOrder(int id)
-        {
-            tblOrder tblOrder = db.tblOrders.Find(id);
-            if (tblOrder == null)
+            tblOrder order = new tblOrder
             {
-                return NotFound();
-            }
-
-            db.tblOrders.Remove(tblOrder);
+                cusID = dto.cusID,
+                address = dto.address,
+                payment = dto.payment,
+                date = DateTime.Now
+            };
+            db.tblOrders.Add(order);
             db.SaveChanges();
 
-            return Ok(tblOrder);
+            return CreatedAtRoute("DefaultApi", new { id = dto.id }, dto);
         }
 
         protected override void Dispose(bool disposing)

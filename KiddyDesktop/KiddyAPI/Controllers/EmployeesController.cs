@@ -144,8 +144,22 @@ namespace KiddyAPI.Controllers
                 role = dto.role,
                 image = dto.image
             });
-
-                db.SaveChanges();       
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (tblEmployeeExists(dto.username))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+                 
 
             return CreatedAtRoute("DefaultApi", new { id = dto.username }, dto);
         }

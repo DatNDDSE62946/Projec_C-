@@ -133,7 +133,7 @@ namespace KiddyWeb.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> TransactionHistoryDetail([Bind(Include = "id, date, payment, status")]OrderDTO dto)
+        public async Task<ActionResult> TransactionHistoryDetail([Bind(Include = "id, date, payment, status, address")]OrderDTO dto)
         {
             IEnumerable<OrderDetailDTO> list = null;
             HttpResponseMessage response = await client.GetAsync("http://localhost:50815/api/OrderDetails/OrderDetailsByOrderID?orderID=" + dto.id);

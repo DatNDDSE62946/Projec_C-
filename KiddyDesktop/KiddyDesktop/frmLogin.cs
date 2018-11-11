@@ -41,9 +41,7 @@ namespace KiddyDesktop
             }
             else
             {
-                Form f = new frmMain(result);
-                        f.Show();
-                       this.Hide();
+                new frmMain(result, this);  
             }
 
 

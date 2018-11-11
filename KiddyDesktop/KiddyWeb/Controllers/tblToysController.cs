@@ -144,5 +144,10 @@ namespace KiddyWeb.Controllers
             }
             return View(listToys);
         }
+
+        public ActionResult AboutUs()
+        {
+            return View();
+        }
     }
 }

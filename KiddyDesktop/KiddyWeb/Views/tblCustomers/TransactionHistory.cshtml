@@ -1,6 +1,4 @@
 ﻿@model IEnumerable<KiddyWeb.Models.OrderDTO>
-<link rel="stylesheet" type="text/css" href="~/Content/styles/cart.css">
-<link rel="stylesheet" type="text/css" href="~/Content/styles/cart_responsive.css">
 @{ 
     ViewBag.Page = "Transaction";
 }
@@ -19,7 +17,7 @@
                             <div class="home_content">
                                 <div class="breadcrumbs">
                                     <ul>
-                                        <li><a href="index.html">Home</a></li>
+                                        <li>@Html.ActionLink("Home", "Index", "tblToys")</li>
                                         <li>Transaction History</li>
                                     </ul>
                                 </div>

@@ -29,7 +29,7 @@ namespace KiddyAPI.Controllers
         //public IHttpActionResult PosttblCustomer(string id)
         //{
         //    tblCustomer tblCustomer = db.tblCustomers.Find(id);
-            
+
         //    if (tblCustomer == null)
         //    {
         //        return NotFound();
@@ -47,52 +47,44 @@ namespace KiddyAPI.Controllers
         //}
 
         // PUT: api/Customers/5
-        //[ResponseType(typeof(void))]
-        //[HttpPut]
-        //public IHttpActionResult tblCustomer(string id, CustomerDTO dto)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        [ResponseType(typeof(void))]
+        [HttpPut]
+        [Route("api/Customers/Block")]
+        public IHttpActionResult tblCustomer(CustomerDTO dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            tblCustomer cus = db.tblCustomers.Find(dto.username);
+            if (cus == null)
+            {
+                return BadRequest();
+            }
+            cus.isActived = false;
 
-        //    if (id != dto.username)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    tblCustomer tblCustomer = new tblCustomer
-        //    {
-        //        username = dto.username,
-        //        firstname = dto.firstname,
-        //        lastname = dto.lastname,
-        //        isActived = dto.isActived,
-        //        password  = dto.password,
-        //    };
+            db.Entry(cus).State = EntityState.Modified;
 
-        //    db.Entry(tblCustomer).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!tblCustomerExists(dto.username))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!tblCustomerExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-
-
-
-        // PUT: api/Customers/5
+        // PUT: api/Customers/ChangePassword
         [ResponseType(typeof(void))]
         [HttpPut]
         [Route("api/Customers/ChangePassword")]
